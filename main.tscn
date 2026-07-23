@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ch1tr2so418f1" path="res://test/agecaf/test_level/agecaf_test_level.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://nig00vxjj215" path="res://test/agecaf/test_level/agecaf_test_level_2.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dhtswkp275r17" path="res://test/parrot/parrot_test_level.tscn" id="4_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
 
 [sub_resource type="Gradient" id="Gradient_5pj6p"]
@@ -48,7 +50,7 @@ follow_viewport_enabled = true
 
 [node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
 script = ExtResource("1_h2yge")
-levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd")])
+levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd"), ExtResource("4_5vw27"), ExtResource("5_kek77")])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
 

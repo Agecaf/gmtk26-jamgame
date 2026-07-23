@@ -10,6 +10,8 @@ func _ready_deferred() -> void:
 	# Connect
 	continue_button.pressed.connect(Game.menu.go_to.bind(&"GameMenu"))
 	return_to_main_button.pressed.connect(Game.menu.go_to.bind(&"MainMenu"))
+	settings_button.pressed.connect(Game.menu.go_to.bind(&"SettingsMenu"))
+
 
 # Pause the game
 func start() -> void:
