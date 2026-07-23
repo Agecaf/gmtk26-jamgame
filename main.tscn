@@ -53,10 +53,12 @@ levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd")])
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
+process_mode = 3
 scale = Vector2(3, 3)
 texture = SubResource("NoiseTexture2D_2nw5p")
 centered = false
 script = ExtResource("1_0xm2m")
 
 [node name="Menu" parent="FrontLayer" unique_id=1014980614 instance=ExtResource("1_ig7tw")]
+process_mode = 3
 theme = ExtResource("6_7mycd")

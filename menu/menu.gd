@@ -2,6 +2,8 @@ class_name Menu extends Control
 
 signal menu_changed()
 var current_menu: Control
+var previous_menu_name: StringName = &""
+var next_menu_name: StringName = &""
 
 # Initialization
 func _ready() -> void:
@@ -19,7 +21,10 @@ func _ready() -> void:
 # To to another menu.
 func go_to(menu_name: StringName) -> void:
 	# End the previous menu
-	if current_menu != null and current_menu.has_method(&"end"): current_menu.call(&"end")
+	next_menu_name = menu_name
+	if current_menu != null:
+		if current_menu.has_method(&"end"): current_menu.call(&"end")
+		previous_menu_name = current_menu.name
 	
 	# Find the menu
 	for child in get_children():

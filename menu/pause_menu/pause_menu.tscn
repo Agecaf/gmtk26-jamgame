@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cp3hgsjrl86gc"]
+
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="1_51p4d"]
+[ext_resource type="Script" uid="uid://bnwitei4fv6jt" path="res://menu/pause_menu/pause_menu.gd" id="1_jy8dm"]
+
+[node name="PauseMenu" type="Control" unique_id=1511717423]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_51p4d")
+script = ExtResource("1_jy8dm")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=301455877]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=677378315]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Continue" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1319740841]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="ReturnToMain" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1381282197]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return to Main Menu"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1895382691]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"

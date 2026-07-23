@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://diwphwo5ohcpl"]
 
 [ext_resource type="Script" uid="uid://sbi6ly20irj6" path="res://menu/game_menu/game_menu.gd" id="1_7g14r"]
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="1_g0lxn"]
 
 [node name="GameMenu" type="Control" unique_id=1819996514]
 layout_mode = 3
@@ -9,4 +10,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_g0lxn")
 script = ExtResource("1_7g14r")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1453302340]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="Pause" type="Button" parent="MarginContainer" unique_id=1071443476]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+text = "Pause"
