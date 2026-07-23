@@ -21,6 +21,7 @@ buses/default_bus_layout="uid://blvcceoo7rnvg"
 
 [autoload]
 
+Enums="*uid://huyqiws3vxxr"
 Debug="*uid://l5tn6thxg13w"
 Game="*uid://bucp3jqx788lh"
 
