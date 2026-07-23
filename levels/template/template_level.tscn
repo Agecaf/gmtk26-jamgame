@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bnq12k4ojm6hg"]
+
+[ext_resource type="TileSet" uid="uid://duioxuwyoaicm" path="res://assets/art/tilesets/tile_set_big.tres" id="1_8u1ey"]
+[ext_resource type="TileSet" uid="uid://ba0ra1phem3vp" path="res://assets/art/tilesets/tileset.tres" id="2_fcmib"]
+[ext_resource type="Script" uid="uid://rw8x3p1wrwvw" path="res://game/player/player.gd" id="3_4fd70"]
+
+[node name="TemplateLevel" type="Node2D" unique_id=610028100]
+
+[node name="BackWall" type="TileMapLayer" parent="." unique_id=1391882238]
+tile_set = ExtResource("1_8u1ey")
+
+[node name="Spikes" type="TileMapLayer" parent="." unique_id=1065874732]
+tile_set = ExtResource("1_8u1ey")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=726037104]
+tile_set = ExtResource("2_fcmib")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2040947943]
+script = ExtResource("3_4fd70")
+metadata/_custom_type_script = "uid://rw8x3p1wrwvw"
