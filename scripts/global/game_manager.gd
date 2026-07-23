@@ -11,3 +11,4 @@ var scene: GameScene
 var player: Player
 var camera: PlayerCamera
 var countdown: Countdown
+var menu: Menu
