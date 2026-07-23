@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ch1tr2so418f1" path="res://test/agecaf/test_level/agecaf_test_level.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://nig00vxjj215" path="res://test/agecaf/test_level/agecaf_test_level_2.tscn" id="3_7mycd"]
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
 
 [sub_resource type="Gradient" id="Gradient_5pj6p"]
 offsets = PackedFloat32Array(0, 0.9879518)
@@ -58,3 +59,4 @@ centered = false
 script = ExtResource("1_0xm2m")
 
 [node name="Menu" parent="FrontLayer" unique_id=1014980614 instance=ExtResource("1_ig7tw")]
+theme = ExtResource("6_7mycd")

@@ -1,0 +1,33 @@
+[gd_resource type="Theme" format=3 uid="uid://cyj05vdf0ga8u"]
+
+[ext_resource type="FontFile" uid="uid://cilohm76mhdjg" path="res://assets/other/font/Jacquard24-Regular.ttf" id="1_8n77a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs6vt"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.38289097, 0, 0.03968982, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5xhn"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n77a"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.604281, 0, 0.052742533, 1)
+
+[resource]
+default_font = ExtResource("1_8n77a")
+default_font_size = 43
+Button/styles/hover = SubResource("StyleBoxFlat_qs6vt")
+Button/styles/normal = SubResource("StyleBoxFlat_e5xhn")
+Button/styles/pressed = SubResource("StyleBoxFlat_8n77a")
