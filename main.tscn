@@ -1,3 +1,33 @@
 [gd_scene format=3 uid="uid://b4enwwndlpugd"]
 
+[ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
+
+[sub_resource type="Gradient" id="Gradient_5pj6p"]
+colors = PackedColorArray(0, 0, 0, 1, 0.1728327, 0.17283267, 0.17283267, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nw5p"]
+frequency = 0.0486
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kafe6"]
+width = 640
+height = 360
+noise = SubResource("FastNoiseLite_2nw5p")
+color_ramp = SubResource("Gradient_5pj6p")
+
 [node name="Main" type="Node2D" unique_id=1162885059]
+
+[node name="BackLayer" type="CanvasLayer" parent="." unique_id=871466563]
+
+[node name="MenuBackground" type="Sprite2D" parent="BackLayer" unique_id=722512068]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = SubResource("NoiseTexture2D_kafe6")
+centered = false
+
+[node name="GameLayer" type="CanvasLayer" parent="." unique_id=882080728]
+
+[node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
+
+[node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
+
+[node name="Menu" parent="FrontLayer" unique_id=1014980614 instance=ExtResource("1_ig7tw")]
