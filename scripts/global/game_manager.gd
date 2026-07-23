@@ -8,3 +8,4 @@ extends Node
 # Links to core elements of the game
 var audio: Audio
 var scene: GameScene
+var player: Player

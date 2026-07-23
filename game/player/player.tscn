@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cvkdh0efsttia"]
+
+[ext_resource type="Script" uid="uid://rw8x3p1wrwvw" path="res://game/player/player.gd" id="1_b2mth"]
+[ext_resource type="Texture2D" uid="uid://donc40djv2yx" path="res://assets/art/tilesets/item_berry_placeholder.png" id="2_8soms"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
+radius = 11.0
+
+[node name="Player" type="CharacterBody2D" unique_id=716552642]
+script = ExtResource("1_b2mth")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=919094306]
+texture = ExtResource("2_8soms")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=598347343]
+position = Vector2(-2, 2)
+shape = SubResource("CircleShape2D_11l1m")
