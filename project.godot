@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://blvcceoo7rnvg"
 
 Debug="*uid://l5tn6thxg13w"
 Game="*uid://bucp3jqx788lh"
+Audio="*uid://4elc3l3j71v4"
 
 [display]
 

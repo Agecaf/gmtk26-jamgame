@@ -1,4 +1,7 @@
-class_name Audio extends Node2D
+class_name AudioClass extends Node2D
+
+@onready var music_asp: AudioStreamPlayer = %MusicASP
+@onready var sfx_asp: AudioStreamPlayer = %SFXASP
 
 # Initialization
 func _ready() -> void:

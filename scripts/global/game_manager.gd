@@ -6,7 +6,7 @@ extends Node
 @warning_ignore("unused_signal") signal game_end()
 
 # Links to core elements of the game
-var audio: Audio
+var audio: AudioClass
 var scene: GameScene
 var player: Player
 var camera: PlayerCamera
