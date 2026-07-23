@@ -2,14 +2,18 @@ class_name Player
 extends CharacterBody2D
 
 
+enum State {
+	IDLE,
+	JUMPING,
+	JUMPING_BAT,
+}
+
+
 @export_range(25, 500, 25) var speed: float = 250
 @export_range(0.05, 1.0, 0.05) var jump_time: float = 0.2
 @export_range(12, 192, 12) var jump_height: float = 72
-
-var jump_initial_velocity: float:
-	get: return - 2.0 * jump_height / jump_time
-var jump_gravity: float:
-	get: return 2.0 * jump_height / jump_time / jump_time
+@export_range(0.05, 1.0, 0.05) var double_jump_time: float = 0.2
+@export_range(12, 192, 12) var double_jump_height: float = 72
 
 var collider: CollisionShape2D:
 	get: return $Collider
@@ -30,7 +34,11 @@ var player_triggers: PlayerTriggers
 
 var script_order: Array[Resource]
 
+var current_state: State:
+	get: return player_state.current_state
 
+
+# For callbacks, auxiliary scripts are executed in the order defined here
 func _init() -> void:
 	player_state = PlayerState.new()
 	player_motion = PlayerMotion.new()
@@ -46,6 +54,7 @@ func _init() -> void:
 		script.player = self
 
 
+# Each auxiliary script can implement a different part of _ready()
 func _ready() -> void:
 	reset()
 
@@ -55,11 +64,13 @@ func _ready() -> void:
 		script._on_player_ready()
 
 
+# Each auxiliary script can implement a different part of _process()
 func _process(delta: float) -> void:
 	for script: Resource in script_order:
 		script._on_player_process(delta)
 
 
+# Each auxiliary script can implement a different part of _physics_process()
 func _physics_process(delta: float) -> void:
 	for script: Resource in script_order:
 		script._on_player_physics_process(delta)
@@ -69,7 +80,14 @@ func _physics_process(delta: float) -> void:
 	position.x = clamp(position.x, x_min, x_max)
 	position.y = clamp(position.y, y_min, y_max)
 
-		
+
+# Each auxiliary script can implement a different part of reset()
 func reset() -> void:
 	for script: Resource in script_order:
 		script._on_player_reset()
+
+
+# Each auxiliary script can implement a different part of change_state()
+func change_state(state: State) -> void:
+	for script: Resource in script_order:
+		script._on_player_change_state(state)

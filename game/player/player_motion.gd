@@ -7,7 +7,15 @@ class_name PlayerMotion extends Resource
 # This accessor is set on Player._init(), treat as read-only
 var player: Player
 
-var can_jump: bool
+var jump_initial_velocity: float:
+	get: return - 2.0 * player.jump_height / player.jump_time
+var jump_gravity: float:
+	get: return 2.0 * player.jump_height / pow(player.jump_time, 2)
+
+var double_jump_initial_velocity: float:
+	get: return - 2.0 * player.double_jump_height / player.double_jump_time
+var double_jump_gravity: float:
+	get: return 2.0 * player.double_jump_height / pow(player.double_jump_time, 2)
 
 
 func _on_player_ready() -> void:
@@ -19,20 +27,24 @@ func _on_player_process(_delta: float) -> void:
 
 
 func _on_player_physics_process(delta: float) -> void:
-	var jump_pressed: bool = Input.is_action_just_pressed('ui_up')
-	
-	can_jump = player.is_on_floor()
-	
-	if jump_pressed and can_jump:
-		can_jump = false
-		player.velocity.y = player.jump_initial_velocity
-	
 	var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
 	var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 	
 	player.velocity.x = player.speed * (move_right - move_left)
-	player.velocity.y += delta * player.jump_gravity
+
+	if player.current_state == Player.State.JUMPING_BAT:
+		player.velocity.y += delta * double_jump_gravity
+	else:
+		player.velocity.y += delta * jump_gravity
 
 
 func _on_player_reset() -> void:
-	can_jump = true
+	pass
+
+
+func _on_player_change_state(state: Player.State) -> void:
+	match state:
+		Player.State.JUMPING:
+			player.velocity.y = minf(0, player.velocity.y) + jump_initial_velocity
+		Player.State.JUMPING_BAT:
+			player.velocity.y = minf(0, player.velocity.y) + double_jump_initial_velocity

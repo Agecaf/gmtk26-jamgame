@@ -23,3 +23,7 @@ func _on_player_physics_process(_delta: float) -> void:
 
 func _on_player_reset() -> void:
 	pass
+
+
+func _on_player_change_state(_state: Player.State) -> void:
+	pass
