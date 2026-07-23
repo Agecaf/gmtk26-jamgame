@@ -24,28 +24,49 @@ var y_min: float:
 var y_max: float:
 	get: return get_viewport_rect().size.y
 
-var can_jump: bool
+var player_anim: PlayerAnim
+var player_hurt: PlayerHurt
+var player_traversal: PlayerTraversal
+var player_winloss: PlayerWinLoss
+
+
+func _init() -> void:
+	player_anim = PlayerAnim.new()
+	player_anim.player = self
+	
+	player_hurt = PlayerHurt.new()
+	player_hurt.player = self
+
+	player_traversal = PlayerTraversal.new()
+	player_traversal.player = self
+
+	player_winloss = PlayerWinLoss.new()
+	player_winloss.player = self
 
 
 func _ready() -> void:
 	reset()
+
 	Game.player = self
+
+	player_anim._on_player_ready()
+	player_hurt._on_player_ready()
+	player_traversal._on_player_ready()
+	player_winloss._on_player_ready()
+
+
+func _process(delta: float) -> void:
+	player_anim._on_player_process(delta)
+	player_hurt._on_player_process(delta)
+	player_traversal._on_player_process(delta)
+	player_winloss._on_player_process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	var jump_pressed: bool = Input.is_action_just_pressed('ui_up')
-	
-	can_jump = is_on_floor()
-	
-	if jump_pressed and can_jump:
-		can_jump = false
-		velocity.y = jump_initial_velocity
-
-	var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
-	var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
-	
-	velocity.x = speed * (move_right - move_left)
-	velocity.y += delta * jump_gravity
+	player_anim._on_player_physics_process(delta)
+	player_hurt._on_player_physics_process(delta)
+	player_traversal._on_player_physics_process(delta)
+	player_winloss._on_player_physics_process(delta)
 
 	move_and_slide()
 	
@@ -54,4 +75,7 @@ func _physics_process(delta: float) -> void:
 
 		
 func reset() -> void:
-	can_jump = true
+	player_anim._on_player_reset()
+	player_hurt._on_player_reset()
+	player_traversal._on_player_reset()
+	player_winloss._on_player_reset()
