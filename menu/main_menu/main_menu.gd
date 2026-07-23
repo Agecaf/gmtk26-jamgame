@@ -11,3 +11,8 @@ func _ready() -> void:
 func _ready_deferred() -> void:
 	# Connect signals
 	level_select_button.pressed.connect(Game.menu.go_to.bind(&"LevelSelectMenu"))
+	new_game_button.pressed.connect(new_game)
+
+
+func new_game() -> void:
+	Game.menu.go_to(&"PreLevelMenu")

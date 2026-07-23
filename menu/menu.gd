@@ -1,5 +1,7 @@
 class_name Menu extends Control
 
+signal menu_changed()
+var current_menu: Control
 
 # Initialization
 func _ready() -> void:
@@ -20,6 +22,9 @@ func go_to(menu_name: StringName) -> void:
 		if child.name == menu_name:
 			child.show()
 			(child as Control).mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_ENABLED
+			current_menu = child
 		else:
 			child.hide()
 			(child as Control).mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
+	
+	menu_changed.emit()

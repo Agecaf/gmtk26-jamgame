@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dn1cvtuhremwi" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="PackedScene" uid="uid://3lks8nhux2he" path="res://menu/main_menu/main_menu.tscn" id="1_j0t7f"]
 [ext_resource type="PackedScene" uid="uid://c8w8fv4d7kw8w" path="res://menu/level_select_menu/level_select_menu.tscn" id="2_g18jx"]
+[ext_resource type="PackedScene" uid="uid://dy614mqoly7d6" path="res://menu/pre_level_menu/pre_level_menu.tscn" id="2_pbjm4"]
 
 [node name="Menu" type="Control" unique_id=1014980614]
 layout_mode = 3
@@ -12,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6nwqt")
+
+[node name="PreLevelMenu" parent="." unique_id=1998278185 instance=ExtResource("2_pbjm4")]
+layout_mode = 1
 
 [node name="MainMenu" parent="." unique_id=109957370 instance=ExtResource("1_j0t7f")]
 layout_mode = 1
