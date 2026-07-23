@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cinc4yh6d84oi"]
+
+[ext_resource type="Script" uid="uid://cadirthr4uvig" path="res://game/traps/crossbow.gd" id="1_7x1p0"]
+[ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="2_cmncp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
+
+[node name="Crossbow" type="StaticBody2D" unique_id=1899882889]
+collision_layer = 4
+script = ExtResource("1_7x1p0")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=629404288]
+texture = ExtResource("2_cmncp")
+region_enabled = true
+region_rect = Rect2(24, 24, 24, 24)
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=359547315]
+shape = SubResource("CircleShape2D_11l1m")
+
+[node name="Raycast" type="RayCast2D" parent="." unique_id=1106071608]
+
+[node name="BoltSpawnPointLeft" type="Marker2D" parent="." unique_id=799484194]
+position = Vector2(-12, 0)
+
+[node name="BoltSpawnPointRight" type="Marker2D" parent="." unique_id=341267535]
+position = Vector2(12, 0)
