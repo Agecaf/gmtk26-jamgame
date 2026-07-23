@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnq12k4ojm6hg"]
 
 [ext_resource type="TileSet" uid="uid://duioxuwyoaicm" path="res://assets/art/tilesets/tile_set_big.tres" id="1_8u1ey"]
-[ext_resource type="TileSet" uid="uid://ba0ra1phem3vp" path="res://assets/art/tilesets/tileset.tres" id="2_fcmib"]
+[ext_resource type="TileSet" uid="uid://bd54hsf1v0aac" path="res://assets/art/tilesets/tileset2.tres" id="2_8u1ey"]
 [ext_resource type="PackedScene" uid="uid://cvkdh0efsttia" path="res://game/player/player.tscn" id="3_8u1ey"]
 
 [node name="TemplateLevel" type="Node2D" unique_id=610028100]
@@ -13,6 +13,6 @@ tile_set = ExtResource("1_8u1ey")
 tile_set = ExtResource("1_8u1ey")
 
 [node name="Walls" type="TileMapLayer" parent="." unique_id=726037104]
-tile_set = ExtResource("2_fcmib")
+tile_set = ExtResource("2_8u1ey")
 
 [node name="Player" parent="." unique_id=960145280 instance=ExtResource("3_8u1ey")]

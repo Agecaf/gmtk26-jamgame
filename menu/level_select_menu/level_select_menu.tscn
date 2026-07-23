@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://c8w8fv4d7kw8w"]
 
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="1_0sgy5"]
+[ext_resource type="Script" uid="uid://daq136af5wqp4" path="res://menu/level_select_menu/level_select_menu.gd" id="1_ucf6u"]
+
 [node name="LevelSelectMenu" type="Control" unique_id=636874396]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0sgy5")
+script = ExtResource("1_ucf6u")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=271094293]
 custom_minimum_size = Vector2(0, 600)
@@ -19,28 +24,22 @@ offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="GridContainer" type="GridContainer" parent="CenterContainer" unique_id=390166253]
+[node name="LevelButtons" type="GridContainer" parent="CenterContainer" unique_id=390166253]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="Button" type="Button" parent="CenterContainer/GridContainer" unique_id=1719949153]
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-text = "Night 10"
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1812804973]
+layout_mode = 1
+offset_right = 177.0
+offset_bottom = 51.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="Button2" type="Button" parent="CenterContainer/GridContainer" unique_id=685701332]
+[node name="Return" type="Button" parent="MarginContainer" unique_id=782669535]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
-text = "Night 9"
-
-[node name="Button3" type="Button" parent="CenterContainer/GridContainer" unique_id=1090146585]
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-text = "Night 8"
-
-[node name="Button4" type="Button" parent="CenterContainer/GridContainer" unique_id=675890306]
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-text = "Night 7"
+text = "Back to Main Menu"
