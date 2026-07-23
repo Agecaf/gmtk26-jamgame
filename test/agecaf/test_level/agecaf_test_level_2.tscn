@@ -24,6 +24,7 @@ tile_set = ExtResource("3_553nx")
 
 [node name="Player" parent="." unique_id=960145280 instance=ExtResource("4_6wr6l")]
 position = Vector2(147, 33)
+collision_mask = 4294901761
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1093708630]
 script = ExtResource("5_ekd6w")
