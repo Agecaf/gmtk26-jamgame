@@ -24,24 +24,26 @@ var y_min: float:
 var y_max: float:
 	get: return get_viewport_rect().size.y
 
-var player_anim: PlayerAnim
-var player_hurt: PlayerHurt
-var player_traversal: PlayerTraversal
-var player_winloss: PlayerWinLoss
+var player_state: PlayerState
+var player_motion: PlayerMotion
+var player_triggers: PlayerTriggers
+
+var script_order: Array[Resource]
 
 
 func _init() -> void:
-	player_anim = PlayerAnim.new()
-	player_anim.player = self
-	
-	player_hurt = PlayerHurt.new()
-	player_hurt.player = self
+	player_state = PlayerState.new()
+	player_motion = PlayerMotion.new()
+	player_triggers = PlayerTriggers.new()
 
-	player_traversal = PlayerTraversal.new()
-	player_traversal.player = self
+	script_order.append_array([
+		player_state,
+		player_motion,
+		player_triggers,
+	])
 
-	player_winloss = PlayerWinLoss.new()
-	player_winloss.player = self
+	for script: Resource in script_order:
+		script.player = self
 
 
 func _ready() -> void:
@@ -49,24 +51,18 @@ func _ready() -> void:
 
 	Game.player = self
 
-	player_anim._on_player_ready()
-	player_hurt._on_player_ready()
-	player_traversal._on_player_ready()
-	player_winloss._on_player_ready()
+	for script: Resource in script_order:
+		script._on_player_ready()
 
 
 func _process(delta: float) -> void:
-	player_anim._on_player_process(delta)
-	player_hurt._on_player_process(delta)
-	player_traversal._on_player_process(delta)
-	player_winloss._on_player_process(delta)
+	for script: Resource in script_order:
+		script._on_player_process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	player_anim._on_player_physics_process(delta)
-	player_hurt._on_player_physics_process(delta)
-	player_traversal._on_player_physics_process(delta)
-	player_winloss._on_player_physics_process(delta)
+	for script: Resource in script_order:
+		script._on_player_physics_process(delta)
 
 	move_and_slide()
 	
@@ -75,7 +71,5 @@ func _physics_process(delta: float) -> void:
 
 		
 func reset() -> void:
-	player_anim._on_player_reset()
-	player_hurt._on_player_reset()
-	player_traversal._on_player_reset()
-	player_winloss._on_player_reset()
+	for script: Resource in script_order:
+		script._on_player_reset()

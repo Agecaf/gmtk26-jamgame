@@ -1,7 +1,8 @@
 # This sub-script is for Player logic that involves:
-# • Triggers when the countdown reaches zero
-# • Triggers on completing levels and/or the game
-class_name PlayerWinLoss extends Resource
+# • Defining states and state transitions
+# • Processing player input to trigger state transitions
+# • Controlling animation states
+class_name PlayerState extends Resource
 
 
 # This accessor is set on Player._init(), treat as read-only

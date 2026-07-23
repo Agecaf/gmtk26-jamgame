@@ -1,6 +1,7 @@
 # This sub-script is for Player logic that involves:
-# • Use conditions and effects of the Player's tools of traversal
-class_name PlayerTraversal extends Resource
+# • Processing player input to steer the character
+# • Doing motion calculations
+class_name PlayerMotion extends Resource
 
 
 # This accessor is set on Player._init(), treat as read-only
@@ -25,7 +26,7 @@ func _on_player_physics_process(delta: float) -> void:
 	if jump_pressed and can_jump:
 		can_jump = false
 		player.velocity.y = player.jump_initial_velocity
-
+	
 	var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
 	var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 	
