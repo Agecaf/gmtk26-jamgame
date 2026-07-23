@@ -2,9 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 
-@export var speed: float = 200
-@export var jump_force: float = 1000
+@export_range(25, 500, 25) var speed: float = 200
+@export_range(0.05, 1.0, 0.05) var jump_time: float = 0.5
+@export_range(12, 192, 12) var jump_height: float = 72
 
+var jump_initial_velocity: float:
+	get: return - 2.0 * jump_height / jump_time
+var jump_gravity: float:
+	get: return 2.0 * jump_height / jump_time / jump_time
 
 var collider: CollisionShape2D:
 	get: return $Collider
@@ -27,12 +32,12 @@ func _ready() -> void:
 	Game.player = self
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var jump_pressed: bool = Input.is_action_just_pressed('ui_up')
 
 	if jump_pressed and can_jump:
 		can_jump = false
-		velocity.y -= jump_force
+		velocity.y = jump_initial_velocity
 
 	if is_on_floor():
 		can_jump = true
@@ -41,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 	var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 	
 	velocity.x = speed * (move_right - move_left)
-	velocity.y += Game.scene.gravity if Game.scene else 0.0
+	velocity.y += delta * jump_gravity
 
 	move_and_slide()
 	

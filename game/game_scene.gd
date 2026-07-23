@@ -1,9 +1,6 @@
 class_name GameScene extends Node2D
 
 
-@export var gravity: float = 100
-
-
 # Initialization
 func _ready() -> void:
 	# Register
