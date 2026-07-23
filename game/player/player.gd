@@ -2,8 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 
-@export_range(25, 500, 25) var speed: float = 200
-@export_range(0.05, 1.0, 0.05) var jump_time: float = 0.5
+@export_range(25, 500, 25) var speed: float = 250
+@export_range(0.05, 1.0, 0.05) var jump_time: float = 0.2
 @export_range(12, 192, 12) var jump_height: float = 72
 
 var jump_initial_velocity: float:
