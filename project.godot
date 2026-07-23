@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK26 Jam Game"
-run/main_scene="uid://cwc4xihd3qria"
+run/main_scene="uid://b4enwwndlpugd"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/art/icon.svg"
 
@@ -24,13 +24,13 @@ buses/default_bus_layout="uid://blvcceoo7rnvg"
 Enums="*uid://huyqiws3vxxr"
 Debug="*uid://l5tn6thxg13w"
 Game="*uid://bucp3jqx788lh"
+Audio="*uid://4elc3l3j71v4"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [file_customization]
 
