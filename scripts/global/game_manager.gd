@@ -10,3 +10,4 @@ var audio: Audio
 var scene: GameScene
 var player: Player
 var camera: PlayerCamera
+var countdown: Countdown
