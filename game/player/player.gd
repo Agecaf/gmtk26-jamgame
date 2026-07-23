@@ -34,14 +34,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var jump_pressed: bool = Input.is_action_just_pressed('ui_up')
-
+	
+	can_jump = is_on_floor()
+	
 	if jump_pressed and can_jump:
 		can_jump = false
 		velocity.y = jump_initial_velocity
 
-	if is_on_floor():
-		can_jump = true
-	
 	var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
 	var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 	
