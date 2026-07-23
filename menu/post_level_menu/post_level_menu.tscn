@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cfdds8hbv5sg"]
+
+[ext_resource type="Script" uid="uid://ckqfx5pnb1hga" path="res://menu/post_level_menu/post_level_menu.gd" id="1_r4vb3"]
+
+[node name="PostLevelMenu" type="Control" unique_id=1417377679]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r4vb3")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=596327757]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1837216197]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Continue" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1571843812]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="ReturnToMain" type="Button" parent="CenterContainer/VBoxContainer" unique_id=223785337]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return to Main Menu"

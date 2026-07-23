@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://diwphwo5ohcpl" path="res://menu/game_menu/game_menu.tscn" id="5_svuvw"]
 [ext_resource type="PackedScene" uid="uid://cp3hgsjrl86gc" path="res://menu/pause_menu/pause_menu.tscn" id="6_juveg"]
 [ext_resource type="PackedScene" uid="uid://gvund5ygpmyq" path="res://menu/settings_menu/settings_menu.tscn" id="7_v6yed"]
+[ext_resource type="PackedScene" uid="uid://cfdds8hbv5sg" path="res://menu/post_level_menu/post_level_menu.tscn" id="8_s4hbh"]
 
 [node name="Menu" type="Control" unique_id=1014980614]
 layout_mode = 3
@@ -33,4 +34,7 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="SettingsMenu" parent="." unique_id=1201213593 instance=ExtResource("7_v6yed")]
+layout_mode = 1
+
+[node name="PostLevelMenu" parent="." unique_id=1417377679 instance=ExtResource("8_s4hbh")]
 layout_mode = 1

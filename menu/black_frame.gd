@@ -1,6 +1,11 @@
 class_name BlackFrame extends Sprite2D
 
-var menus_with_black_frame: Array[StringName] = [&"PreLevelMenu", &"PauseMenu", &"SettingsMenu"]
+var menus_with_black_frame: Array[StringName] = [
+	&"PreLevelMenu", 
+	&"PauseMenu",
+	&"SettingsMenu",
+	&"PostLevelMenu"
+]
 var target_alpha: float = 0.0
 var fade_speed: float = 10.0
 
