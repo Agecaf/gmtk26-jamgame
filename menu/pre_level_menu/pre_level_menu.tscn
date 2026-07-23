@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dy614mqoly7d6"]
 
+[ext_resource type="Script" uid="uid://bcfcc2l0f0ue4" path="res://menu/pre_level_menu/pre_level_menu.gd" id="1_frcsp"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_kafe6"]
 font_size = 32
 
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_frcsp")
 
 [node name="Label" type="Label" parent="." unique_id=1628213217]
 layout_mode = 0
@@ -17,5 +20,5 @@ offset_left = 748.0
 offset_top = 542.0
 offset_right = 1136.0
 offset_bottom = 587.0
-text = "Press anything to begin..."
+text = "Press Enter to begin..."
 label_settings = SubResource("LabelSettings_kafe6")

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://b4enwwndlpugd"]
 
 [ext_resource type="Script" uid="uid://0m6lfxb58q5h" path="res://menu/black_frame.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://gquvmbcjjkun" path="res://game/core/game_container.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ch1tr2so418f1" path="res://test/agecaf/test_level/agecaf_test_level.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://nig00vxjj215" path="res://test/agecaf/test_level/agecaf_test_level_2.tscn" id="3_7mycd"]
 
 [sub_resource type="Gradient" id="Gradient_5pj6p"]
 offsets = PackedFloat32Array(0, 0.9879518)
@@ -42,6 +45,8 @@ centered = false
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=882080728]
 
 [node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
+script = ExtResource("1_h2yge")
+levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd")])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
 
