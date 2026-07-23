@@ -1,7 +1,8 @@
 class_name PlayerCamera extends Camera2D
 
 # Constants
-var CAMERA_SPEED = 10.0
+var CAMERA_SPEED_X = 8.0
+var CAMERA_SPEED_Y = 4.0
 
 
 # This camera follows the player.
@@ -24,4 +25,5 @@ func _ready_deferred():
 # Process
 func _process(delta: float) -> void:
 	# Get closer to player
-	position = lerp(Game.player.position, position, exp(- delta * CAMERA_SPEED))
+	position.x = lerp(Game.player.position.x, position.x, exp(- delta * CAMERA_SPEED_X))
+	position.y = lerp(Game.player.position.y, position.y, exp(- delta * CAMERA_SPEED_Y))
