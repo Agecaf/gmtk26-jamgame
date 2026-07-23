@@ -13,13 +13,10 @@ func _ready_deferred():
 
 # Check if we should be visible or not
 func check_menu() -> void:
-	print("Menu changed; ", Game.menu.current_menu)
 	if Game.menu.current_menu != null:
 		if Game.menu.current_menu.name in menus_with_black_frame:
-			print("fading in")
 			target_alpha = 1.0
 		else:
-			print("fading out")
 			target_alpha = 0.0
 
 # Fade in and out

@@ -43,6 +43,7 @@ texture = SubResource("NoiseTexture2D_kafe6")
 centered = false
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=882080728]
+follow_viewport_enabled = true
 
 [node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
 script = ExtResource("1_h2yge")
