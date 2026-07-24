@@ -17,6 +17,8 @@ var double_jump_initial_velocity: float:
 var double_jump_gravity: float:
 	get: return 2.0 * player.double_jump_height / pow(player.double_jump_time, 2)
 
+var cached_velocity: Vector2
+
 var last_horizontal_direction: Enums.Direction = Enums.Direction.NONE
 var last_wall_direction: Enums.Direction = Enums.Direction.NONE
 var wall_jump_steering_cooldown: float = 0
@@ -43,6 +45,10 @@ func _on_player_physics_process(delta: float) -> void:
 	elif wall_jump_steering_cooldown:
 		player.velocity.x = player.run_speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
 
+	# Bats invert horizontal direction on colliding with a wall, no steering on bounce frames
+	elif player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:
+		player.velocity.x = - cached_velocity.x
+
 	# Active horizontal steering by player input
 	else:
 		var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
@@ -58,10 +64,6 @@ func _on_player_physics_process(delta: float) -> void:
 				player.air_speed_change_rate
 			)
 			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / air_speed_change_rate))
-
-	# Bats invert horizontal direction on colliding with a wall
-	if player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:
-		player.velocity.x *= -1
 	
 	last_horizontal_direction = (
 		Enums.Direction.LEFT if player.velocity.x < 0 else
@@ -84,6 +86,8 @@ func _on_player_physics_process(delta: float) -> void:
 		
 		_:
 			player.velocity.y += delta * jump_gravity
+	
+	cached_velocity = player.velocity
 
 
 func _on_player_reset() -> void:
