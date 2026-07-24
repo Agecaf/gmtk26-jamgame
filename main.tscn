@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4enwwndlpugd"]
 
 [ext_resource type="Script" uid="uid://0m6lfxb58q5h" path="res://menu/black_frame.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://3ajkihoy620e" path="res://game/background/background.tscn" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://gquvmbcjjkun" path="res://game/core/game_container.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ch1tr2so418f1" path="res://test/agecaf/test_level/agecaf_test_level.tscn" id="2_lquwl"]
@@ -8,42 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://dhtswkp275r17" path="res://test/parrot/parrot_test_level.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
-
-[sub_resource type="Gradient" id="Gradient_5pj6p"]
-offsets = PackedFloat32Array(0, 0.9879518)
-colors = PackedColorArray(0, 0, 0, 1, 0.46672612, 0, 0.045014374, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nw5p"]
-frequency = 0.0486
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kafe6"]
-width = 640
-height = 360
-noise = SubResource("FastNoiseLite_2nw5p")
-color_ramp = SubResource("Gradient_5pj6p")
-
-[sub_resource type="Gradient" id="Gradient_xov76"]
-colors = PackedColorArray(0, 0, 0, 1, 0.080783345, 0.080783345, 0.080783345, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5pj6p"]
-frequency = 0.2594
-fractal_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2nw5p"]
-width = 640
-height = 360
-noise = SubResource("FastNoiseLite_5pj6p")
-color_ramp = SubResource("Gradient_xov76")
+[ext_resource type="Texture2D" uid="uid://1vhum3km4sko" path="res://assets/art/background/transmission.png" id="6_kek77"]
 
 [node name="Main" type="Node2D" unique_id=1162885059]
 
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=871466563]
 
-[node name="MenuBackground" type="Sprite2D" parent="BackLayer" unique_id=722512068]
-texture_filter = 1
-scale = Vector2(3, 3)
-texture = SubResource("NoiseTexture2D_kafe6")
-centered = false
+[node name="Background" parent="BackLayer" unique_id=338442490 instance=ExtResource("1_4c57u")]
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=882080728]
 follow_viewport_enabled = true
@@ -56,8 +28,8 @@ levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd"), Ext
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
 process_mode = 3
-scale = Vector2(3, 3)
-texture = SubResource("NoiseTexture2D_2nw5p")
+scale = Vector2(0.5010417, 0.5013889)
+texture = ExtResource("6_kek77")
 centered = false
 script = ExtResource("1_0xm2m")
 

@@ -17,14 +17,18 @@ func _ready_deferred() -> void:
 func start() -> void:
 	# Pause
 	get_tree().paused = true
+	Game.audio.game_music.stream_paused = true
 
 # End the pause
 func end() -> void:
 	# Returning to main menu
 	if Game.menu.next_menu_name == &"MainMenu":
 		get_tree().paused = false
+		Game.audio.game_music.stream_paused = false
 		Game.game_end.emit()
+		Game.audio.game_music.stop()
 	
 	# Returning to game
 	if Game.menu.next_menu_name == &"GameMenu":
 		get_tree().paused = false
+		Game.audio.game_music.stream_paused = false

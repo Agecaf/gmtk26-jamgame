@@ -1,6 +1,8 @@
 class_name AudioClass extends Node2D
 
-@onready var music_asp: AudioStreamPlayer = %MusicASP
+@onready var menu_music: AudioStreamPlayer = %MenuMusic
+@onready var game_music: AudioStreamPlayer = %GameMusic
+@onready var clock_music: AudioStreamPlayer = %ClockTicks
 @onready var sfx_asp: AudioStreamPlayer = %SFXASP
 
 var sfx_asp_pool: Array[AudioStreamPlayer] = []
