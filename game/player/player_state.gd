@@ -62,6 +62,16 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.IDLE:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
+			
+			if player.velocity.x:
+				player.change_state(Player.State.RUNNING)
+		
+		Player.State.RUNNING:
+			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
+				player.change_state(Player.State.JUMPING)
+			
+			if not player.velocity.x:
+				player.change_state(Player.State.IDLE)
 		
 		Player.State.HANGING:
 			var back_action: StringName = &'left' if (player.get_wall_normal().angle() - PI / 2) > 0 else &'right'
@@ -132,6 +142,9 @@ func _on_player_face(_direction: Enums.Direction) -> void:
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.IDLE:
+			player.change_form(Player.Form.VAMPIRE)
+		
+		Player.State.RUNNING:
 			player.change_form(Player.Form.VAMPIRE)
 		
 		Player.State.HANGING:

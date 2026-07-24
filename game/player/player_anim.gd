@@ -31,11 +31,20 @@ func _on_player_face(_direction: Enums.Direction) -> void:
 
 
 func _on_player_change_state(state: Player.State) -> void:
-	animator.stop()
+	# animator.stop()
+	# TODO: Replace the block below with the statement above once bat animations are in
+	if player.current_form == Player.Form.VAMPIRE:
+		animator.set_process(true)
+		animator.stop()
+	else:
+		animator.set_process(false)
 	
 	match state:
 		Player.State.IDLE:
 			animator.play(&'Vampire/Idle')
+		
+		Player.State.RUNNING:
+			animator.play(&'Vampire/Run')
 
 
 func _on_player_change_form(_form: Player.Form) -> void:
