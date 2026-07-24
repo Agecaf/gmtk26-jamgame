@@ -16,7 +16,8 @@ func _ready() -> void:
 	Game.countdown.timeout.connect(
 		func():
 			Debug.warning('Time\'s up!')
-			Game.menu.go_to(&"PostLevelMenu")
+			if Game.menu != null:
+				Game.menu.go_to(&"PostLevelMenu")
 	)
 
 	Game.countdown.set_timer(30)
