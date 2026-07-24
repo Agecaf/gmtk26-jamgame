@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 enum State {
 	IDLE,
+	HANGING,
 	JUMPING,
 	JUMPING_BAT,
 	GLIDING,
@@ -31,6 +32,9 @@ enum State {
 
 @export_range(0.005, 0.01, 0.001) var glide_fall_speed_decay_rate: float = 0.008
 @export_range(0.005, 0.01, 0.001) var bat_glide_fall_speed_decay_rate: float = 0.008
+
+@export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
+@export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 
 var collider: CollisionShape2D:
 	get: return $Collider

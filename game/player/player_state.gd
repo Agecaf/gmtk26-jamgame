@@ -10,6 +10,8 @@ var player: Player
 
 var jump_keypress_interval: float = 0
 var jump_hold_time: float = 0
+var total_air_time: float = 0
+var wall_jump_cooldown_remaining: float = 0
 
 
 func _on_player_ready() -> void:
@@ -21,7 +23,7 @@ func _on_player_process(_delta: float) -> void:
 	pass
 
 
-## The evolution of player.current_state for debugging
+# # The evolution of player.current_state for debugging
 # var x=0
 # func _on_player_process(_delta: float) -> void:
 # 	x += 1
@@ -31,22 +33,40 @@ func _on_player_process(_delta: float) -> void:
 
 
 func _on_player_physics_process(delta: float) -> void:
-	jump_hold_time = (jump_hold_time + delta) if Input.is_action_pressed('ui_up') else 0.0
 	jump_keypress_interval += delta
+	jump_hold_time = (jump_hold_time + delta) if Input.is_action_pressed('ui_up') else 0.0
 	
 	var double_jump_keypress_timing: bool = (
 		jump_keypress_interval >= player.double_jump_keypress_interval_min
 		and jump_keypress_interval <= player.double_jump_keypress_interval_max
 	)
 
+	total_air_time = 0.0 if player.is_on_floor() else (total_air_time + delta)
+	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
+
+	var wall_jump_conditions_met: bool = (
+		total_air_time >= player.wall_jump_min_buildup_time
+		and not wall_jump_cooldown_remaining
+	)
+	
 	match player.current_state:
 		Player.State.IDLE:
 			if Input.is_action_just_pressed('ui_up') and player.is_on_floor():
 				player.change_state(Player.State.JUMPING)
 		
+		Player.State.HANGING:
+			if Input.is_action_just_pressed('ui_up'):
+				player.change_state(Player.State.JUMPING)
+
+			elif Input.is_action_just_pressed('ui_down'):
+				player.change_state(Player.State.FALLING)
+		
 		Player.State.JUMPING:
 			if player.is_on_floor():
 				player.change_state(Player.State.IDLE)
+			
+			elif player.is_on_wall_only() and wall_jump_conditions_met:
+				player.change_state(Player.State.HANGING)
 			
 			elif Input.is_action_just_pressed('ui_up') and double_jump_keypress_timing:
 				player.change_state(Player.State.JUMPING_BAT)
@@ -64,6 +84,9 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.GLIDING:
 			if player.is_on_floor():
 				player.change_state(Player.State.IDLE)
+			
+			elif player.is_on_wall_only() and wall_jump_conditions_met:
+				player.change_state(Player.State.HANGING)
 				
 			elif Input.is_action_just_released('ui_up'):
 				player.change_state(Player.State.FALLING)
@@ -92,7 +115,9 @@ func _on_player_reset() -> void:
 
 
 func _on_player_change_state(state: Player.State) -> void:
-	pass
+	match state:
+		Player.State.HANGING:
+			wall_jump_cooldown_remaining = player.wall_jump_cooldown
 
 
 func _on_player_hurt() -> void:

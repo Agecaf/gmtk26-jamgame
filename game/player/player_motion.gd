@@ -17,11 +17,13 @@ var double_jump_initial_velocity: float:
 var double_jump_gravity: float:
 	get: return 2.0 * player.double_jump_height / pow(player.double_jump_time, 2)
 
-var last_horizontal_direction: Enums.Direction
+var last_horizontal_direction: Enums.Direction = Enums.Direction.NONE
+var last_wall_direction: Enums.Direction = Enums.Direction.NONE
+var wall_jump_steering_cooldown: float = 0
 
 
 func _on_player_ready() -> void:
-	last_horizontal_direction = Enums.Direction.NONE
+	pass
 
 
 func _on_player_process(_delta: float) -> void:
@@ -29,28 +31,47 @@ func _on_player_process(_delta: float) -> void:
 
 
 func _on_player_physics_process(delta: float) -> void:
-	var horizontal_lock: bool = player.current_state in [Player.State.GLIDING, Player.State.GLIDING_BAT]
+	wall_jump_steering_cooldown = maxf(0, wall_jump_steering_cooldown - delta)
 	
-	if horizontal_lock:
+	# Lock horizontal movement while gliding to the direction in which the glide started
+	if player.current_state in [Player.State.GLIDING, Player.State.GLIDING_BAT]:
 		player.velocity.x = player.speed * (
 			-1 if last_horizontal_direction == Enums.Direction.LEFT else
 			1 if last_horizontal_direction == Enums.Direction.RIGHT else
 			0
 		)
 	
+	# Stop horizontal movement and prepare for a wall jump if hanging on a wall
+	elif player.current_state in [Player.State.HANGING]:
+		last_wall_direction = Enums.Direction.RIGHT if (player.get_wall_normal().angle() - PI / 2) > 0 else Enums.Direction.LEFT
+
+		player.velocity.x = 0
+	
+	# Wall jump off direction is fixed (away from the wall) for a short time
+	elif wall_jump_steering_cooldown:
+		player.velocity.x = player.speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
+
+	# Active horizontal steering by player input
 	else:
 		var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
 		var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 
 		player.velocity.x = player.speed * (move_right - move_left)
-		
-		last_horizontal_direction = (
-			Enums.Direction.LEFT if player.velocity.x < 0 else
-			Enums.Direction.RIGHT if player.velocity.x > 0 else
-			Enums.Direction.NONE
-		)
 
+	# Bats invert horizontal direction on colliding with a wall
+	if player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:
+		player.velocity.x *= -1
+	
+	last_horizontal_direction = (
+		Enums.Direction.LEFT if player.velocity.x < 0 else
+		Enums.Direction.RIGHT if player.velocity.x > 0 else
+		Enums.Direction.NONE
+	)
+	
 	match player.current_state:
+		Player.State.HANGING:
+			player.velocity.y = 0
+		
 		Player.State.GLIDING:
 			player.velocity.y = lerp(player.velocity.y, player.glide_max_fall_speed, exp(-delta / player.glide_fall_speed_decay_rate))
 		
@@ -75,6 +96,9 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.JUMPING_BAT:
 			player.velocity.y = minf(0, player.velocity.y) + double_jump_initial_velocity
+	
+	if player.previous_state == Player.State.HANGING:
+		wall_jump_steering_cooldown = player.wall_jump_cooldown
 
 
 func _on_player_hurt() -> void:
