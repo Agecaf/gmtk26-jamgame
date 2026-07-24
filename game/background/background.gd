@@ -27,20 +27,27 @@ func _ready() -> void:
 		small_cloud.position = Vector2(randi_range(0, 640) * 3.0, randi_range(20, 180) * 3.0)
 		%SmallClouds.add_child(small_cloud)
 	
+	# Listen to countdown
+	Game.countdown.tick.connect(on_tick)
+	
 	# Update for the first time
 	update()
 
 func _process(delta: float) -> void:
-	# Check time and update
-	if Input.is_action_just_pressed("ui_accept"):
-		time = posmod(time+1, 5)
-		update()
-	
 	# Move small clouds
 	for sc in %SmallClouds.get_children():
 		sc.position.x += (100.0 + sc.position.y) * delta * 0.02
 		if sc.position.x > 2000: sc.position.x = -200
-	
+
+
+func on_tick(seconds_left: int) -> void:
+	if seconds_left < 5: time = 4
+	elif seconds_left < 10: time = 3
+	elif seconds_left < 20: time = 2
+	elif seconds_left < 30: time = 1
+	else: time = 0
+	update()
+
 
 func update() -> void:
 	sky.modulate = bg_colors[time]

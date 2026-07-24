@@ -25,9 +25,12 @@ func start() -> void:
 	if Game.menu.previous_menu_name in [&"SettingsMenu", &"LevelSelectMenu"]:
 		pass
 	
-	# Start the menu music
+	# Start the menu music, unload the level
 	else:
 		Game.audio.menu_music.play()
+		Game.container.unload()
+		# A bit of a hack, reset things like the background.
+		Game.countdown.tick.emit(60)
 
 # End menu music
 func end() -> void:

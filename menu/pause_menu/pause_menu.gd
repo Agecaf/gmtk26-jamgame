@@ -27,6 +27,7 @@ func end() -> void:
 		Game.audio.game_music.stream_paused = false
 		Game.game_end.emit()
 		Game.audio.game_music.stop()
+		Game.countdown.stop()
 	
 	# Returning to game
 	if Game.menu.next_menu_name == &"GameMenu":

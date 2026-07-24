@@ -7,6 +7,13 @@ class_name GameContainer extends Node2D
 func _ready() -> void:
 	# Register
 	Game.container = self
+	
+
+func unload() -> void:
+	# Kill all children
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
 
 # Loads a level
 func load_level() -> void:
@@ -16,10 +23,7 @@ func load_level() -> void:
 		Debug.error("Not enough levels: %d" % level_index )
 		return
 	
-	# Kill all children
-	for child in get_children():
-		remove_child(child)
-		child.queue_free()
+	unload()
 	
 	# Add level scene
 	var new_level = levels[level_index].instantiate()

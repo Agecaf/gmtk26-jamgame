@@ -16,3 +16,9 @@ var container: GameContainer
 
 # Used to choose the level
 var level_index = 0
+
+# Initialization
+func _ready() -> void:
+	# Add the game countdown.
+	countdown = Countdown.new()
+	add_child(countdown)
