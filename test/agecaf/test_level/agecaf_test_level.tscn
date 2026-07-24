@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cvkdh0efsttia" path="res://game/player/player.tscn" id="3_odlkt"]
 [ext_resource type="TileSet" uid="uid://bd54hsf1v0aac" path="res://assets/art/tilesets/tileset2.tres" id="3_oeasr"]
 [ext_resource type="Script" uid="uid://cun0k4l3hgyy0" path="res://game/player/player_camera.gd" id="4_gl6fm"]
+[ext_resource type="Script" uid="uid://eu65w83a5huj" path="res://test/agecaf/test_level/test_script.gd" id="6_j2ow3"]
 
 [node name="TemplateLevel" type="Node2D" unique_id=610028100]
 texture_filter = 1
@@ -28,3 +29,6 @@ collision_mask = 4294901761
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1093708630]
 script = ExtResource("4_gl6fm")
+
+[node name="Node" type="Node" parent="." unique_id=268702817]
+script = ExtResource("6_j2ow3")

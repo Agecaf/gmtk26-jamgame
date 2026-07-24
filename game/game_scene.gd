@@ -16,9 +16,10 @@ func _ready() -> void:
 	Game.countdown.timeout.connect(
 		func():
 			Debug.warning('Time\'s up!')
+			Game.menu.go_to(&"PostLevelMenu")
 	)
 
-	Game.countdown.set_timer(3)
+	Game.countdown.set_timer(30)
 	
 	# For testing purposes; if this is the root scene, call game_start
 	# Only happens when you "Run Current Scene" on the game_scene

@@ -7,6 +7,8 @@ script = ExtResource("1_4cwo7")
 
 [node name="MusicASP" type="AudioStreamPlayer" parent="." unique_id=1347271014]
 unique_name_in_owner = true
+playback_type = 1
 
 [node name="SFXASP" type="AudioStreamPlayer" parent="." unique_id=1555040587]
 unique_name_in_owner = true
+bus = &"SFX"

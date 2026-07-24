@@ -3,7 +3,22 @@ class_name AudioClass extends Node2D
 @onready var music_asp: AudioStreamPlayer = %MusicASP
 @onready var sfx_asp: AudioStreamPlayer = %SFXASP
 
+var sfx_asp_pool: Array[AudioStreamPlayer] = []
+var sfx_asp_index: int = 0
+
 # Initialization
 func _ready() -> void:
 	# Register
 	Game.audio = self
+	
+	# Fill ASP Pool
+	for idx in 8:
+		var asp: AudioStreamPlayer = sfx_asp.duplicate(DUPLICATE_DEFAULT)
+		sfx_asp_pool.push_back(asp)
+		add_child(asp)
+
+func get_sfx_asp() -> AudioStreamPlayer:
+	var asp: AudioStreamPlayer = sfx_asp_pool[sfx_asp_index]
+	asp.stop()
+	sfx_asp_index = posmod(sfx_asp_index+1, len(sfx_asp_pool))
+	return asp
