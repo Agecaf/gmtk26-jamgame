@@ -27,3 +27,7 @@ func end() -> void:
 	# Stop the music unless we're just pausing the game.
 	if Game.menu.next_menu_name != &"PauseMenu":
 		Game.audio.game_music.stop()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(&"pause"):
+		Game.menu.go_to(&"PauseMenu")

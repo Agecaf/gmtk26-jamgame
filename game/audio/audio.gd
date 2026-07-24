@@ -7,6 +7,7 @@ class_name AudioClass extends Node2D
 
 var sfx_asp_pool: Array[AudioStreamPlayer] = []
 var sfx_asp_index: int = 0
+var mute: bool = false
 
 # Initialization
 func _ready() -> void:
@@ -24,3 +25,9 @@ func get_sfx_asp() -> AudioStreamPlayer:
 	asp.stop()
 	sfx_asp_index = posmod(sfx_asp_index+1, len(sfx_asp_pool))
 	return asp
+
+# Listen for mute input
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(&"mute"):
+		mute = not mute
+		AudioServer.set_bus_mute(0, mute)
