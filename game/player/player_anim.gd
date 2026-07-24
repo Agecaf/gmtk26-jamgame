@@ -42,5 +42,9 @@ func _on_player_change_form(_form: Player.Form) -> void:
 	pass
 
 
+func _on_player_save_spot() -> void:
+	pass
+
+
 func _on_player_hurt() -> void:
 	pass

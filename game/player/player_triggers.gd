@@ -8,9 +8,11 @@ class_name PlayerTriggers extends Resource
 # This accessor is set on Player._init(), treat as read-only
 var player: Player
 
+var last_marked_position: Vector2
+
 
 func _on_player_ready() -> void:
-	pass
+	last_marked_position = player.position
 
 
 func _on_player_process(_delta: float) -> void:
@@ -37,5 +39,11 @@ func _on_player_change_form(_form: Player.Form) -> void:
 	pass
 
 
+func _on_player_save_spot() -> void:
+	last_marked_position = player.position
+	Debug.warning('Safe spot marked.')
+
+
 func _on_player_hurt() -> void:
-	print("Player got hit!")
+	player.position = last_marked_position
+	Debug.warning('The player got hit!')

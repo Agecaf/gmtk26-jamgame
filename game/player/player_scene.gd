@@ -76,5 +76,9 @@ func _on_player_change_form(form: Player.Form) -> void:
 	player.face(player.current_facing)
 
 
+func _on_player_save_spot() -> void:
+	pass
+
+
 func _on_player_hurt() -> void:
 	pass
