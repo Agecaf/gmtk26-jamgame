@@ -33,18 +33,10 @@ func _on_player_process(_delta: float) -> void:
 func _on_player_physics_process(delta: float) -> void:
 	wall_jump_steering_cooldown = maxf(0, wall_jump_steering_cooldown - delta)
 	
-	# Lock horizontal movement while gliding to the direction in which the glide started
-	if player.current_state in [Player.State.GLIDING, Player.State.GLIDING_BAT]:
-		player.velocity.x = player.run_speed * (
-			-1 if last_horizontal_direction == Enums.Direction.LEFT else
-			1 if last_horizontal_direction == Enums.Direction.RIGHT else
-			0
-		)
-	
-	# Stop horizontal movement and prepare for a wall jump if hanging on a wall
-	elif player.current_state in [Player.State.HANGING]:
+	# # Stop horizontal movement and prepare for a wall jump if hanging on a wall
+	# elif player.current_state in [Player.State.HANGING]:
+	if player.current_state in [Player.State.HANGING]:
 		last_wall_direction = Enums.Direction.RIGHT if (player.get_wall_normal().angle() - PI / 2) > 0 else Enums.Direction.LEFT
-
 		player.velocity.x = 0
 	
 	# Wall jump off direction is fixed (away from the wall) for a short time
@@ -60,7 +52,12 @@ func _on_player_physics_process(delta: float) -> void:
 			player.velocity.x = player.run_speed * (move_right - move_left)
 		
 		else:
-			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / player.air_speed_change_rate))
+			var air_speed_change_rate: float = (
+				player.glide_air_speed_change_rate if player.current_state == Player.State.GLIDING else
+				player.bat_glide_air_speed_change_rate if player.current_state == Player.State.GLIDING_BAT else
+				player.air_speed_change_rate
+			)
+			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / air_speed_change_rate))
 
 	# Bats invert horizontal direction on colliding with a wall
 	if player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:

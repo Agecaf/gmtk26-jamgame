@@ -34,6 +34,9 @@ enum State {
 @export_range(0.005, 0.01, 0.001) var glide_fall_speed_decay_rate: float = 0.008
 @export_range(0.005, 0.01, 0.001) var bat_glide_fall_speed_decay_rate: float = 0.008
 
+@export_range(0.001, 0.01, 0.001) var glide_air_speed_change_rate: float = 0.004
+@export_range(0.001, 0.01, 0.001) var bat_glide_air_speed_change_rate: float = 0.004
+
 @export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 
