@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://blvcceoo7rnvg"
 Enums="*uid://huyqiws3vxxr"
 Debug="*uid://l5tn6thxg13w"
 Game="*uid://bucp3jqx788lh"
+Keybindings="*uid://d10og2picdgqt"
 Audio="*uid://4elc3l3j71v4"
 
 [display]
