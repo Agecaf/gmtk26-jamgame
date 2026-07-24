@@ -69,6 +69,7 @@ var player_scene: PlayerScene
 var player_state: PlayerState
 var player_motion: PlayerMotion
 var player_triggers: PlayerTriggers
+var player_anim: PlayerAnim
 var player_sound: PlayerSound
 
 var script_order: Array[Resource]
@@ -85,6 +86,7 @@ func _init() -> void:
 	player_state = PlayerState.new()
 	player_motion = PlayerMotion.new()
 	player_triggers = PlayerTriggers.new()
+	player_anim = PlayerAnim.new()
 	player_sound = PlayerSound.new()
 
 	script_order.append_array([
@@ -92,6 +94,7 @@ func _init() -> void:
 		player_state,
 		player_motion,
 		player_triggers,
+		player_anim,
 		player_sound,
 	])
 

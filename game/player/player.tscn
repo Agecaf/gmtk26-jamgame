@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rw8x3p1wrwvw" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Texture2D" uid="uid://7ep5vyi383k7" path="res://assets/art/player/vampire_atlas.tres" id="2_b2mth"]
 [ext_resource type="Texture2D" uid="uid://dmbsquk3jpcci" path="res://assets/art/player/bat.png" id="3_8soms"]
+[ext_resource type="AnimationLibrary" uid="uid://bm17k7oikismj" path="res://assets/art/player/vampire_anim.tres" id="4_a4w0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4pk1"]
 atlas = ExtResource("3_8soms")
@@ -15,6 +16,26 @@ size = Vector2(18, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bt2uc"]
 size = Vector2(16, 42)
+
+[sub_resource type="Animation" id="Animation_5fytw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ste8"]
+_data = {
+&"RESET": SubResource("Animation_5fytw")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
 collision_mask = 12
@@ -63,5 +84,7 @@ shape = SubResource("RectangleShape2D_bt2uc")
 debug_color = Color(0.93165994, 2.4065375e-05, 0.65390545, 0.41960785)
 
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=1439977376]
+libraries/ = SubResource("AnimationLibrary_4ste8")
+libraries/Vampire = ExtResource("4_a4w0n")
 
 [connection signal="area_entered" from="HurtboxComponent" to="." method="_on_hurtbox_component_entered"]
