@@ -51,11 +51,16 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="FontButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=175031671]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Change Font"
+
 [node name="GridContainer2" type="GridContainer" parent="CenterContainer/VBoxContainer" unique_id=74830584]
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 10
-columns = 2
+columns = 4
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2" unique_id=1191038802]
 layout_mode = 2
