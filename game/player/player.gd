@@ -23,7 +23,7 @@ enum State {
 @export_range(12, 192, 12) var double_jump_height: float = 72
 
 @export_range(0.01, 0.2, 0.01) var double_jump_keypress_interval_min: float = 0.15
-@export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.3
+@export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.4
 
 @export_range(0.05, 0.5, 0.05) var glide_start_delay: float = 0.3
 @export_range(0.05, 0.5, 0.05) var bat_glide_start_delay: float = 0.4
