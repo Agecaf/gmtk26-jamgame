@@ -2,3 +2,21 @@
 .godot/
 /android/
 
+# Godot 4+ temporary and generated files
+.godot/
+.import/
+*.tmp
+*.backup
+*.bak
+*.old
+
+# Editor-specific
+*~
+*.swp
+*.swo
+
+# Export presets (if you don't want to share your build settings)
+export_presets.cfg
+
+# Optional: ignore UID files (though it's often recommended to track them)
+# *.uid
