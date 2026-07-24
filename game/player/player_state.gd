@@ -63,7 +63,7 @@ func _on_player_physics_process(delta: float) -> void:
 	
 	match player.current_state:
 		Player.State.IDLE:
-			if Input.is_action_just_pressed(&'jump') and player.is_on_floor():
+			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
 		
 		Player.State.HANGING:
