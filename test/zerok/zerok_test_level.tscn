@@ -33,3 +33,4 @@ tile_set = ExtResource("3_3xag0")
 
 [node name="Crossbow" parent="." unique_id=1899882889 instance=ExtResource("5_3xag0")]
 position = Vector2(544, 208)
+detection_range = 744.0

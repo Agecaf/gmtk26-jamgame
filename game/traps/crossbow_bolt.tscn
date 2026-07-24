@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cxmddo4gefd1i" path="res://game/traps/crossbow_bolt.gd" id="1_fj70m"]
 [ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="1_os37f"]
+[ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="3_ntkaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
 radius = 6.0827627
 
-[node name="CrossbowBolt" type="StaticBody2D" unique_id=1042898720]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntkaj"]
+radius = 6.0
+
+[node name="CrossbowBolt" type="StaticBody2D" unique_id=1911700099]
 collision_layer = 8
 collision_mask = 4294901761
 script = ExtResource("1_fj70m")
@@ -18,3 +22,10 @@ region_rect = Rect2(24, 24, 24, 24)
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1251116300]
 shape = SubResource("CircleShape2D_11l1m")
+
+[node name="HitboxComponent" parent="." unique_id=1847029517 instance=ExtResource("3_ntkaj")]
+collision_layer = 12
+
+[node name="Collider" type="CollisionShape2D" parent="HitboxComponent" unique_id=1929820239]
+shape = SubResource("CircleShape2D_ntkaj")
+debug_color = Color(0.99999994, 0.0014348739, 0.09812834, 0.41960785)

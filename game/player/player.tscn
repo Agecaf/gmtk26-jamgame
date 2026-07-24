@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://rw8x3p1wrwvw" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Texture2D" uid="uid://donc40djv2yx" path="res://assets/art/tilesets/item_berry_placeholder.png" id="2_8soms"]
+[ext_resource type="Script" uid="uid://b3y28t7twl0cb" path="res://game/player/scripts/hurtbox_component.gd" id="3_8soms"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
 radius = 11.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8soms"]
+radius = 11.0
+
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
+collision_mask = 12
 script = ExtResource("1_b2mth")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=919094306]
@@ -15,3 +20,15 @@ texture = ExtResource("2_8soms")
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=598347343]
 position = Vector2(-2, 2)
 shape = SubResource("CircleShape2D_11l1m")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=2054133402]
+collision_mask = 12
+script = ExtResource("3_8soms")
+
+[node name="Collider" type="CollisionShape2D" parent="HurtboxComponent" unique_id=74269873]
+position = Vector2(-2, 2)
+shape = SubResource("CircleShape2D_8soms")
+debug_color = Color(0.93165994, 2.4065375e-05, 0.65390545, 0.41960785)
+
+[connection signal="area_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_area_entered"]
+[connection signal="hit" from="HurtboxComponent" to="." method="_on_hurt_collider_hit"]

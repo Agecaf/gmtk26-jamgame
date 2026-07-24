@@ -91,3 +91,9 @@ func reset() -> void:
 func change_state(state: State) -> void:
 	for script: Resource in script_order:
 		script._on_player_change_state(state)
+
+
+func _on_hurt_collider_hit(hit_data: int) -> void:
+	# Put your hurt state code here
+	print(hit_data)
+	print("Player got hit!")
