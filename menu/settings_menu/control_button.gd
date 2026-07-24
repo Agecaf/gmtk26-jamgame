@@ -18,9 +18,10 @@ func update():
 	if changing:
 		text = "[press key]"
 	else:
-		var event = InputMap.action_get_events(control_name)[0]
-		if event is InputEventKey:
-			text = "[%s]" % KeyUtils.keycode_to_char(event.physical_keycode).to_lower()
+		text = ""
+		for event in InputMap.action_get_events(control_name):
+			if event is InputEventKey:
+				text += " [%s] " % KeyUtils.keycode_to_char(event.physical_keycode).to_lower()
 
 func _input(event: InputEvent) -> void:
 	if not changing: return
