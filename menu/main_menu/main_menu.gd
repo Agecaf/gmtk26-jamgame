@@ -29,6 +29,7 @@ func start() -> void:
 	else:
 		Game.audio.menu_music.play()
 		Game.container.unload()
+		Game.pocketwatch.close()
 		# A bit of a hack, reset things like the background.
 		Game.countdown.tick.emit(60)
 
