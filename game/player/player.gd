@@ -48,9 +48,11 @@ var y_max: float:
 var player_state: PlayerState
 var player_motion: PlayerMotion
 var player_triggers: PlayerTriggers
+var player_sound: PlayerSound
 
 var script_order: Array[Resource]
 
+var previous_state: State
 var current_state: State
 
 
@@ -59,16 +61,19 @@ func _init() -> void:
 	player_state = PlayerState.new()
 	player_motion = PlayerMotion.new()
 	player_triggers = PlayerTriggers.new()
+	player_sound = PlayerSound.new()
 
 	script_order.append_array([
 		player_state,
 		player_motion,
 		player_triggers,
+		player_sound,
 	])
 
 	for script: Resource in script_order:
 		script.player = self
 	
+	previous_state = State.IDLE
 	current_state = State.IDLE
 
 
@@ -107,6 +112,7 @@ func reset() -> void:
 
 # Each auxiliary script can implement a different part of change_state()
 func change_state(state: State) -> void:
+	previous_state = current_state
 	current_state = state
 
 	for script: Resource in script_order:

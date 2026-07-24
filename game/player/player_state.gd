@@ -13,14 +13,21 @@ var jump_hold_time: float = 0
 
 
 func _on_player_ready() -> void:
+	if not player.is_on_floor():
+		player.change_state(Player.State.FALLING)
+
+
+func _on_player_process(_delta: float) -> void:
 	pass
 
-var x=0
-func _on_player_process(_delta: float) -> void:
-	x += 1
-	if x % 3 == 0:
-		Debug.warning('%s' % [Player.State.find_key(player.current_state)])
-	pass
+
+## The evolution of player.current_state for debugging
+# var x=0
+# func _on_player_process(_delta: float) -> void:
+# 	x += 1
+# 	if x % 3 == 0:
+# 		Debug.warning('%s' % [Player.State.find_key(player.current_state)])
+# 	pass
 
 
 func _on_player_physics_process(delta: float) -> void:
