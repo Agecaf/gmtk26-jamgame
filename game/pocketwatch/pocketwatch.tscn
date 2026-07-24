@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://clh0bivbljycd"]
+
+[ext_resource type="Script" uid="uid://dhjtgnj4ujx2u" path="res://game/pocketwatch/pocketwatch.gd" id="1_1rbkx"]
+[ext_resource type="Texture2D" uid="uid://demrh624qf80g" path="res://assets/art/ui/pocketwatch_small.png" id="1_bwf8q"]
+[ext_resource type="FontFile" uid="uid://cilohm76mhdjg" path="res://assets/other/font/Jacquard24-Regular.ttf" id="2_1rbkx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kafe6"]
+font = ExtResource("2_1rbkx")
+font_size = 43
+font_color = Color(0.48837668, 0.09068359, 0, 1)
+
+[node name="Pocketwatch" type="Node2D" unique_id=1002285961]
+script = ExtResource("1_1rbkx")
+
+[node name="PocketwatchSmall" type="Sprite2D" parent="." unique_id=86239562]
+position = Vector2(335, 799.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("1_bwf8q")
+
+[node name="TimeLabel" type="Label" parent="PocketwatchSmall" unique_id=1426621085]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+offset_left = -40.666668
+offset_top = -102.33335
+offset_right = 59.333332
+offset_bottom = -2.3333511
+text = "60"
+label_settings = SubResource("LabelSettings_kafe6")
+horizontal_alignment = 1
+vertical_alignment = 1

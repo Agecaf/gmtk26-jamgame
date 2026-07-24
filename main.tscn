@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://1vhum3km4sko" path="res://assets/art/background/transmission.png" id="6_kek77"]
+[ext_resource type="PackedScene" uid="uid://clh0bivbljycd" path="res://game/pocketwatch/pocketwatch.tscn" id="7_dg77c"]
 [ext_resource type="Shader" uid="uid://bu0m4efae4kus" path="res://assets/other/shader/screen_shader.gdshader" id="7_efxa6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
@@ -43,6 +44,8 @@ start_text = Array[String](["As Count Downcula returned near dawn to his mansion
 material = SubResource("ShaderMaterial_dg77c")
 texture = SubResource("GradientTexture2D_kafe6")
 centered = false
+
+[node name="Pocketwatch" parent="FrontLayer" unique_id=1002285961 instance=ExtResource("7_dg77c")]
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
 process_mode = 3
