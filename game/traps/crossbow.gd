@@ -5,8 +5,11 @@ class_name Crossbow extends StaticBody2D
 @export_range(25, 500, 25) var bolt_speed: float = 150
 @export_range(0.5, 10, 0.5) var bolt_cooldown: float = 2.5
 
-var bolt_template: PackedScene = preload('res://game/traps/crossbow_bolt.tscn')
+@onready var raycast: RayCast2D = $Raycast
+@onready var collider: CollisionShape2D = $Collider
+@onready var sprite: Sprite2D = $Sprite
 
+var bolt_template: PackedScene = preload('res://game/traps/crossbow_bolt.tscn')
 var bolt_cooldown_remaining: float = 0
 
 
@@ -15,28 +18,28 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	$Raycast.target_position = detection_range * Vector2.LEFT
-	$Raycast.force_raycast_update()
+	raycast.target_position = detection_range * Vector2.LEFT
+	raycast.force_raycast_update()
 	
-	if $Raycast.is_colliding():
+	if raycast.is_colliding():
 		face(Enums.Direction.LEFT)
 		fire(Enums.Direction.LEFT)
 	
-	$Raycast.target_position = detection_range * Vector2.RIGHT
-	$Raycast.force_raycast_update()
+	raycast.target_position = detection_range * Vector2.RIGHT
+	raycast.force_raycast_update()
 
-	if $Raycast.is_colliding():
+	if raycast.is_colliding():
 		face(Enums.Direction.RIGHT)
 		fire(Enums.Direction.RIGHT)
 
 
 func face(direction: Enums.Direction) -> void:
 	if direction == Enums.Direction.LEFT:
-		$Sprite.scale = Vector2.ONE
-		$Collider.scale = Vector2.ONE
+		sprite.scale = Vector2.ONE
+		collider.scale = Vector2.ONE
 	elif direction == Enums.Direction.RIGHT:
-		$Sprite.scale = Vector2(-1, 1)
-		$Collider.scale = Vector2(-1, 1)
+		sprite.scale = Vector2(-1, 1)
+		collider.scale = Vector2(-1, 1)
 
 
 func fire(direction: Enums.Direction) -> void:
