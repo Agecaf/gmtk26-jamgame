@@ -14,7 +14,10 @@ enum State {
 }
 
 @export_range(25, 500, 25) var run_speed: float = 250
+@export_range(288, 576, 24) var max_fall_speed: float = 480
 @export_range(0.005, 0.05, 0.005) var air_speed_change_rate: float = 0.015
+
+@export_range(0.05, 0.5, 0.05) var coyote_time: float = 0.1
 
 @export_range(0.05, 1.0, 0.05) var jump_time: float = 0.3
 @export_range(0.05, 1.0, 0.05) var double_jump_time: float = 0.3
@@ -23,7 +26,7 @@ enum State {
 @export_range(12, 192, 12) var double_jump_height: float = 72
 
 @export_range(0.01, 0.2, 0.01) var double_jump_keypress_interval_min: float = 0.15
-@export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.3
+@export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.4
 
 @export_range(0.05, 0.5, 0.05) var glide_start_delay: float = 0.3
 @export_range(0.05, 0.5, 0.05) var bat_glide_start_delay: float = 0.4
@@ -40,6 +43,8 @@ enum State {
 @export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 
+var wall_detector: RayCast2D:
+	get: return $WallDetector
 var collider: CollisionShape2D:
 	get: return $Collider
 

@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://dy614mqoly7d6"]
 
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="1_2druq"]
 [ext_resource type="Script" uid="uid://bcfcc2l0f0ue4" path="res://menu/pre_level_menu/pre_level_menu.gd" id="1_frcsp"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_kafe6"]
-font_size = 32
 
 [node name="PreLevelMenu" type="Control" unique_id=1998278185]
 layout_mode = 3
@@ -12,13 +10,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2druq")
 script = ExtResource("1_frcsp")
 
-[node name="Label" type="Label" parent="." unique_id=1628213217]
-layout_mode = 0
-offset_left = 748.0
-offset_top = 542.0
-offset_right = 1136.0
-offset_bottom = 587.0
-text = "Press Enter to begin..."
-label_settings = SubResource("LabelSettings_kafe6")
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=671062526]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="StoryText" type="RichTextLabel" parent="CenterContainer" unique_id=995415471]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Lorem ipsul dolor es sit amet"
+fit_content = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=723351584]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Continue" type="Button" parent="CenterContainer2" unique_id=548068686]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "Continue"

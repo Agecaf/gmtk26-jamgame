@@ -1,6 +1,7 @@
 class_name GameContainer extends Node2D
 
-@export var levels: Array[PackedScene]
+@export var levels: Array[PackedScene] = []
+@export_multiline var start_text: Array[String] = []
 
 # Initialization
 func _ready() -> void:

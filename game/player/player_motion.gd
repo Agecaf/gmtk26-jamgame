@@ -87,6 +87,8 @@ func _on_player_physics_process(delta: float) -> void:
 		_:
 			player.velocity.y += delta * jump_gravity
 	
+	player.velocity.y = minf(player.max_fall_speed, player.velocity.y)
+	
 	cached_velocity = player.velocity
 
 
