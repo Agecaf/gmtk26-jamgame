@@ -16,12 +16,11 @@ script = ExtResource("1_jy8dm")
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=301455877]
 custom_minimum_size = Vector2(0, 600)
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=677378315]
 custom_minimum_size = Vector2(500, 0)

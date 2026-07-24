@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtswkp275r17" path="res://test/parrot/parrot_test_level.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://1vhum3km4sko" path="res://assets/art/background/transmission.png" id="6_kek77"]
 
 [sub_resource type="Gradient" id="Gradient_5pj6p"]
 offsets = PackedFloat32Array(0, 0.9879518)
@@ -21,19 +22,6 @@ width = 640
 height = 360
 noise = SubResource("FastNoiseLite_2nw5p")
 color_ramp = SubResource("Gradient_5pj6p")
-
-[sub_resource type="Gradient" id="Gradient_xov76"]
-colors = PackedColorArray(0, 0, 0, 1, 0.080783345, 0.080783345, 0.080783345, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5pj6p"]
-frequency = 0.2594
-fractal_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2nw5p"]
-width = 640
-height = 360
-noise = SubResource("FastNoiseLite_5pj6p")
-color_ramp = SubResource("Gradient_xov76")
 
 [node name="Main" type="Node2D" unique_id=1162885059]
 
@@ -56,8 +44,8 @@ levels = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_7mycd"), Ext
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
 process_mode = 3
-scale = Vector2(3, 3)
-texture = SubResource("NoiseTexture2D_2nw5p")
+scale = Vector2(0.5010417, 0.5013889)
+texture = ExtResource("6_kek77")
 centered = false
 script = ExtResource("1_0xm2m")
 
