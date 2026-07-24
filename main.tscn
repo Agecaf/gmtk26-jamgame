@@ -10,6 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://1vhum3km4sko" path="res://assets/art/background/transmission.png" id="6_kek77"]
+[ext_resource type="Shader" uid="uid://bu0m4efae4kus" path="res://assets/other/shader/screen_shader.gdshader" id="7_efxa6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
+shader = ExtResource("7_efxa6")
+
+[sub_resource type="Gradient" id="Gradient_ycdy4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kafe6"]
+gradient = SubResource("Gradient_ycdy4")
+width = 1920
+height = 1080
 
 [node name="Main" type="Node2D" unique_id=1162885059]
 
@@ -27,6 +38,11 @@ start_text = Array[String](["As Count Downcula returned near dawn to his mansion
 \"Count Downcula, you foul creature of the night, we will ensure your demise!\"", "Count Downcula went looking for the troublemakers who had filled his abode with silvered traps, alas, they had covered their tracks well enough.", "The story continues....", "And once again continues...."])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
+
+[node name="ScreenShader" type="Sprite2D" parent="FrontLayer" unique_id=185174979]
+material = SubResource("ShaderMaterial_dg77c")
+texture = SubResource("GradientTexture2D_kafe6")
+centered = false
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
 process_mode = 3
