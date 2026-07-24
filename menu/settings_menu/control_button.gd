@@ -23,7 +23,6 @@ func update():
 			text = "[%s]" % KeyUtils.keycode_to_char(event.physical_keycode).to_lower()
 
 func _input(event: InputEvent) -> void:
-	print(event)
 	if not changing: return
 	if not event is InputEventKey: return
 	if not event.pressed: return
