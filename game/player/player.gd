@@ -12,6 +12,8 @@ enum State {
 	GLIDING_BAT,
 	FALLING,
 	FALLING_BAT,
+	LANDING,
+	LANDING_BAT,
 }
 
 enum Form {
@@ -20,10 +22,9 @@ enum Form {
 }
 
 @export_range(25, 500, 25) var run_speed: float = 250
-@export_range(288, 576, 24) var max_fall_speed: float = 480
 @export_range(0.005, 0.05, 0.005) var air_speed_change_rate: float = 0.015
-
 @export_range(0.05, 0.5, 0.05) var coyote_time: float = 0.1
+@export_range(288, 576, 24) var max_fall_speed: float = 480
 
 @export_range(0.05, 1.0, 0.05) var jump_time: float = 0.3
 @export_range(0.05, 1.0, 0.05) var double_jump_time: float = 0.3
@@ -34,7 +35,10 @@ enum Form {
 @export_range(0.01, 0.2, 0.01) var double_jump_keypress_interval_min: float = 0.15
 @export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.4
 
-@export_range(0.05, 0.5, 0.05) var glide_start_delay: float = 0.3
+@export_range(0.05, 0.5, 0.05) var landing_delay: float = 0.2
+@export_range(0.05, 0.5, 0.05) var bat_landing_delay: float = 0.2
+
+@export_range(0.05, 0.5, 0.05) var glide_start_delay: float = 0.4
 @export_range(0.05, 0.5, 0.05) var bat_glide_start_delay: float = 0.4
 
 @export_range(12, 96, 12) var glide_max_fall_speed: float = 48

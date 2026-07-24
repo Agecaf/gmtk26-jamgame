@@ -45,6 +45,18 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.RUNNING:
 			animator.play(&'Vampire/Run')
+		
+		Player.State.JUMPING:
+			animator.play(&'Vampire/Jump')
+		
+		Player.State.GLIDING:
+			animator.play(&'Vampire/Glide')
+		
+		Player.State.FALLING:
+			animator.play(&'Vampire/Fall')
+		
+		Player.State.LANDING:
+			animator.play(&'Vampire/Land')
 
 
 func _on_player_change_form(_form: Player.Form) -> void:

@@ -12,6 +12,7 @@ var jump_keypress_interval: float = 0
 var jump_hold_time: float = 0
 var total_air_time: float = 0
 var wall_jump_cooldown_remaining: float = 0
+var landing_delay_remaining: float = 0
 
 
 func _on_player_ready() -> void:
@@ -51,6 +52,8 @@ func _on_player_physics_process(delta: float) -> void:
 	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 
 	player.wall_detector.force_raycast_update()
+	
+	landing_delay_remaining = maxf(0, landing_delay_remaining - delta)
 
 	var wall_jump_conditions_met: bool = (
 		total_air_time >= player.wall_jump_min_buildup_time
@@ -121,10 +124,18 @@ func _on_player_physics_process(delta: float) -> void:
 
 		Player.State.FALLING:
 			if player.is_on_floor():
-				player.change_state(Player.State.IDLE)
+				player.change_state(Player.State.LANDING)
 
 		Player.State.FALLING_BAT:
 			if player.is_on_floor():
+				player.change_state(Player.State.LANDING_BAT)
+
+		Player.State.LANDING:
+			if not landing_delay_remaining:
+				player.change_state(Player.State.IDLE)
+
+		Player.State.LANDING_BAT:
+			if not landing_delay_remaining:
 				player.change_state(Player.State.IDLE)
 
 	if Input.is_action_just_pressed(&'jump'):
@@ -168,6 +179,14 @@ func _on_player_change_state(state: Player.State) -> void:
 
 		Player.State.FALLING_BAT:
 			player.change_form(Player.Form.BAT)
+
+		Player.State.LANDING:
+			player.change_form(Player.Form.VAMPIRE)
+			landing_delay_remaining = player.landing_delay
+
+		Player.State.LANDING_BAT:
+			player.change_form(Player.Form.BAT)
+			landing_delay_remaining = player.bat_landing_delay
 
 
 func _on_player_change_form(_form: Player.Form) -> void:
