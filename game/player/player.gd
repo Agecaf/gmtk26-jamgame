@@ -189,3 +189,7 @@ func save_spot() -> void:
 func hurt() -> void:
 	for script: Resource in script_order:
 		script._on_player_hurt()
+
+# For opening and closing the pocketwatch
+func pocketwatch_open() -> void: if Game.pocketwatch != null: Game.pocketwatch.open()
+func pocketwatch_close() -> void: if Game.pocketwatch != null: Game.pocketwatch.close()

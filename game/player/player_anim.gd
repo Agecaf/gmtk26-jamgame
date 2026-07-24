@@ -41,7 +41,7 @@ func _on_player_change_state(state: Player.State) -> void:
 	
 	match state:
 		Player.State.IDLE:
-			animator.play(&'Vampire/Idle')
+			animator.play(&'Vampire/Idle_2')
 		
 		Player.State.RUNNING:
 			animator.play(&'Vampire/Run')

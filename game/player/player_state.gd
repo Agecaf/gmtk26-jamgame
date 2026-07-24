@@ -65,9 +65,11 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.IDLE:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
+				player.pocketwatch_close()
 			
 			if player.velocity.x:
 				player.change_state(Player.State.RUNNING)
+				player.pocketwatch_close()
 		
 		Player.State.RUNNING:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
