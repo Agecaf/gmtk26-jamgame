@@ -13,6 +13,7 @@ var camera: PlayerCamera
 var countdown: Countdown
 var menu: Menu
 var container: GameContainer
+var pocketwatch: PocketWatch
 
 # Used to choose the level
 var level_index = 0

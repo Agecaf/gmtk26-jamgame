@@ -6,7 +6,6 @@ func _ready() -> void:
 	# Register
 	Game.scene = self
 	
-	
 	# Start the countdown (for testing: react to its signals with debug messages)
 	# add_child(Countdown.new())
 	
