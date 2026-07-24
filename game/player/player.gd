@@ -180,10 +180,7 @@ func save_spot() -> void:
 		script._on_player_save_spot()
 
 
-
-func _on_hurtbox_component_entered(area: Area2D) -> void:
-	if area is not HitboxComponent:
-		return
-	
+# Each auxiliary script can implement a different part of hurt()
+func hurt() -> void:
 	for script: Resource in script_order:
 		script._on_player_hurt()

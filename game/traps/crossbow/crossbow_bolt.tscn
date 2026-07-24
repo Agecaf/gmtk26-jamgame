@@ -4,24 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="1_os37f"]
 [ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="3_ntkaj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
-radius = 6.0827627
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ntkaj"]
 radius = 6.0
 
-[node name="CrossbowBolt" type="StaticBody2D" unique_id=1911700099]
-collision_layer = 8
-collision_mask = 4294901761
+[node name="CrossbowBolt" type="Node2D" unique_id=1802060084]
 script = ExtResource("1_fj70m")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=907857163]
 texture = ExtResource("1_os37f")
 region_enabled = true
 region_rect = Rect2(24, 24, 24, 24)
-
-[node name="Collider" type="CollisionShape2D" parent="." unique_id=1251116300]
-shape = SubResource("CircleShape2D_11l1m")
 
 [node name="HitboxComponent" parent="." unique_id=1847029517 instance=ExtResource("3_ntkaj")]
 collision_layer = 12

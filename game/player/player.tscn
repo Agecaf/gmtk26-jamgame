@@ -76,6 +76,7 @@ shape = SubResource("RectangleShape2D_dnwxg")
 collision_mask = 4294901760
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=2054133402]
+visible = false
 collision_mask = 12
 
 [node name="Collider" type="CollisionShape2D" parent="HurtboxComponent" unique_id=74269873]
