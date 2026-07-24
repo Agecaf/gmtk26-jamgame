@@ -25,9 +25,39 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.604281, 0, 0.052742533, 1)
 
+[sub_resource type="Gradient" id="Gradient_8n77a"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7pxim"]
+gradient = SubResource("Gradient_8n77a")
+width = 6
+height = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gp3w7"]
+gradient = SubResource("Gradient_8n77a")
+width = 6
+height = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp3w7"]
+bg_color = Color(0.64705884, 0.21568628, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy5ve"]
+bg_color = Color(0.7246454, 0.3395102, 0.23772198, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_txsnn"]
+color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 10
+
 [resource]
 default_font = ExtResource("1_8n77a")
 default_font_size = 43
 Button/styles/hover = SubResource("StyleBoxFlat_qs6vt")
 Button/styles/normal = SubResource("StyleBoxFlat_e5xhn")
 Button/styles/pressed = SubResource("StyleBoxFlat_8n77a")
+HSlider/icons/grabber = SubResource("GradientTexture2D_7pxim")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_gp3w7")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gp3w7")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_fy5ve")
+HSlider/styles/slider = SubResource("StyleBoxLine_txsnn")
