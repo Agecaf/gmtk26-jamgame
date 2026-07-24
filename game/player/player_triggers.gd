@@ -27,3 +27,7 @@ func _on_player_reset() -> void:
 
 func _on_player_change_state(_state: Player.State) -> void:
 	pass
+
+
+func _on_player_hurt() -> void:
+	print("Player got hit!")
