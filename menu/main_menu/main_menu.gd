@@ -18,3 +18,23 @@ func _ready_deferred() -> void:
 
 func new_game() -> void:
 	Game.menu.go_to(&"PreLevelMenu")
+
+# Start
+func start() -> void:
+	# No need to start the music menu in this case.
+	if Game.menu.previous_menu_name in [&"SettingsMenu", &"LevelSelectMenu"]:
+		pass
+	
+	# Start the menu music
+	else:
+		Game.audio.menu_music.play()
+
+# End menu music
+func end() -> void:
+	# No need to start the music menu in this case.
+	if Game.menu.next_menu_name in [&"SettingsMenu", &"LevelSelectMenu"]:
+		pass
+	
+	# Start the menu music
+	else:
+		Game.audio.menu_music.stop()

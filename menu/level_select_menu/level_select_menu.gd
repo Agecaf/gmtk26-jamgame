@@ -22,3 +22,8 @@ func choose_level(level_index: int) -> void:
 	Game.level_index = level_index
 	Game.menu.go_to(&"PreLevelMenu")
 	pass
+
+
+func end() -> void:
+	if Game.menu.next_menu_name == &"PreLevelMenu":
+		Game.audio.menu_music.stop()

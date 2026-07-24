@@ -12,11 +12,18 @@ func start() -> void:
 	# New level
 	if Game.menu.previous_menu_name == &"PreLevelMenu":
 		Game.container.load_level()
+		Game.audio.game_music.play()
 	
 	# Retry
 	if Game.menu.previous_menu_name == &"PostLevelMenu":
 		Game.container.load_level()
+		Game.audio.game_music.play()
 	
 	# Unpause
 	if Game.menu.previous_menu_name == &"PauseMenu":
 		pass
+
+func end() -> void:
+	# Stop the music unless we're just pausing the game.
+	if Game.menu.next_menu_name != &"PauseMenu":
+		Game.audio.game_music.stop()
