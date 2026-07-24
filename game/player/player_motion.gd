@@ -88,11 +88,21 @@ func _on_player_physics_process(delta: float) -> void:
 			player.velocity.y += delta * jump_gravity
 	
 	player.velocity.y = minf(player.max_fall_speed, player.velocity.y)
+
+	if player.velocity.x > 10:
+		player.face(Enums.Direction.RIGHT)
+	
+	elif player.velocity.x < -10:
+		player.face(Enums.Direction.LEFT)
 	
 	cached_velocity = player.velocity
 
 
 func _on_player_reset() -> void:
+	pass
+
+
+func _on_player_face(_direction: Enums.Direction) -> void:
 	pass
 
 
@@ -106,6 +116,10 @@ func _on_player_change_state(state: Player.State) -> void:
 	
 	if player.previous_state == Player.State.HANGING:
 		wall_jump_steering_cooldown = player.wall_jump_cooldown
+
+
+func _on_player_change_form(_form: Player.Form) -> void:
+	pass
 
 
 func _on_player_hurt() -> void:

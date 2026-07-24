@@ -128,10 +128,40 @@ func _on_player_reset() -> void:
 	pass
 
 
+func _on_player_face(_direction: Enums.Direction) -> void:
+	pass
+
+
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
+		Player.State.IDLE:
+			player.change_form(Player.Form.VAMPIRE)
+		
 		Player.State.HANGING:
+			player.change_form(Player.Form.VAMPIRE)
 			wall_jump_cooldown_remaining = player.wall_jump_cooldown
+		
+		Player.State.JUMPING:
+			player.change_form(Player.Form.VAMPIRE)
+		
+		Player.State.JUMPING_BAT:
+			player.change_form(Player.Form.BAT)
+
+		Player.State.GLIDING:
+			player.change_form(Player.Form.VAMPIRE)
+
+		Player.State.GLIDING_BAT:
+			player.change_form(Player.Form.BAT)
+
+		Player.State.FALLING:
+			player.change_form(Player.Form.VAMPIRE)
+
+		Player.State.FALLING_BAT:
+			player.change_form(Player.Form.BAT)
+
+
+func _on_player_change_form(_form: Player.Form) -> void:
+	pass
 
 
 func _on_player_hurt() -> void:

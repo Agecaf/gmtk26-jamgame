@@ -23,6 +23,10 @@ func _on_player_reset() -> void:
 	pass
 
 
+func _on_player_face(_direction: Enums.Direction) -> void:
+	pass
+
+
 ## As yet unused clips from SFX:
 # const DOOR_OPEN = preload("res://assets/audio/sfx/clock_door_opens.wav")
 # const ENTER_COFFIN = preload("res://assets/audio/sfx/vampire_enters_coffin.wav")
@@ -53,6 +57,10 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.GLIDING_BAT:
 			SFX.play(SFX.GLIDE_BAT)
+
+
+func _on_player_change_form(_form: Player.Form) -> void:
+	pass
 
 
 func _on_player_hurt() -> void:

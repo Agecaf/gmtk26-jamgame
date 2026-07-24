@@ -13,6 +13,11 @@ enum State {
 	FALLING_BAT,
 }
 
+enum Form {
+	VAMPIRE,
+	BAT,
+}
+
 @export_range(25, 500, 25) var run_speed: float = 250
 @export_range(288, 576, 24) var max_fall_speed: float = 480
 @export_range(0.005, 0.05, 0.005) var air_speed_change_rate: float = 0.015
@@ -43,10 +48,12 @@ enum State {
 @export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 
-var wall_detector: RayCast2D:
-	get: return $WallDetector
+var sprite: Sprite2D:
+	get: return $Sprite
 var collider: CollisionShape2D:
 	get: return $Collider
+var wall_detector: RayCast2D:
+	get: return $WallDetector
 
 var x_min: float:
 	get: return 0
@@ -58,6 +65,7 @@ var y_min: float:
 var y_max: float:
 	get: return get_viewport_rect().size.y
 
+var player_scene: PlayerScene
 var player_state: PlayerState
 var player_motion: PlayerMotion
 var player_triggers: PlayerTriggers
@@ -67,16 +75,20 @@ var script_order: Array[Resource]
 
 var previous_state: State
 var current_state: State
+var current_form: Form
+var current_facing: Enums.Direction
 
 
 # For callbacks, auxiliary scripts are executed in the order defined here
 func _init() -> void:
+	player_scene = PlayerScene.new()
 	player_state = PlayerState.new()
 	player_motion = PlayerMotion.new()
 	player_triggers = PlayerTriggers.new()
 	player_sound = PlayerSound.new()
 
 	script_order.append_array([
+		player_scene,
 		player_state,
 		player_motion,
 		player_triggers,
@@ -88,6 +100,8 @@ func _init() -> void:
 	
 	previous_state = State.IDLE
 	current_state = State.IDLE
+	current_form = Form.VAMPIRE
+	current_facing = Enums.Direction.RIGHT
 
 
 # Each auxiliary script can implement a different part of _ready()
@@ -123,16 +137,44 @@ func reset() -> void:
 		script._on_player_reset()
 
 
+# Each auxiliary script can implement a different part of face()
+func face(direction: Enums.Direction) -> void:
+	if direction == Enums.Direction.NONE:
+		return
+	
+	current_facing = direction
+
+	for script: Resource in script_order:
+		script._on_player_face(direction)
+
+
 # Each auxiliary script can implement a different part of change_state()
 func change_state(state: State) -> void:
+	if current_state == state:
+		return
+	
 	previous_state = current_state
 	current_state = state
 
 	for script: Resource in script_order:
 		script._on_player_change_state(state)
+
+
+# Each auxiliary script can implement a different part of change_form()
+func change_form(form: Form) -> void:
+	if current_form == form:
+		return
 	
+	current_form = form
+
+	for script: Resource in script_order:
+		script._on_player_change_form(form)
+
+
 
 func _on_hurtbox_component_entered(area: Area2D) -> void:
-	if area is HitboxComponent:
-		for script: Resource in script_order:
-			script._on_player_hurt()
+	if area is not HitboxComponent:
+		return
+	
+	for script: Resource in script_order:
+		script._on_player_hurt()

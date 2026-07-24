@@ -25,7 +25,15 @@ func _on_player_reset() -> void:
 	pass
 
 
+func _on_player_face(_direction: Enums.Direction) -> void:
+	pass
+
+
 func _on_player_change_state(_state: Player.State) -> void:
+	pass
+
+
+func _on_player_change_form(_form: Player.Form) -> void:
 	pass
 
 
