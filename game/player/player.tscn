@@ -20,6 +20,9 @@ texture = ExtResource("2_8soms")
 position = Vector2(-2, 2)
 shape = SubResource("CircleShape2D_11l1m")
 
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1753431483]
+collision_mask = 4294901760
+
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=2054133402]
 collision_mask = 12
 

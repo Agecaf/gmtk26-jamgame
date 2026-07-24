@@ -40,6 +40,8 @@ enum State {
 @export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 
+var wall_detector: RayCast2D:
+	get: return $WallDetector
 var collider: CollisionShape2D:
 	get: return $Collider
 
