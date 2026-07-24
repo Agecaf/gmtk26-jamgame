@@ -50,9 +50,6 @@ func _on_player_physics_process(delta: float) -> void:
 	total_air_time = 0.0 if player.is_on_floor() else (total_air_time + delta)
 	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 
-	player.wall_detector.target_position = (
-		player.collider.shape.get_rect().size.x * (Vector2.RIGHT if player.velocity.x >= 0 else Vector2.LEFT)
-	)
 	player.wall_detector.force_raycast_update()
 
 	var wall_jump_conditions_met: bool = (
