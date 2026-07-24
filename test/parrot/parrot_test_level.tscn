@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://ba0ra1phem3vp" path="res://assets/art/tilesets/tileset.tres" id="3_b6f1w"]
 [ext_resource type="PackedScene" uid="uid://cvkdh0efsttia" path="res://game/player/player.tscn" id="4_ipcvj"]
 [ext_resource type="Script" uid="uid://cun0k4l3hgyy0" path="res://game/player/player_camera.gd" id="5_lbcyw"]
-[ext_resource type="PackedScene" uid="uid://cinc4yh6d84oi" path="res://game/traps/crossbow.tscn" id="6_ipcvj"]
+[ext_resource type="PackedScene" uid="uid://cinc4yh6d84oi" path="res://game/traps/crossbow/crossbow.tscn" id="6_ipcvj"]
 
 [node name="ParrotTestLevel" type="Node2D" unique_id=125685345]
 script = ExtResource("1_btyyr")

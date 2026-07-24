@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bm7ol0y3isnot"]
+
+[ext_resource type="Texture2D" uid="uid://ca8ds4jgy8rbe" path="res://assets/art/tilesets/sawblade_placeholder.png" id="1_4pybh"]
+[ext_resource type="Script" uid="uid://b5gciw4gf44ty" path="res://game/traps/sawblades/sawblade.gd" id="1_petb3"]
+[ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="2_ll7y2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vivr"]
+radius = 15.0
+
+[node name="Sawblade" type="Path2D" unique_id=71082083 groups=["sawblade"]]
+script = ExtResource("1_petb3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1362872710]
+rotation = 3.1415927
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1172980361]
+texture = ExtResource("1_4pybh")
+
+[node name="HitboxComponent" parent="PathFollow2D" unique_id=1847029517 instance=ExtResource("2_ll7y2")]
+collision_layer = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/HitboxComponent" unique_id=1885515658]
+shape = SubResource("CircleShape2D_1vivr")
+debug_color = Color(1, 0, 0.10583592, 0.41960785)
+
+[node name="PauseTimer" type="Timer" parent="." unique_id=1778743885]
+one_shot = true
