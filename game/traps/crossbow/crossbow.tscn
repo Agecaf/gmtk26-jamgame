@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cinc4yh6d84oi"]
 
-[ext_resource type="Script" uid="uid://cadirthr4uvig" path="res://game/traps/crossbow.gd" id="1_7x1p0"]
+[ext_resource type="Script" uid="uid://cadirthr4uvig" path="res://game/traps/crossbow/crossbow.gd" id="1_7x1p0"]
 [ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="2_cmncp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d17rfm6gyeeq2"]
 
-[ext_resource type="Script" uid="uid://cxmddo4gefd1i" path="res://game/traps/crossbow_bolt.gd" id="1_fj70m"]
+[ext_resource type="Script" uid="uid://cxmddo4gefd1i" path="res://game/traps/crossbow/crossbow_bolt.gd" id="1_fj70m"]
 [ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="1_os37f"]
 [ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="3_ntkaj"]
 

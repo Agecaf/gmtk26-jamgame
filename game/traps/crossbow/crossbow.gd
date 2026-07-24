@@ -9,7 +9,7 @@ class_name Crossbow extends StaticBody2D
 @onready var collider: CollisionShape2D = $Collider
 @onready var sprite: Sprite2D = $Sprite
 
-var bolt_template: PackedScene = preload('res://game/traps/crossbow_bolt.tscn')
+var bolt_template: PackedScene = preload('res://game/traps/crossbow/crossbow_bolt.tscn')
 var bolt_cooldown_remaining: float = 0
 
 
