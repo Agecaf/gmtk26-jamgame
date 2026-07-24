@@ -51,8 +51,8 @@ func _on_player_physics_process(delta: float) -> void:
 
 	# Active horizontal steering by player input
 	else:
-		var move_left: int = 1 if Input.is_action_pressed(&"left") else 0
-		var move_right: int = 1 if Input.is_action_pressed(&"right") else 0
+		var move_left: int = 1 if Input.is_action_pressed(&'left') else 0
+		var move_right: int = 1 if Input.is_action_pressed(&'right') else 0
 
 		if player.is_on_floor():
 			player.velocity.x = player.run_speed * (move_right - move_left)
