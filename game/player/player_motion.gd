@@ -35,7 +35,7 @@ func _on_player_physics_process(delta: float) -> void:
 	
 	# Lock horizontal movement while gliding to the direction in which the glide started
 	if player.current_state in [Player.State.GLIDING, Player.State.GLIDING_BAT]:
-		player.velocity.x = player.speed * (
+		player.velocity.x = player.run_speed * (
 			-1 if last_horizontal_direction == Enums.Direction.LEFT else
 			1 if last_horizontal_direction == Enums.Direction.RIGHT else
 			0
@@ -49,14 +49,18 @@ func _on_player_physics_process(delta: float) -> void:
 	
 	# Wall jump off direction is fixed (away from the wall) for a short time
 	elif wall_jump_steering_cooldown:
-		player.velocity.x = player.speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
+		player.velocity.x = player.run_speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
 
 	# Active horizontal steering by player input
 	else:
 		var move_left: int = 1 if Input.is_action_pressed('ui_left') else 0
 		var move_right: int = 1 if Input.is_action_pressed('ui_right') else 0
 
-		player.velocity.x = player.speed * (move_right - move_left)
+		if player.is_on_floor():
+			player.velocity.x = player.run_speed * (move_right - move_left)
+		
+		else:
+			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / player.air_speed_change_rate))
 
 	# Bats invert horizontal direction on colliding with a wall
 	if player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:

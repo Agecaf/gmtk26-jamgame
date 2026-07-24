@@ -13,7 +13,8 @@ enum State {
 	FALLING_BAT,
 }
 
-@export_range(25, 500, 25) var speed: float = 250
+@export_range(25, 500, 25) var run_speed: float = 250
+@export_range(0.005, 0.05, 0.005) var air_speed_change_rate: float = 0.015
 
 @export_range(0.05, 1.0, 0.05) var jump_time: float = 0.2
 @export_range(0.05, 1.0, 0.05) var double_jump_time: float = 0.2
