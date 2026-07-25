@@ -46,6 +46,12 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.RUNNING:
 			animator.play(&'Vampire/Run')
 		
+		Player.State.CROUCHING:
+			animator.play(&'Vampire/Crouch')
+		
+		Player.State.CROUCHING_RUN:
+			animator.play(&'Vampire/CrouchRun')
+		
 		Player.State.HANGING:
 			animator.play(&'Vampire/Hang')
 		

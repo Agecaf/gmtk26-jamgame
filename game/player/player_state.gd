@@ -67,6 +67,10 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.JUMPING)
 				player.pocketwatch_close()
 			
+			if Input.is_action_just_pressed(&'crouch'):
+				player.change_state(Player.State.CROUCHING)
+				player.pocketwatch_close()
+			
 			if player.velocity.x:
 				player.change_state(Player.State.RUNNING)
 				player.pocketwatch_close()
@@ -75,8 +79,25 @@ func _on_player_physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
 			
+			if Input.is_action_just_pressed(&'crouch'):
+				player.change_state(Player.State.CROUCHING_RUN)
+			
 			if not player.velocity.x:
 				player.change_state(Player.State.IDLE)
+		
+		Player.State.CROUCHING:
+			if Input.is_action_just_released(&'crouch'):
+				player.change_state(Player.State.IDLE)
+			
+			if player.velocity.x:
+				player.change_state(Player.State.CROUCHING_RUN)
+		
+		Player.State.CROUCHING_RUN:
+			if Input.is_action_just_released(&'crouch'):
+				player.change_state(Player.State.RUNNING)
+			
+			if not player.velocity.x:
+				player.change_state(Player.State.CROUCHING)
 		
 		Player.State.HANGING:
 			var back_action: StringName = &'left' if (player.get_wall_normal().angle() - PI / 2) > 0 else &'right'
@@ -169,6 +190,8 @@ func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.IDLE,\
 		Player.State.RUNNING,\
+		Player.State.CROUCHING,\
+		Player.State.CROUCHING_RUN,\
 		Player.State.JUMPING,\
 		Player.State.JUMPING_FALL,\
 		Player.State.GLIDING,\

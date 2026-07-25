@@ -5,6 +5,8 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	RUNNING,
+	CROUCHING,
+	CROUCHING_RUN,
 	HANGING,
 	JUMPING,
 	JUMPING_FALL,
