@@ -26,10 +26,6 @@ func _on_player_ready() -> void:
 		player.change_state(Player.State.FALLING)
 
 
-func _on_player_process(_delta: float) -> void:
-	pass
-
-
 # # The evolution of player.current_state for debugging
 # var x=0
 # func _on_player_process(_delta: float) -> void:
@@ -198,18 +194,6 @@ func _on_player_physics_process(delta: float) -> void:
 		jump_keypress_interval = 0
 
 
-func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
-	pass
-
-
-func _on_player_reset() -> void:
-	pass
-
-
-func _on_player_face(_direction: Enums.Direction) -> void:
-	pass
-
-
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.IDLE,\
@@ -241,18 +225,6 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.LANDING_BAT:
 			player.change_form(Player.Form.BAT)
 			landing_delay_remaining = player.bat_landing_delay
-
-
-func _on_player_change_form(_form: Player.Form) -> void:
-	pass
-
-
-func _on_player_save_spot() -> void:
-	pass
-
-
-func _on_player_hurt() -> void:
-	pass
 
 
 func _on_player_enter_coffin() -> void:

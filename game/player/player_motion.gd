@@ -32,14 +32,6 @@ var wall_jump_cooldown_remaining: float = 0
 var bat_bounce_cooldown_remaining: float = 0
 
 
-func _on_player_ready() -> void:
-	pass
-
-
-func _on_player_process(_delta: float) -> void:
-	pass
-
-
 func _on_player_physics_process(delta: float) -> void:
 	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 	bat_bounce_cooldown_remaining = maxf(0, bat_bounce_cooldown_remaining - delta)
@@ -121,18 +113,6 @@ func _on_player_physics_process(delta: float) -> void:
 	cached_velocity = player.velocity
 
 
-func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
-	pass
-
-
-func _on_player_reset() -> void:
-	pass
-
-
-func _on_player_face(_direction: Enums.Direction) -> void:
-	pass
-
-
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.JUMPING:
@@ -143,23 +123,3 @@ func _on_player_change_state(state: Player.State) -> void:
 	
 	if player.previous_state == Player.State.HANGING:
 		wall_jump_cooldown_remaining = player.wall_jump_cooldown
-
-
-func _on_player_change_form(_form: Player.Form) -> void:
-	pass
-
-
-func _on_player_save_spot() -> void:
-	pass
-
-
-func _on_player_hurt() -> void:
-	pass
-
-
-func _on_player_enter_coffin() -> void:
-	pass
-
-
-func _on_player_turn_to_ashes() -> void:
-	pass

@@ -15,14 +15,6 @@ func _on_player_ready() -> void:
 	setup_hurtbox()
 
 
-func _on_player_process(_delta: float) -> void:
-	pass
-
-
-func _on_player_physics_process(_delta: float) -> void:
-	pass
-
-
 func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
 	if collision.get_collider() is Spikes:
 		player.hurt()
@@ -43,10 +35,6 @@ func _on_player_face(direction: Enums.Direction) -> void:
 			player.sprite.scale = Vector2(-1, 1)
 			player.collider.scale = Vector2(-1, 1)
 			player.wall_detector.scale = Vector2(-1, 1)
-
-
-func _on_player_change_state(_state: Player.State) -> void:
-	pass
 
 
 func _on_player_change_form(form: Player.Form) -> void:
@@ -105,14 +93,6 @@ func _on_player_save_spot() -> void:
 func _on_player_hurt() -> void:
 	player.position = last_marked_position
 	Debug.warning('The player got hit!')
-
-
-func _on_player_enter_coffin() -> void:
-	pass
-
-
-func _on_player_turn_to_ashes() -> void:
-	pass
 
 
 func setup_hurtbox() -> void:

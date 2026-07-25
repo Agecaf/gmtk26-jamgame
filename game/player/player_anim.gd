@@ -10,30 +10,6 @@ var animator: AnimationPlayer:
 	get: return player.get_node(^'Animator')
 
 
-func _on_player_ready() -> void:
-	pass
-
-
-func _on_player_process(_delta: float) -> void:
-	pass
-
-
-func _on_player_physics_process(_delta: float) -> void:
-	pass
-
-
-func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
-	pass
-
-
-func _on_player_reset() -> void:
-	pass
-
-
-func _on_player_face(_direction: Enums.Direction) -> void:
-	pass
-
-
 func _on_player_change_state(state: Player.State) -> void:
 	# animator.stop()
 	# TODO: Replace the block below with the statement above once bat animations are in
@@ -86,23 +62,3 @@ func _on_player_change_state(state: Player.State) -> void:
 		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:
 			pass
-
-
-func _on_player_change_form(_form: Player.Form) -> void:
-	pass
-
-
-func _on_player_save_spot() -> void:
-	pass
-
-
-func _on_player_hurt() -> void:
-	pass
-
-
-func _on_player_enter_coffin() -> void:
-	pass
-
-
-func _on_player_turn_to_ashes() -> void:
-	pass
