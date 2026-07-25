@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7wfmqoyayvkh"]
 
-[ext_resource type="Script" uid="uid://bos0do8h7syl3" path="res://game/other_objects/coffin/back_effect.gd" id="1_p2ykh"]
+[ext_resource type="Script" uid="uid://bos0do8h7syl3" path="res://game/other_objects/coffin/coffin.gd" id="1_p2ykh"]
 [ext_resource type="Texture2D" uid="uid://dguohm24rct" path="res://assets/art/objects/coffin_placeholder_2.png" id="1_uqowv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2nw5p"]
@@ -18,13 +18,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.885)
 
 [node name="Coffin" type="Node2D" unique_id=773797175]
+script = ExtResource("1_p2ykh")
 
 [node name="BackEffect" type="Sprite2D" parent="." unique_id=592609547]
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_2nw5p")
 position = Vector2(0, -36)
 texture = SubResource("GradientTexture2D_kafe6")
-script = ExtResource("1_p2ykh")
 
 [node name="CoffinPlaceholder2" type="Sprite2D" parent="." unique_id=1628295279]
 position = Vector2(0, -16)
