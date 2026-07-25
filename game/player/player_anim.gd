@@ -12,44 +12,51 @@ func _on_player_change_state(state: Player.State) -> void:
 	
 	match state:
 		Player.State.IDLE:
-			player.animator.play(&'Vampire/Idle_2')
+			player.animator_vampire.play(&'Vampire/Idle_2')
 		
 		Player.State.RUNNING:
-			player.animator.play(&'Vampire/Run')
+			player.animator_vampire.play(&'Vampire/Run')
 		
 		Player.State.CROUCHING:
-			player.animator.play(&'Vampire/Crouch')
+			player.animator_vampire.play(&'Vampire/Crouch')
 		
 		Player.State.CROUCHING_RUN:
-			player.animator.play(&'Vampire/CrouchRun')
+			player.animator_vampire.play(&'Vampire/CrouchRun')
 		
 		Player.State.HANGING:
-			player.animator.play(&'Vampire/Hang')
+			player.animator_vampire.play(&'Vampire/Hang')
 		
 		Player.State.JUMPING:
 			if player.previous_state in [Player.State.RUNNING, Player.State.HANGING]:
-				player.animator.play(&'Vampire/RapidJump')
+				player.animator_vampire.play(&'Vampire/RapidJump')
 			else:
-				player.animator.play(&'Vampire/Jump')
+				player.animator_vampire.play(&'Vampire/Jump')
+		
+		Player.State.JUMPING_BAT:
+			player.animator_bat.play(&'BatForm/Flap')
 		
 		Player.State.GLIDING:
-			player.animator.play(&'Vampire/Glide')
+			player.animator_vampire.play(&'Vampire/Glide')
+		
+		# TODO: Bat glide animation, and all the other bat animations
+		Player.State.GLIDING_BAT:
+			player.animator_bat.play(&'BatForm/Flap')
 		
 		Player.State.FALLING,\
 		Player.State.JUMPING_FALL:
-			player.animator.play(&'Vampire/Fall')
+			player.animator_vampire.play(&'Vampire/Fall')
 		
 		Player.State.LANDING:
-			player.animator.play(&'Vampire/Land')
+			player.animator_vampire.play(&'Vampire/Land')
 		
 		Player.State.TURNING_TO_MIST:
-			player.animator.play(&'Vampire/TurnToMist')
+			player.animator_vampire.play(&'Vampire/TurnToMist')
 		
 		Player.State.REFORMING:
-			player.animator.play(&'Vampire/Reform')
+			player.animator_vampire.play(&'Vampire/Reform')
 
 		Player.State.TURNING_TO_ASHES:
-			player.animator.play(&'Vampire/TurnToAshes')
+			player.animator_vampire.play(&'Vampire/TurnToAshes')
 
 		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:
