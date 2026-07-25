@@ -61,7 +61,7 @@ enum Form {
 @export_range(0.001, 0.01, 0.001) var glide_air_speed_change_rate: float = 0.004
 @export_range(0.001, 0.01, 0.001) var bat_glide_air_speed_change_rate: float = 0.004
 
-@export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.25
+@export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.0
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 @export_range(0.05, 0.5, 0.05) var bat_bounce_cooldown: float = 1
 
