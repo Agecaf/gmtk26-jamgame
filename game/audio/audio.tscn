@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8r16qe2oekkl" path="res://game/audio/audio.gd" id="1_4cwo7"]
 [ext_resource type="AudioStream" uid="uid://8o8dkl5mtsyk" path="res://assets/audio/music/count_downcula_menu_theme.ogg" id="2_4xfpn"]
+[ext_resource type="AudioStream" uid="uid://b5buq1nbyrap6" path="res://assets/audio/music/the_final_countdown.ogg" id="3_2sf7d"]
 [ext_resource type="AudioStream" uid="uid://fdg1khr0vsph" path="res://assets/audio/sfx/clock_tick_60bpm.wav" id="3_ues5r"]
 
 [node name="Audio" type="Node2D" unique_id=1812445335]
@@ -15,7 +16,7 @@ playback_type = 1
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=588860056]
 unique_name_in_owner = true
-stream = ExtResource("2_4xfpn")
+stream = ExtResource("3_2sf7d")
 bus = &"Music"
 playback_type = 1
 
