@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bu6eaxd4frddq"]
+
+[ext_resource type="Script" uid="uid://cpghcedcdc7u6" path="res://game/marker_bat/marker_bat.gd" id="1_sr2hk"]
+[ext_resource type="Texture2D" uid="uid://c3y6m366rjjms" path="res://assets/art/player/marker_bat_atlas.tres" id="2_43sy6"]
+[ext_resource type="AnimationLibrary" uid="uid://d11cjc4ohlrr" path="res://assets/art/player/marker_bat_anim.tres" id="3_43sy6"]
+[ext_resource type="AnimationLibrary" uid="uid://bm17k7oikismj" path="res://assets/art/player/vampire_anim.tres" id="4_cslrd"]
+
+[sub_resource type="Animation" id="Animation_5fytw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:offset:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-60, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:offset:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ste8"]
+_data = {
+&"RESET": SubResource("Animation_5fytw")
+}
+
+[node name="MarkerBat" type="Node2D" unique_id=2123980463]
+script = ExtResource("1_sr2hk")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1378746549]
+texture = ExtResource("2_43sy6")
+offset = Vector2(-60, -80)
+hframes = 2
+vframes = 2
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1439977376]
+libraries/ = SubResource("AnimationLibrary_4ste8")
+libraries/MarkerBat = ExtResource("3_43sy6")
+libraries/Vampire = ExtResource("4_cslrd")

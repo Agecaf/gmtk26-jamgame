@@ -45,8 +45,8 @@ func _on_player_change_form(_form: Player.Form) -> void:
 
 
 func _on_player_save_spot() -> void:
+	MarkerBat.mark(player.position)
 	last_marked_position = player.position
-	Debug.warning('Safe spot marked.')
 
 
 func _on_player_hurt() -> void:
