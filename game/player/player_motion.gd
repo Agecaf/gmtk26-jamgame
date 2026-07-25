@@ -82,6 +82,9 @@ func _on_player_physics_process(delta: float) -> void:
 		Enums.Direction.RIGHT if player.velocity.x > 0 else
 		Enums.Direction.NONE
 	)
+
+	if Input.is_action_just_released(&'jump') and player.velocity.y < 0:
+		player.velocity.y *= player.short_jump_velocity_attenuation
 	
 	match player.current_state:
 		Player.State.HANGING:

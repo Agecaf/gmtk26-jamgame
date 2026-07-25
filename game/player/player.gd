@@ -59,6 +59,8 @@ enum Form {
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
 @export_range(0.05, 0.5, 0.05) var bat_bounce_cooldown: float = 1
 
+@export_range(0, 0.95, 0.05) var short_jump_velocity_attenuation: float = 0.3
+
 var sprite: Sprite2D:
 	get: return $Sprite
 var collider: CollisionShape2D:
