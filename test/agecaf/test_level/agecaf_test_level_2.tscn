@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cun0k4l3hgyy0" path="res://game/player/player_camera.gd" id="5_ekd6w"]
 [ext_resource type="PackedScene" uid="uid://cpbw0ty622icd" path="res://game/game_text/game_text.tscn" id="8_6wr6l"]
 [ext_resource type="PackedScene" uid="uid://bpqt42431745s" path="res://game/other_objects/clock_door/clock_door.tscn" id="9_ekd6w"]
+[ext_resource type="PackedScene" uid="uid://7wfmqoyayvkh" path="res://game/other_objects/coffin/coffin.tscn" id="10_4735x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wr6l"]
 shader = ExtResource("2_553nx")
@@ -55,8 +56,12 @@ position = Vector2(228, 192)
 long_or_short = true
 
 [node name="Player" parent="." unique_id=960145280 instance=ExtResource("4_6wr6l")]
+z_index = 10
 position = Vector2(94, 451)
 collision_mask = 4294901761
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1093708630]
 script = ExtResource("5_ekd6w")
+
+[node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("10_4735x")]
+position = Vector2(121, 193)
