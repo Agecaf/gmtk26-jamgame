@@ -71,8 +71,9 @@ func _on_player_physics_process(delta: float) -> void:
 		
 		else:
 			var air_speed_change_rate: float = (
-				player.glide_air_speed_change_rate if player.current_state == Player.State.GLIDING else
 				player.bat_glide_air_speed_change_rate if player.current_state == Player.State.GLIDING_BAT else
+				player.glide_air_speed_change_rate if player.current_state == Player.State.GLIDING else
+				player.bat_air_speed_change_rate if player.current_state in [Player.State.JUMPING_BAT, Player.State.FALLING_BAT] else
 				player.air_speed_change_rate
 			)
 			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / air_speed_change_rate))
