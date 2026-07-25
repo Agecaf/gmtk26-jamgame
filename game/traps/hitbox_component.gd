@@ -8,5 +8,5 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and Game.player.current_state != Player.State.CROUCHING:
 		Game.player.hurt()

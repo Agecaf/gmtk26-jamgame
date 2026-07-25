@@ -20,4 +20,7 @@ func face(direction: Enums.Direction) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is Player and Game.player.current_state == Player.State.CROUCHING:
+		return
+	
 	queue_free()
