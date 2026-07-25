@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" format=3 uid="uid://dq63lwihddbku"]
+
+[ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="1_qj0nt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbcyw"]
+texture = ExtResource("1_qj0nt")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 12, -10, -10, -6, -10, -6, -8, 2, -8, 2, -12, 6, -12, 6, -8, 10, -8, 10, 12)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -10, 10, -10, 10, -6, 8, -6, 8, 2, 12, 2, 12, 6, 8, 6, 8, 10, -12, 10)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -12, -10, 10, -6, 10, -6, 8, 2, 8, 2, 12, 6, 12, 6, 8, 10, 8, 10, -12)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -10, -10, -10, -10, -6, -8, -6, -8, 2, -12, 2, -12, 6, -8, 6, -8, 10, 12, 10)
+
+[resource]
+tile_size = Vector2i(24, 24)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_lbcyw")

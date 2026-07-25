@@ -190,6 +190,10 @@ func _on_player_physics_process(delta: float) -> void:
 		jump_keypress_interval = 0
 
 
+func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
+	pass
+
+
 func _on_player_reset() -> void:
 	pass
 

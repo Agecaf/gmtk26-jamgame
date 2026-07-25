@@ -145,9 +145,18 @@ func _physics_process(delta: float) -> void:
 		script._on_player_physics_process(delta)
 
 	move_and_slide()
+
+	for i: int in get_slide_collision_count():
+		_slide_collision(get_slide_collision(i))
 	
 	position.x = clamp(position.x, x_min, x_max)
 	position.y = clamp(position.y, y_min, y_max)
+
+
+# Each auxiliary script can implement a different part of _slide_collision()
+func _slide_collision(collision: KinematicCollision2D) -> void:
+	for script: Resource in script_order:
+		script._on_player_slide_collision(collision)
 
 
 # Each auxiliary script can implement a different part of reset()
