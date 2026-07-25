@@ -214,3 +214,14 @@ func hurt() -> void:
 # For opening and closing the pocketwatch
 func pocketwatch_open() -> void: if Game.pocketwatch != null: Game.pocketwatch.open()
 func pocketwatch_close() -> void: if Game.pocketwatch != null: Game.pocketwatch.close()
+
+# For ending the level
+func enter_coffin() -> void:
+	# TODO: Set the player to an inactive state
+	# Possible todo: Play enter coffin animation (depending on how animation is to be implemented).
+	pass
+
+func turn_to_ashes() -> void:
+	# TODO: Set the player to an inactive state
+	# TODO: Play turn-to-ashes animation.
+	pass
