@@ -85,9 +85,25 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.JUMPING)
 
 			elif Input.is_action_just_pressed(&'crouch') or Input.is_action_just_pressed(back_action):
-				player.change_state(Player.State.FALLING)
+				player.change_state(Player.State.JUMPING_FALL)
 		
 		Player.State.JUMPING:
+			if player.is_on_floor():
+				player.change_state(Player.State.IDLE)
+			
+			elif player.is_on_wall_only() and wall_jump_conditions_met:
+				player.change_state(Player.State.HANGING)
+			
+			elif Input.is_action_just_pressed(&'jump') and double_jump_keypress_timing:
+				player.change_state(Player.State.JUMPING_BAT)
+			
+			elif jump_hold_time >= player.glide_start_delay:
+				player.change_state(Player.State.GLIDING)
+
+			elif player.velocity.y > 0 and total_air_time >= player.glide_start_delay:
+				player.change_state(Player.State.JUMPING_FALL)
+		
+		Player.State.JUMPING_FALL:
 			if player.is_on_floor():
 				player.change_state(Player.State.IDLE)
 			
@@ -132,10 +148,7 @@ func _on_player_physics_process(delta: float) -> void:
 			if player.is_on_floor():
 				player.change_state(Player.State.LANDING_BAT)
 
-		Player.State.LANDING:
-			if not landing_delay_remaining:
-				player.change_state(Player.State.IDLE)
-
+		Player.State.LANDING,\
 		Player.State.LANDING_BAT:
 			if not landing_delay_remaining:
 				player.change_state(Player.State.IDLE)
@@ -154,37 +167,26 @@ func _on_player_face(_direction: Enums.Direction) -> void:
 
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
-		Player.State.IDLE:
-			player.change_form(Player.Form.VAMPIRE)
-		
-		Player.State.RUNNING:
+		Player.State.IDLE,\
+		Player.State.RUNNING,\
+		Player.State.JUMPING,\
+		Player.State.JUMPING_FALL,\
+		Player.State.GLIDING,\
+		Player.State.FALLING:
 			player.change_form(Player.Form.VAMPIRE)
 		
 		Player.State.HANGING:
 			player.change_form(Player.Form.VAMPIRE)
 			wall_jump_cooldown_remaining = player.wall_jump_cooldown
-		
-		Player.State.JUMPING:
-			player.change_form(Player.Form.VAMPIRE)
-		
-		Player.State.JUMPING_BAT:
-			player.change_form(Player.Form.BAT)
-
-		Player.State.GLIDING:
-			player.change_form(Player.Form.VAMPIRE)
-
-		Player.State.GLIDING_BAT:
-			player.change_form(Player.Form.BAT)
-
-		Player.State.FALLING:
-			player.change_form(Player.Form.VAMPIRE)
-
-		Player.State.FALLING_BAT:
-			player.change_form(Player.Form.BAT)
 
 		Player.State.LANDING:
 			player.change_form(Player.Form.VAMPIRE)
 			landing_delay_remaining = player.landing_delay
+		
+		Player.State.JUMPING_BAT,\
+		Player.State.GLIDING_BAT,\
+		Player.State.FALLING_BAT:
+			player.change_form(Player.Form.BAT)
 
 		Player.State.LANDING_BAT:
 			player.change_form(Player.Form.BAT)

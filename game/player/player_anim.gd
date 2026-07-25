@@ -55,7 +55,8 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING:
 			animator.play(&'Vampire/Glide')
 		
-		Player.State.FALLING:
+		Player.State.FALLING,\
+		Player.State.JUMPING_FALL:
 			animator.play(&'Vampire/Fall')
 		
 		Player.State.LANDING:
