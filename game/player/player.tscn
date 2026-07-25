@@ -47,7 +47,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
-z_index = -2
 script = ExtResource("1_b2mth")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1378746549]
