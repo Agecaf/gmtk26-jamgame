@@ -8,28 +8,39 @@ class_name Crossbow extends StaticBody2D
 @onready var raycast: RayCast2D = $Raycast
 @onready var collider: CollisionShape2D = $Collider
 @onready var sprite: Sprite2D = $Sprite
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 var bolt_template: PackedScene = preload('res://game/traps/crossbow/crossbow_bolt.tscn')
 var bolt_cooldown_remaining: float = 0
 
 
 func _process(delta: float) -> void:
-	bolt_cooldown_remaining = maxf(0, bolt_cooldown_remaining - delta)
+	
+	if bolt_cooldown_remaining > 0:
+		bolt_cooldown_remaining -= delta
+		if bolt_cooldown_remaining <= 0.0:
+			bolt_cooldown_remaining = 0.0
+			animation.play(&"reload")
 
 
 func _physics_process(_delta: float) -> void:
+	# Face in player direction
+	if Game.player.position.x < position.x:
+		face(Enums.Direction.LEFT)
+	else:
+		face(Enums.Direction.RIGHT)
+	
+	# Raycast
 	raycast.target_position = detection_range * Vector2.LEFT
 	raycast.force_raycast_update()
 	
 	if raycast.is_colliding():
-		face(Enums.Direction.LEFT)
 		fire(Enums.Direction.LEFT)
 	
 	raycast.target_position = detection_range * Vector2.RIGHT
 	raycast.force_raycast_update()
 
 	if raycast.is_colliding():
-		face(Enums.Direction.RIGHT)
 		fire(Enums.Direction.RIGHT)
 
 
@@ -38,16 +49,16 @@ func face(direction: Enums.Direction) -> void:
 		sprite.scale = Vector2.ONE
 		collider.scale = Vector2.ONE
 	elif direction == Enums.Direction.RIGHT:
-		sprite.scale = Vector2(-1, 1)
+		sprite.scale = Vector2(1, -1)
 		collider.scale = Vector2(-1, 1)
 
 
 func fire(direction: Enums.Direction) -> void:
 	if bolt_cooldown_remaining:
 		return
-
+	
 	var spawn_point: Marker2D
-
+	
 	if direction == Enums.Direction.LEFT:
 		spawn_point = $BoltSpawnPointLeft
 	elif direction == Enums.Direction.RIGHT:
@@ -56,14 +67,17 @@ func fire(direction: Enums.Direction) -> void:
 		return
 	
 	bolt_cooldown_remaining = bolt_cooldown
-
+	
 	var bolt: CrossbowBolt = bolt_template.instantiate() as CrossbowBolt
 	add_child(bolt)
-
+	
 	bolt.position = spawn_point.position
 	bolt.face(direction)
-
+	
 	if direction == Enums.Direction.LEFT:
 		bolt.velocity = bolt_speed * Vector2.LEFT
 	elif direction == Enums.Direction.RIGHT:
 		bolt.velocity = bolt_speed * Vector2.RIGHT
+	
+	# Play animation
+	animation.play(&"fire")

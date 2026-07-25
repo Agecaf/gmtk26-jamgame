@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d17rfm6gyeeq2"]
 
 [ext_resource type="Script" uid="uid://cxmddo4gefd1i" path="res://game/traps/crossbow/crossbow_bolt.gd" id="1_fj70m"]
-[ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="1_os37f"]
+[ext_resource type="Texture2D" uid="uid://bfditt00e77sd" path="res://assets/art/objects/crossbow_bolt.png" id="2_u2l68"]
 [ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="3_ntkaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ntkaj"]
@@ -11,8 +11,8 @@ radius = 6.0
 script = ExtResource("1_fj70m")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=907857163]
-texture = ExtResource("1_os37f")
-region_enabled = true
+rotation = -2.3561945
+texture = ExtResource("2_u2l68")
 region_rect = Rect2(24, 24, 24, 24)
 
 [node name="HitboxComponent" parent="." unique_id=1847029517 instance=ExtResource("3_ntkaj")]

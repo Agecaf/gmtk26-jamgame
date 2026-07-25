@@ -1,17 +1,71 @@
 [gd_scene format=3 uid="uid://cinc4yh6d84oi"]
 
 [ext_resource type="Script" uid="uid://cadirthr4uvig" path="res://game/traps/crossbow/crossbow.gd" id="1_7x1p0"]
-[ext_resource type="Texture2D" uid="uid://cf710750g6ni8" path="res://assets/art/tilesets/spikes_placeholder.png" id="2_cmncp"]
+[ext_resource type="Texture2D" uid="uid://dy7v1xsf1xudu" path="res://assets/art/objects/crossbow.png" id="2_u54lj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11l1m"]
+
+[sub_resource type="Animation" id="Animation_u54lj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_edx87"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667, 0.26666668, 0.43333334, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l466i"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 0), Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nquk3"]
+_data = {
+&"RESET": SubResource("Animation_u54lj"),
+&"fire": SubResource("Animation_edx87"),
+&"reload": SubResource("Animation_l466i")
+}
 
 [node name="Crossbow" type="StaticBody2D" unique_id=1899882889]
 collision_layer = 4
 script = ExtResource("1_7x1p0")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=629404288]
-texture = ExtResource("2_cmncp")
-region_enabled = true
+rotation = -1.5707964
+texture = ExtResource("2_u54lj")
+hframes = 6
+frame = 1
 region_rect = Rect2(24, 24, 24, 24)
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=359547315]
@@ -24,3 +78,6 @@ position = Vector2(-12, 0)
 
 [node name="BoltSpawnPointRight" type="Marker2D" parent="." unique_id=341267535]
 position = Vector2(12, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1169924729]
+libraries/ = SubResource("AnimationLibrary_nquk3")
