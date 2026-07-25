@@ -87,6 +87,9 @@ func _on_player_physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&'crouch'):
 				player.change_state(Player.State.CROUCHING)
 			
+			if total_air_time >= player.falling_delay:
+				player.change_state(Player.State.FALLING)
+			
 			if not player.velocity.x:
 				player.change_state(Player.State.IDLE)
 		
