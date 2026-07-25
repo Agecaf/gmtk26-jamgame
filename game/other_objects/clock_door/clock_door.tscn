@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bpqt42431745s"]
+
+[ext_resource type="Texture2D" uid="uid://bgylv6xavuq2i" path="res://assets/art/objects/door_anim.png" id="1_rpii7"]
+[ext_resource type="Script" uid="uid://463ybaelh3ip" path="res://game/other_objects/clock_door/clock_door.gd" id="1_yy3q1"]
+[ext_resource type="Texture2D" uid="uid://c3uo17dxslqic" path="res://assets/art/objects/door_dial.png" id="2_yy3q1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kafe6"]
+size = Vector2(24, 48)
+
+[node name="ClockDoor" type="Node2D" unique_id=97055137]
+script = ExtResource("1_yy3q1")
+
+[node name="Door" type="Sprite2D" parent="." unique_id=1256824550]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+texture = ExtResource("1_rpii7")
+hframes = 4
+
+[node name="DoorDial" type="Sprite2D" parent="." unique_id=1431727122]
+unique_name_in_owner = true
+position = Vector2(0, -29)
+texture = ExtResource("2_yy3q1")
+offset = Vector2(0, -9)
+
+[node name="ASP" type="AudioStreamPlayer2D" parent="." unique_id=1718494953]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+max_distance = 500.0
+
+[node name="StaticBody" type="StaticBody2D" parent="." unique_id=877003603]
+position = Vector2(0, -32)
+collision_layer = 65536
+collision_mask = 9
+
+[node name="CollisionShape" type="CollisionShape2D" parent="StaticBody" unique_id=1463563458]
+unique_name_in_owner = true
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_kafe6")
