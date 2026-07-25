@@ -56,7 +56,10 @@ func _on_player_change_state(state: Player.State) -> void:
 			animator.play(&'Vampire/Hang')
 		
 		Player.State.JUMPING:
-			animator.play(&'Vampire/Jump')
+			if player.previous_state in [Player.State.RUNNING, Player.State.HANGING]:
+				animator.play(&'Vampire/RapidJump')
+			else:
+				animator.play(&'Vampire/Jump')
 		
 		Player.State.GLIDING:
 			animator.play(&'Vampire/Glide')

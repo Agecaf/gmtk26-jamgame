@@ -184,6 +184,23 @@ tracks/0/keys = {
 "values": [38, 39]
 }
 
+[sub_resource type="Animation" id="Animation_yb5vs"]
+length = 0.19999999999999998
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [28, 31]
+}
+
 [sub_resource type="Animation" id="Animation_p7crj"]
 length = 0.6
 loop_mode = 1
@@ -212,5 +229,6 @@ _data = {
 &"Idle_2": SubResource("Animation_dob5m"),
 &"Jump": SubResource("Animation_ueljf"),
 &"Land": SubResource("Animation_ohoeo"),
+&"RapidJump": SubResource("Animation_yb5vs"),
 &"Run": SubResource("Animation_p7crj")
 }
