@@ -35,9 +35,12 @@ func _on_player_process(_delta: float) -> void:
 func _on_player_physics_process(delta: float) -> void:
 	wall_jump_steering_cooldown = maxf(0, wall_jump_steering_cooldown - delta)
 	
-	# # Stop horizontal movement and prepare for a wall jump if hanging on a wall
-	# elif player.current_state in [Player.State.HANGING]:
-	if player.current_state in [Player.State.HANGING]:
+	# Don't allow horizontal movement if the player is crouching
+	if player.current_state in [Player.State.CROUCHING]:
+		player.velocity.x = 0
+	
+	# Stop horizontal movement and prepare for a wall jump if hanging on a wall
+	elif player.current_state in [Player.State.HANGING]:
 		last_wall_direction = Enums.Direction.RIGHT if (player.get_wall_normal().angle() - PI / 2) > 0 else Enums.Direction.LEFT
 		player.velocity.x = 0
 	

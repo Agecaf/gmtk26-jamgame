@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cpbw0ty622icd"]
+
+[ext_resource type="Script" uid="uid://cv1my8f6m122e" path="res://game/game_text/game_text.gd" id="1_mycp0"]
+[ext_resource type="FontFile" uid="uid://ch8tngtdmknkk" path="res://assets/other/font/Jacquard12-Regular.ttf" id="2_wch65"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6wr6l"]
+font = ExtResource("2_wch65")
+font_size = 21
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.67058825)
+shadow_offset = Vector2(3, 3)
+
+[node name="GameText" type="Label" unique_id=1526924812]
+texture_filter = 1
+text = "Control: {jump}
+Time: {time}"
+label_settings = SubResource("LabelSettings_6wr6l")
+script = ExtResource("1_mycp0")

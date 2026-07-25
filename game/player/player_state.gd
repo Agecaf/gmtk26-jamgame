@@ -16,8 +16,8 @@ var landing_delay_remaining: float = 0
 
 
 func _on_player_ready() -> void:
-	# Put the wall detector raycast a full height above the character
-	player.wall_detector.position = player.collider.shape.get_rect().size.y * Vector2.UP
+	# Put the wall detector raycast half the character's height overhead
+	player.wall_detector.position = player.collider.shape.get_rect().size.y * 0.5 * Vector2.UP
 	# Then set it up to check a full width ahead of the character
 	player.wall_detector.target_position = player.collider.shape.get_rect().size.x * Vector2.RIGHT
 
@@ -67,7 +67,7 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.JUMPING)
 				player.pocketwatch_close()
 			
-			if Input.is_action_just_pressed(&'crouch'):
+			if Input.is_action_pressed(&'crouch'):
 				player.change_state(Player.State.CROUCHING)
 				player.pocketwatch_close()
 			
@@ -79,8 +79,13 @@ func _on_player_physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
 			
+			## Crouch running is disabled
+			# if Input.is_action_just_pressed(&'crouch'):
+			# 	player.change_state(Player.State.CROUCHING_RUN)
+			
+			# Transition to crouching instead
 			if Input.is_action_just_pressed(&'crouch'):
-				player.change_state(Player.State.CROUCHING_RUN)
+				player.change_state(Player.State.CROUCHING)
 			
 			if not player.velocity.x:
 				player.change_state(Player.State.IDLE)
@@ -89,8 +94,9 @@ func _on_player_physics_process(delta: float) -> void:
 			if Input.is_action_just_released(&'crouch'):
 				player.change_state(Player.State.IDLE)
 			
-			if player.velocity.x:
-				player.change_state(Player.State.CROUCHING_RUN)
+			## Crouch running is disabled
+			# if player.velocity.x:
+			# 	player.change_state(Player.State.CROUCHING_RUN)
 		
 		Player.State.CROUCHING_RUN:
 			if Input.is_action_just_released(&'crouch'):
