@@ -50,6 +50,7 @@ enum Form {
 @export_range(0.005, 0.01, 0.001) var glide_fall_speed_decay_rate: float = 0.008
 @export_range(0.005, 0.01, 0.001) var bat_glide_fall_speed_decay_rate: float = 0.008
 
+@export_range(0.005, 0.05, 0.005) var run_speed_change_rate: float = 0.02
 @export_range(0.005, 0.05, 0.005) var air_speed_change_rate: float = 0.015
 @export_range(0.001, 0.01, 0.001) var glide_air_speed_change_rate: float = 0.004
 @export_range(0.001, 0.01, 0.001) var bat_glide_air_speed_change_rate: float = 0.004

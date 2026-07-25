@@ -67,7 +67,7 @@ func _on_player_physics_process(delta: float) -> void:
 		var move_right: int = 1 if Input.is_action_pressed(&'right') else 0
 
 		if player.is_on_floor():
-			player.velocity.x = player.run_speed * (move_right - move_left)
+			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / player.run_speed_change_rate))
 		
 		else:
 			var air_speed_change_rate: float = (
