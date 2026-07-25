@@ -21,6 +21,15 @@ func new_game() -> void:
 
 # Start
 func start() -> void:
+	# Check if new game or continue
+	if Game.level_index == 0:
+		new_game_button.text = "New Game"
+	else:
+		new_game_button.text = "Continue"
+	
+	# Check if new to the game or not
+	level_select_button.disabled = Game.max_level == 0
+	
 	# No need to start the music menu in this case.
 	if Game.menu.previous_menu_name in [&"SettingsMenu", &"LevelSelectMenu"]:
 		pass

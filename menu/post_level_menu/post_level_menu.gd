@@ -11,17 +11,28 @@ func _ready_deferred() -> void:
 	return_to_main_button.pressed.connect(Game.menu.go_to.bind(&"MainMenu"))
 
 func start():
-	# If Game.victory
-	if false:
+	# On Victory
+	if Game.victory:
 		continue_button.text = "Continue"
+		
+		# Save score
+		Game.max_fruits[Game.level_index] = max(Game.fruits, Game.max_fruits[Game.level_index])
+		Game.max_level = max(Game.max_level, Game.level_index + 1)
+	
+	# Game defeat
 	else:
 		continue_button.text = "Retry"
 
 func continue_callback() -> void:
 	
-	# If Game.victory
-	if false:
-		Game.menu.go_to(&"PreLevelMenu")
+	# If On victory
+	if Game.victory:
+		Game.level_index += 1
+		if Game.level_index >= len(Game.container.levels):
+			Game.level_index = 0
+			Game.menu.go_to(&"MainMenu")
+		else:
+			Game.menu.go_to(&"PreLevelMenu")
 	# Retry
 	else:
 		Game.menu.go_to(&"GameMenu")

@@ -3,6 +3,17 @@
 [ext_resource type="FontFile" uid="uid://cilohm76mhdjg" path="res://assets/other/font/Jacquard24-Regular.ttf" id="1_8n77a"]
 [ext_resource type="Texture2D" uid="uid://bbeyqak8tytor" path="res://assets/art/ui/ui_big.png" id="1_gp3w7"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2vwg"]
+atlas = ExtResource("1_gp3w7")
+region = Rect2(192, 0, 144, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wycdt"]
+texture = SubResource("AtlasTexture_u2vwg")
+texture_margin_left = 48.0
+texture_margin_top = 21.0
+texture_margin_right = 48.0
+texture_margin_bottom = 21.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjk02"]
 atlas = ExtResource("1_gp3w7")
 region = Rect2(336, 0, 144, 48)
@@ -20,17 +31,6 @@ region = Rect2(48, 0, 144, 48)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oeucq"]
 texture = SubResource("AtlasTexture_hsqb2")
-texture_margin_left = 48.0
-texture_margin_top = 21.0
-texture_margin_right = 48.0
-texture_margin_bottom = 21.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2vwg"]
-atlas = ExtResource("1_gp3w7")
-region = Rect2(192, 0, 144, 48)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wycdt"]
-texture = SubResource("AtlasTexture_u2vwg")
 texture_margin_left = 48.0
 texture_margin_top = 21.0
 texture_margin_right = 48.0
@@ -64,6 +64,7 @@ thickness = 10
 [resource]
 default_font = ExtResource("1_8n77a")
 default_font_size = 43
+Button/styles/disabled = SubResource("StyleBoxTexture_wycdt")
 Button/styles/hover = SubResource("StyleBoxTexture_hhyek")
 Button/styles/normal = SubResource("StyleBoxTexture_oeucq")
 Button/styles/pressed = SubResource("StyleBoxTexture_wycdt")

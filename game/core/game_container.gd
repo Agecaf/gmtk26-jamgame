@@ -2,12 +2,14 @@ class_name GameContainer extends Node2D
 
 @export var levels: Array[PackedScene] = []
 @export_multiline var start_text: Array[String] = []
+@export var number_of_fruit: Array[int] = []
 
 # Initialization
 func _ready() -> void:
 	# Register
 	Game.container = self
-	
+	for idx in len(levels):
+		Game.max_fruits.push_back(0)
 
 func unload() -> void:
 	# Kill all children

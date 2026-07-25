@@ -78,7 +78,7 @@ collision_mask = 4294901761
 script = ExtResource("5_ekd6w")
 
 [node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("10_4735x")]
-position = Vector2(109, 312)
+position = Vector2(744, 312)
 
 [node name="Sawblade" parent="." unique_id=71082083 instance=ExtResource("12_mpdhi")]
 position = Vector2(342, 115)
@@ -86,7 +86,10 @@ curve = SubResource("Curve2D_qj0nt")
 is_moving = true
 
 [node name="Crossbow" parent="." unique_id=1899882889 instance=ExtResource("13_jxehp")]
-position = Vector2(322, 371)
+position = Vector2(311, 234)
 
 [node name="Fruit" parent="." unique_id=1022470231 instance=ExtResource("14_0qvs5")]
-position = Vector2(266, 433)
+position = Vector2(300, 329)
+
+[node name="Fruit2" parent="." unique_id=52682004 instance=ExtResource("14_0qvs5")]
+position = Vector2(414, 310)

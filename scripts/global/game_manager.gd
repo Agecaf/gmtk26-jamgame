@@ -16,7 +16,13 @@ var container: GameContainer
 var pocketwatch: PocketWatch
 
 # Used to choose the level
-var level_index = 0
+var level_index: int = 0
+
+# Progression
+var max_level: int = 0
+var max_fruits: Array[int] = []
+var victory: bool = false
+var fruits: int = 0
 
 # Initialization
 func _ready() -> void:

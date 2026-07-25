@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 # Grab the player, end the game
 func grab_player() -> void:
 	player_grabbed = true
+	Game.victory = true
 	Game.countdown.stop()
-	if Game.menu != null:
-		Game.menu.go_to(&"PostLevelMenu")
+	if Game.menu != null: Game.menu.go_to(&"PostLevelMenu")
 	SFX.play(SFX.ENTER_COFFIN)
