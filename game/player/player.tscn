@@ -8,14 +8,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
 size = Vector2(17.5, 44)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4w0n"]
+size = Vector2(15.5, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fytw"]
+size = Vector2(17.5, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ste8"]
+size = Vector2(15.5, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4pk1"]
 atlas = ExtResource("3_8soms")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
-size = Vector2(12, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anr75"]
+size = Vector2(13, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt2uc"]
-size = Vector2(16, 42)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
+size = Vector2(11, 11)
 
 [sub_resource type="Animation" id="Animation_5fytw"]
 length = 0.001
@@ -38,7 +47,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
-collision_mask = 13
 script = ExtResource("1_b2mth")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1378746549]
@@ -50,6 +58,13 @@ vframes = 8
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_8soms")
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1745203602]
+collision_mask = 12
+
+[node name="Collider" type="CollisionShape2D" parent="Hurtbox" unique_id=1527496195]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_a4w0n")
+
 [node name="VampireSprite" type="Sprite2D" parent="." unique_id=2106957548]
 visible = false
 texture = ExtResource("2_b2mth")
@@ -59,7 +74,15 @@ vframes = 8
 [node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
 visible = false
 position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_8soms")
+shape = SubResource("RectangleShape2D_5fytw")
+
+[node name="VampireHurtbox" type="Area2D" parent="." unique_id=373880162]
+visible = false
+collision_mask = 12
+
+[node name="Collider" type="CollisionShape2D" parent="VampireHurtbox" unique_id=1197473387]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4ste8")
 
 [node name="BatSprite" type="Sprite2D" parent="." unique_id=1159017955]
 visible = false
@@ -70,22 +93,19 @@ vframes = 2
 [node name="BatCollider" type="CollisionShape2D" parent="." unique_id=180677197]
 visible = false
 position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_anr75")
+
+[node name="BatHurtbox" type="Area2D" parent="." unique_id=817137428]
+visible = false
+collision_mask = 12
+
+[node name="Collider" type="CollisionShape2D" parent="BatHurtbox" unique_id=610441537]
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_dnwxg")
 
 [node name="WallDetector" type="RayCast2D" parent="." unique_id=1753431483]
 collision_mask = 4294901760
 
-[node name="HurtboxComponent" type="Area2D" parent="." unique_id=2054133402]
-visible = false
-collision_mask = 12
-
-[node name="Collider" type="CollisionShape2D" parent="HurtboxComponent" unique_id=74269873]
-position = Vector2(0.5, 3)
-shape = SubResource("RectangleShape2D_bt2uc")
-debug_color = Color(0.93165994, 2.4065375e-05, 0.65390545, 0.41960785)
-
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=1439977376]
 libraries/ = SubResource("AnimationLibrary_4ste8")
 libraries/Vampire = ExtResource("4_a4w0n")
-
-[connection signal="area_entered" from="HurtboxComponent" to="." method="_on_hurtbox_component_entered"]

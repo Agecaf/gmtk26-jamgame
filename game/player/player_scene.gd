@@ -8,7 +8,7 @@ var player: Player
 
 
 func _on_player_ready() -> void:
-	pass
+	setup_hurtbox()
 
 
 func _on_player_process(_delta: float) -> void:
@@ -43,35 +43,47 @@ func _on_player_change_state(_state: Player.State) -> void:
 func _on_player_change_form(form: Player.Form) -> void:
 	player.sprite.hide()
 	player.collider.hide()
+	player.hurtbox.hide()
 
 	player.sprite.queue_free.call_deferred()
 	player.collider.queue_free.call_deferred()
+	player.hurtbox.queue_free.call_deferred()
 	
 	player.remove_child(player.sprite)
 	player.remove_child(player.collider)
+	player.remove_child(player.hurtbox)
 
 	var new_sprite: Sprite2D
 	var new_collider: CollisionShape2D
+	var new_hurtbox: Area2D
 	
 	match form:
 		Player.Form.VAMPIRE:
 			new_sprite = player.get_node(^'VampireSprite').duplicate()
 			new_collider = player.get_node(^'VampireCollider').duplicate()
+			new_hurtbox = player.get_node(^'VampireHurtbox').duplicate()
 		Player.Form.BAT:
 			new_sprite = player.get_node(^'BatSprite').duplicate()
 			new_collider = player.get_node(^'BatCollider').duplicate()
+			new_hurtbox = player.get_node(^'BatHurtbox').duplicate()
 
 	new_sprite.name = &'Sprite'
 	new_collider.name = &'Collider'
+	new_hurtbox.name = &'Hurtbox'
 	
 	player.add_child(new_sprite)
 	player.add_child(new_collider)
+	player.add_child(new_hurtbox)
 
 	player.move_child(new_sprite, 0)
 	player.move_child(new_collider, 1)
+	player.move_child(new_hurtbox, 2)
 
 	new_sprite.show()
 	new_collider.show()
+	new_hurtbox.show()
+
+	setup_hurtbox()
 	
 	player.face(player.current_facing)
 
@@ -82,3 +94,14 @@ func _on_player_save_spot() -> void:
 
 func _on_player_hurt() -> void:
 	pass
+
+
+func setup_hurtbox() -> void:
+	player.hurtbox.area_entered.connect(
+		func(area: Area2D) -> void:
+			if area is not HitboxComponent:
+				return
+					
+			if player.current_state != Player.State.CROUCHING:
+				player.hurt()
+	)

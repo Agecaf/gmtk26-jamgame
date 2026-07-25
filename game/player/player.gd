@@ -60,6 +60,8 @@ var sprite: Sprite2D:
 	get: return $Sprite
 var collider: CollisionShape2D:
 	get: return $Collider
+var hurtbox: Area2D:
+	get: return $Hurtbox
 var wall_detector: RayCast2D:
 	get: return $WallDetector
 
