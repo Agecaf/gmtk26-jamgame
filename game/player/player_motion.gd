@@ -112,10 +112,10 @@ func _on_player_face(_direction: Enums.Direction) -> void:
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.JUMPING:
-			player.velocity.y = minf(0, player.velocity.y) + jump_initial_velocity
+			player.velocity.y = jump_initial_velocity
 		
 		Player.State.JUMPING_BAT:
-			player.velocity.y = minf(0, player.velocity.y) + double_jump_initial_velocity
+			player.velocity.y = double_jump_initial_velocity
 	
 	if player.previous_state == Player.State.HANGING:
 		wall_jump_steering_cooldown = player.wall_jump_cooldown
