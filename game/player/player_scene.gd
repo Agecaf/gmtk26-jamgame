@@ -12,7 +12,9 @@ var last_marked_position: Vector2
 
 func _on_player_ready() -> void:
 	last_marked_position = player.position
-	setup_hurtbox()
+	
+	player.hurtbox_vampire.area_entered.connect(_on_player_hurtbox_area_entered)
+	player.hurtbox_bat.area_entered.connect(_on_player_hurtbox_area_entered)
 
 
 func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
@@ -27,16 +29,28 @@ func _on_player_reset() -> void:
 func _on_player_face(direction: Enums.Direction) -> void:
 	match direction:
 		Enums.Direction.RIGHT:
-			player.sprite.scale = Vector2.ONE
-			player.collider.scale = Vector2.ONE
+			player.sprite_vampire.scale = Vector2.ONE
+			player.sprite_bat.scale = Vector2.ONE
+
+			player.hurtbox_collider_vampire.scale = Vector2.ONE
+			player.hurtbox_collider_bat.scale = Vector2.ONE
+
 			player.wall_detector_top.scale = Vector2.ONE
 			player.wall_detector_bottom.scale = Vector2.ONE
+
+			player.terrain_collider.scale = Vector2.ONE
 		
 		Enums.Direction.LEFT:
-			player.sprite.scale = Vector2(-1, 1)
-			player.collider.scale = Vector2(-1, 1)
+			player.sprite_vampire.scale = Vector2(-1, 1)
+			player.sprite_bat.scale = Vector2(-1, 1)
+
+			player.hurtbox_collider_vampire.scale = Vector2(-1, 1)
+			player.hurtbox_collider_bat.scale = Vector2(-1, 1)
+
 			player.wall_detector_top.scale = Vector2(-1, 1)
 			player.wall_detector_bottom.scale = Vector2(-1, 1)
+
+			player.terrain_collider.scale = Vector2(-1, 1)
 
 
 func _on_player_change_state(state: Player.State) -> void:
@@ -45,69 +59,36 @@ func _on_player_change_state(state: Player.State) -> void:
 			var tween: Tween = player.get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
 			tween.finished.connect(player.complete_reform)
 			tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
-			
 
 
 func _on_player_change_form(form: Player.Form) -> void:
-	player.sprite.hide()
-	player.collider.hide()
-	player.hurtbox.hide()
-
-	player.sprite.queue_free.call_deferred()
-	player.collider.queue_free.call_deferred()
-	player.hurtbox.queue_free.call_deferred()
-	
-	player.remove_child(player.sprite)
-	player.remove_child(player.collider)
-	player.remove_child(player.hurtbox)
-
-	var new_sprite: Sprite2D
-	var new_collider: CollisionShape2D
-	var new_hurtbox: Area2D
+	match player.previous_form:
+		Player.Form.VAMPIRE:
+			player.sprite_vampire.hide()
+			player.hurtbox_collider_vampire.disabled = true
+		
+		Player.Form.BAT:
+			player.sprite_bat.hide()
+			player.hurtbox_collider_bat.disabled = true
 	
 	match form:
 		Player.Form.VAMPIRE:
-			new_sprite = player.get_node(^'VampireSprite').duplicate()
-			new_collider = player.get_node(^'VampireCollider').duplicate()
-			new_hurtbox = player.get_node(^'VampireHurtbox').duplicate()
+			player.sprite_vampire.show()
+			player.hurtbox_collider_vampire.disabled = false
+		
 		Player.Form.BAT:
-			new_sprite = player.get_node(^'BatSprite').duplicate()
-			new_collider = player.get_node(^'BatCollider').duplicate()
-			new_hurtbox = player.get_node(^'BatHurtbox').duplicate()
-
-	new_sprite.name = &'Sprite'
-	new_collider.name = &'Collider'
-	new_hurtbox.name = &'Hurtbox'
-	
-	player.add_child(new_sprite)
-	player.add_child(new_collider)
-	player.add_child(new_hurtbox)
-
-	player.move_child(new_sprite, 0)
-	player.move_child(new_collider, 1)
-	player.move_child(new_hurtbox, 2)
-
-	new_sprite.show()
-	new_collider.show()
-	new_hurtbox.show()
-
-	setup_hurtbox()
-	
-	player.face(player.current_facing)
+			player.sprite_bat.show()
+			player.hurtbox_collider_bat.disabled = false
 
 
 func _on_player_save_spot() -> void:
 	last_marked_position = player.position
 	MarkerBat.mark(player.position)
-	
 
 
-func setup_hurtbox() -> void:
-	player.hurtbox.area_entered.connect(
-		func(area: Area2D) -> void:
-			if area is not HitboxComponent:
-				return
-					
-			if player.current_state != Player.State.CROUCHING:
-				player.hurt()
-	)
+func _on_player_hurtbox_area_entered(area: Area2D) -> void:
+	if area is not HitboxComponent:
+		return
+			
+	if player.current_state != Player.State.CROUCHING:
+		player.hurt()

@@ -27,7 +27,7 @@ static func mark(target: Vector2) -> void:
 	var new_instance: MarkerBat = MarkerBat.template.instantiate() as MarkerBat
 	Game.scene.add_child(new_instance)
 
-	var y_offset: float = Game.player.collider.shape.get_rect().size.y / 2
+	var y_offset: float = Game.player.terrain_collider.shape.get_rect().size.y / 2
 
 	new_instance.position = target + y_offset * Vector2.DOWN
 	new_instance.face(Game.player.current_facing)

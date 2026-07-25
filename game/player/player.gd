@@ -69,12 +69,35 @@ enum Form {
 
 @export var mist_travel_duration: float = 2.0
 
+var sprite_vampire: Sprite2D:
+	get: return $VampireSprite
+var hurtbox_vampire: Area2D:
+	get: return $VampireHurtbox
+var hurtbox_collider_vampire: CollisionShape2D:
+	get: return $VampireHurtbox/Collider
+var animator_vampire: AnimationPlayer:
+	get: return $VampireAnimator
+
+var sprite_bat: Sprite2D:
+	get: return $BatSprite
+var hurtbox_bat: Area2D:
+	get: return $BatHurtbox
+var hurtbox_collider_bat: CollisionShape2D:
+	get: return $BatHurtbox/Collider
+var animator_bat: AnimationPlayer:
+	get: return $BatAnimator
+
 var sprite: Sprite2D:
-	get: return $Sprite
-var collider: CollisionShape2D:
-	get: return $Collider
+	get: return sprite_vampire if current_form == Form.VAMPIRE else sprite_bat
 var hurtbox: Area2D:
-	get: return $Hurtbox
+	get: return hurtbox_vampire if current_form == Form.VAMPIRE else hurtbox_bat
+var hurtbox_collider: CollisionShape2D:
+	get: return hurtbox_collider_vampire if current_form == Form.VAMPIRE else hurtbox_collider_bat
+var animator: AnimationPlayer:
+	get: return animator_vampire if current_form == Form.VAMPIRE else animator_bat
+
+var terrain_collider: CollisionShape2D:
+	get: return $TerrainCollider
 var wall_detector_top: RayCast2D:
 	get: return $WallDetectorTop
 var wall_detector_bottom: RayCast2D:
@@ -99,6 +122,8 @@ var player_sound: PlayerSound
 var script_order: Array[Resource]
 
 var previous_state: State
+var previous_form: Form
+
 var current_state: State
 var current_form: Form
 var current_facing: Enums.Direction
@@ -124,6 +149,8 @@ func _init() -> void:
 		script.player = self
 	
 	previous_state = State.IDLE
+	previous_form = Form.VAMPIRE
+
 	current_state = State.IDLE
 	current_form = Form.VAMPIRE
 	current_facing = Enums.Direction.RIGHT
@@ -200,6 +227,7 @@ func change_form(form: Form) -> void:
 	if current_form == form:
 		return
 	
+	previous_form = current_form
 	current_form = form
 
 	for script: Resource in script_order:

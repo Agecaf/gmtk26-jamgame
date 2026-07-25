@@ -6,59 +6,50 @@ class_name PlayerAnim extends Resource
 # This accessor is set on Player._init(), treat as read-only
 var player: Player
 
-var animator: AnimationPlayer:
-	get: return player.get_node(^'Animator')
-
 
 func _on_player_change_state(state: Player.State) -> void:
-	# animator.stop()
-	# TODO: Replace the block below with the statement above once bat animations are in
-	if player.current_form == Player.Form.VAMPIRE:
-		animator.set_process(true)
-		animator.stop()
-	else:
-		animator.set_process(false)
+	player.animator.stop()
 	
 	match state:
 		Player.State.IDLE:
-			animator.play(&'Vampire/Idle_2')
+			player.animator.play(&'Vampire/Idle_2')
 		
 		Player.State.RUNNING:
-			animator.play(&'Vampire/Run')
+			player.animator.play(&'Vampire/Run')
 		
 		Player.State.CROUCHING:
-			animator.play(&'Vampire/Crouch')
+			player.animator.play(&'Vampire/Crouch')
 		
 		Player.State.CROUCHING_RUN:
-			animator.play(&'Vampire/CrouchRun')
+			player.animator.play(&'Vampire/CrouchRun')
 		
 		Player.State.HANGING:
-			animator.play(&'Vampire/Hang')
+			player.animator.play(&'Vampire/Hang')
 		
 		Player.State.JUMPING:
 			if player.previous_state in [Player.State.RUNNING, Player.State.HANGING]:
-				animator.play(&'Vampire/RapidJump')
+				player.animator.play(&'Vampire/RapidJump')
 			else:
-				animator.play(&'Vampire/Jump')
+				player.animator.play(&'Vampire/Jump')
 		
 		Player.State.GLIDING:
-			animator.play(&'Vampire/Glide')
+			player.animator.play(&'Vampire/Glide')
 		
 		Player.State.FALLING,\
 		Player.State.JUMPING_FALL:
-			animator.play(&'Vampire/Fall')
+			player.animator.play(&'Vampire/Fall')
 		
 		Player.State.LANDING:
-			animator.play(&'Vampire/Land')
+			player.animator.play(&'Vampire/Land')
 		
 		Player.State.TURNING_TO_MIST:
-			animator.play(&'Vampire/TurnToMist')
+			player.animator.play(&'Vampire/TurnToMist')
 		
 		Player.State.REFORMING:
-			animator.play(&'Vampire/Reform')
+			player.animator.play(&'Vampire/Reform')
 
 		Player.State.TURNING_TO_ASHES:
-			animator.play(&'Vampire/TurnToAshes')
+			player.animator.play(&'Vampire/TurnToAshes')
 
 		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:

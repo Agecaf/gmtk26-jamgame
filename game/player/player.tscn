@@ -4,32 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://7ep5vyi383k7" path="res://assets/art/player/vampire_atlas.tres" id="2_b2mth"]
 [ext_resource type="Texture2D" uid="uid://c3y6m366rjjms" path="res://assets/art/player/marker_bat_atlas.tres" id="3_a4w0n"]
 [ext_resource type="AnimationLibrary" uid="uid://bm17k7oikismj" path="res://assets/art/player/vampire_anim.tres" id="4_a4w0n"]
+[ext_resource type="AnimationLibrary" uid="uid://cjgnvhq5vojda" path="res://assets/art/player/bat_form_anim.tres" id="5_4ste8"]
 [ext_resource type="Texture2D" uid="uid://diuh3wdeu50i4" path="res://assets/art/player/bat_mini_pingpong.png" id="5_5fytw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
-size = Vector2(17.5, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4w0n"]
 size = Vector2(15.5, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fytw"]
-size = Vector2(17.5, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ste8"]
-size = Vector2(15.5, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_anr75"]
-size = Vector2(13, 13)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
-size = Vector2(11, 11)
 
 [sub_resource type="Animation" id="Animation_5fytw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("VampireSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BatsAnchor/Bats:emitting")
+tracks/1/path = NodePath("ParticlesAnchor/Particles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -53,7 +39,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BatsAnchor/Bats:radial_accel_min")
+tracks/2/path = NodePath("ParticlesAnchor/Particles:radial_accel_min")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -64,7 +50,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BatsAnchor/Bats:radial_accel_max")
+tracks/3/path = NodePath("ParticlesAnchor/Particles:radial_accel_max")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -75,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite:self_modulate")
+tracks/4/path = NodePath("VampireSprite:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -87,7 +73,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("BatsAnchor/Bats:modulate")
+tracks/5/path = NodePath("ParticlesAnchor/Particles:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -99,7 +85,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BatsAnchor/Bats:visible")
+tracks/6/path = NodePath("ParticlesAnchor/Particles:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -113,6 +99,12 @@ tracks/6/keys = {
 _data = {
 &"RESET": SubResource("Animation_5fytw")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
+size = Vector2(11, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
+size = Vector2(17.5, 40)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ca2r1"]
 particles_animation = true
@@ -131,40 +123,21 @@ colors = PackedColorArray(0.3764706, 0.5019608, 0.5019608, 0, 0.3764706, 0.50196
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
 script = ExtResource("1_b2mth")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1378746549]
+[node name="VampireSprite" type="Sprite2D" parent="." unique_id=1378746549]
 texture = ExtResource("2_b2mth")
 hframes = 9
 vframes = 8
 
-[node name="Collider" type="CollisionShape2D" parent="." unique_id=1086390364]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_8soms")
-
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1745203602]
+[node name="VampireHurtbox" type="Area2D" parent="." unique_id=1745203602]
 collision_mask = 12
 
-[node name="Collider" type="CollisionShape2D" parent="Hurtbox" unique_id=1527496195]
+[node name="Collider" type="CollisionShape2D" parent="VampireHurtbox" unique_id=1527496195]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_a4w0n")
 
-[node name="VampireSprite" type="Sprite2D" parent="." unique_id=2106957548]
-visible = false
-texture = ExtResource("2_b2mth")
-hframes = 9
-vframes = 8
-
-[node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
-visible = false
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_5fytw")
-
-[node name="VampireHurtbox" type="Area2D" parent="." unique_id=373880162]
-visible = false
-collision_mask = 12
-
-[node name="Collider" type="CollisionShape2D" parent="VampireHurtbox" unique_id=1197473387]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_4ste8")
+[node name="VampireAnimator" type="AnimationPlayer" parent="." unique_id=1439977376]
+libraries/ = SubResource("AnimationLibrary_4ste8")
+libraries/Vampire = ExtResource("4_a4w0n")
 
 [node name="BatSprite" type="Sprite2D" parent="." unique_id=1159017955]
 visible = false
@@ -172,18 +145,17 @@ texture = ExtResource("3_a4w0n")
 hframes = 2
 vframes = 2
 
-[node name="BatCollider" type="CollisionShape2D" parent="." unique_id=180677197]
-visible = false
-position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_anr75")
-
 [node name="BatHurtbox" type="Area2D" parent="." unique_id=817137428]
-visible = false
 collision_mask = 12
 
 [node name="Collider" type="CollisionShape2D" parent="BatHurtbox" unique_id=610441537]
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_dnwxg")
+disabled = true
+
+[node name="TerrainCollider" type="CollisionShape2D" parent="." unique_id=1086390364]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_8soms")
 
 [node name="WallDetectorTop" type="RayCast2D" parent="." unique_id=1753431483]
 collision_mask = 4294901760
@@ -191,14 +163,14 @@ collision_mask = 4294901760
 [node name="WallDetectorBottom" type="RayCast2D" parent="." unique_id=1097689624]
 collision_mask = 4294901760
 
-[node name="Animator" type="AnimationPlayer" parent="." unique_id=1439977376]
+[node name="BatAnimator" type="AnimationPlayer" parent="." unique_id=1049192887]
 libraries/ = SubResource("AnimationLibrary_4ste8")
-libraries/Vampire = ExtResource("4_a4w0n")
+libraries/bat_form_anim = ExtResource("5_4ste8")
 
-[node name="BatsAnchor" type="Marker2D" parent="." unique_id=657766614]
+[node name="ParticlesAnchor" type="Marker2D" parent="." unique_id=657766614]
 position = Vector2(2, -10)
 
-[node name="Bats" type="CPUParticles2D" parent="BatsAnchor" unique_id=919188151]
+[node name="Particles" type="CPUParticles2D" parent="ParticlesAnchor" unique_id=919188151]
 visible = false
 material = SubResource("CanvasItemMaterial_ca2r1")
 amount = 40
