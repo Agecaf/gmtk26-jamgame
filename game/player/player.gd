@@ -159,12 +159,15 @@ func _init() -> void:
 # Each auxiliary script can implement part of _ready()
 func _ready() -> void:
 	reset()
-
+	
 	Game.player = self
-
+	
 	for script: Resource in script_order:
 		if '_on_player_ready' in script:
 			script._on_player_ready()
+	
+	# Listen to end of game
+	Game.countdown.timeout.connect(turn_to_ashes)
 
 
 # Each auxiliary script can implement part of _process() ... and so on

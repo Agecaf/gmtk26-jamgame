@@ -16,10 +16,21 @@ func update_watch(seconds_left: int) -> void:
 
 # Open and close pocketwatch
 func _process(delta: float) -> void:
+	
+	# Position pocketwatch
 	%PocketwatchSmall.position = lerp(
 		target_position, %PocketwatchSmall.position, 
 		exp(-delta * 10.0)
 	)
+	
+	# Update checkpoint text
+	if Game.player != null and is_instance_valid(Game.player):
+		if Game.player.animator_vampire.current_animation.ends_with("Idle_2"):
+			var t: float = Game.player.animator_vampire.current_animation_position
+			if t < 4.0:
+				%CheckpointLabel.text = "Checkpoint in %d..." % ceili(4.0 - t)
+			else:
+				%CheckpointLabel.text = "Checkpoint ready!"
 
 func open() -> void: target_position = target_open
 func close() -> void: target_position = target_closed

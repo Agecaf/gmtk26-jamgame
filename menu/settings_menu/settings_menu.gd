@@ -35,7 +35,7 @@ func music_changed(value: float) -> void:
 
 func sfx_changed(value: float) -> void:
 	AudioServer.set_bus_mute(2, value <= 2.0)
-	AudioServer.set_bus_volume_linear(2, value / 200.0)
+	AudioServer.set_bus_volume_linear(2, value / 100.0)
 
 
 # Change font

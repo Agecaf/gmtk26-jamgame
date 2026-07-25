@@ -44,3 +44,4 @@ func grab_player() -> void:
 	Game.countdown.stop()
 	if Game.menu != null: Game.menu.go_to(&"PostLevelMenu")
 	SFX.play(SFX.ENTER_COFFIN)
+	Game.player.enter_coffin()
