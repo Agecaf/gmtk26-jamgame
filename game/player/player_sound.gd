@@ -37,7 +37,6 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.GLIDING_BAT:
 			SFX.play(SFX.GLIDE_BAT)
-
-
-func _on_player_hurt() -> void:
-	SFX.play(SFX.HURT)
+		
+		Player.State.TURNING_TO_MIST:
+			SFX.play(SFX.HURT)

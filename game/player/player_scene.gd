@@ -37,6 +37,15 @@ func _on_player_face(direction: Enums.Direction) -> void:
 			player.wall_detector.scale = Vector2(-1, 1)
 
 
+func _on_player_change_state(state: Player.State) -> void:
+	match state:
+		Player.State.TURNING_TO_MIST:
+			# TODO: Particle effects, animate (not teleport) to the mark before reforming
+			player.position = last_marked_position
+			player.reform()
+			
+
+
 func _on_player_change_form(form: Player.Form) -> void:
 	player.sprite.hide()
 	player.collider.hide()
@@ -88,11 +97,7 @@ func _on_player_change_form(form: Player.Form) -> void:
 func _on_player_save_spot() -> void:
 	last_marked_position = player.position
 	MarkerBat.mark(player.position)
-
-
-func _on_player_hurt() -> void:
-	player.position = last_marked_position
-	Debug.warning('The player got hit!')
+	
 
 
 func setup_hurtbox() -> void:

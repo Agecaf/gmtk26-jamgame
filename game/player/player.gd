@@ -18,6 +18,7 @@ enum State {
 	LANDING,
 	LANDING_BAT,
 	TURNING_TO_MIST,
+	REFORMING,
 	TURNING_TO_ASHES,
 	ENTERING_COFFIN,
 }
@@ -124,7 +125,7 @@ func _init() -> void:
 	current_facing = Enums.Direction.RIGHT
 
 
-# Each auxiliary script can implement a different part of _ready()
+# Each auxiliary script can implement part of _ready()
 func _ready() -> void:
 	reset()
 
@@ -135,14 +136,13 @@ func _ready() -> void:
 			script._on_player_ready()
 
 
-# Each auxiliary script can implement a different part of _process()
+# Each auxiliary script can implement part of _process() ... and so on
 func _process(delta: float) -> void:
 	for script: Resource in script_order:
 		if '_on_player_process' in script:
 			script._on_player_process(delta)
 
 
-# Each auxiliary script can implement a different part of _physics_process()
 func _physics_process(delta: float) -> void:
 	for script: Resource in script_order:
 		if '_on_player_physics_process' in script:
@@ -157,21 +157,18 @@ func _physics_process(delta: float) -> void:
 	position.y = clamp(position.y, y_min, y_max)
 
 
-# Each auxiliary script can implement a different part of _slide_collision()
 func _slide_collision(collision: KinematicCollision2D) -> void:
 	for script: Resource in script_order:
 		if '_on_player_slide_collision' in script:
 			script._on_player_slide_collision(collision)
 
 
-# Each auxiliary script can implement a different part of reset()
 func reset() -> void:
 	for script: Resource in script_order:
 		if '_on_player_reset' in script:
 			script._on_player_reset()
 
 
-# Each auxiliary script can implement a different part of face()
 func face(direction: Enums.Direction) -> void:
 	if direction == Enums.Direction.NONE:
 		return
@@ -183,7 +180,6 @@ func face(direction: Enums.Direction) -> void:
 			script._on_player_face(direction)
 
 
-# Each auxiliary script can implement a different part of change_state()
 func change_state(state: State) -> void:
 	if current_state == state:
 		return
@@ -196,7 +192,6 @@ func change_state(state: State) -> void:
 			script._on_player_change_state(state)
 
 
-# Each auxiliary script can implement a different part of change_form()
 func change_form(form: Form) -> void:
 	if current_form == form:
 		return
@@ -208,30 +203,26 @@ func change_form(form: Form) -> void:
 			script._on_player_change_form(form)
 
 
-# Each auxiliary script can implement a different part of save_spot()
 func save_spot() -> void:
 	for script: Resource in script_order:
 		if '_on_player_save_spot' in script:
 			script._on_player_save_spot()
 
 
-# Each auxiliary script can implement a different part of hurt()
 func hurt() -> void:
-	for script: Resource in script_order:
-		if '_on_player_hurt' in script:
-			script._on_player_hurt()
-
-
-func enter_coffin() -> void:
-	for script: Resource in script_order:
-		if '_on_player_enter_coffin' in script:
-			script._on_player_enter_coffin()
+	change_state(State.TURNING_TO_MIST)
 
 
 func turn_to_ashes() -> void:
-	for script: Resource in script_order:
-		if '_on_player_turn_to_ashes' in script:
-			script._on_player_turn_to_ashes()
+	change_state(State.TURNING_TO_ASHES)
+
+
+func enter_coffin() -> void:
+	change_state(State.ENTERING_COFFIN)
+
+
+func reform() -> void:
+	change_state(State.REFORMING)
 
 
 # For opening and closing the pocketwatch

@@ -185,6 +185,10 @@ func _on_player_physics_process(delta: float) -> void:
 			if not landing_delay_remaining:
 				player.change_state(Player.State.IDLE)
 		
+		Player.State.REFORMING:
+			# TODO: Animation delay?
+			player.change_state(Player.State.IDLE)
+		
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_ASHES,\
 		Player.State.ENTERING_COFFIN:
@@ -205,6 +209,7 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING,\
 		Player.State.FALLING,\
 		Player.State.TURNING_TO_MIST,\
+		Player.State.REFORMING,\
 		Player.State.TURNING_TO_ASHES,\
 		Player.State.ENTERING_COFFIN:
 			player.change_form(Player.Form.VAMPIRE)
@@ -225,11 +230,3 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.LANDING_BAT:
 			player.change_form(Player.Form.BAT)
 			landing_delay_remaining = player.bat_landing_delay
-
-
-func _on_player_enter_coffin() -> void:
-	player.change_state(Player.State.ENTERING_COFFIN)
-
-
-func _on_player_turn_to_ashes() -> void:
-	player.change_state(Player.State.TURNING_TO_ASHES)
