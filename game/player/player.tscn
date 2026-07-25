@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://dmbsquk3jpcci" path="res://assets/art/player/bat.png" id="3_8soms"]
 [ext_resource type="AnimationLibrary" uid="uid://bm17k7oikismj" path="res://assets/art/player/vampire_anim.tres" id="4_a4w0n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w4pk1"]
-atlas = ExtResource("3_8soms")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
 size = Vector2(17.5, 44)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4pk1"]
+atlas = ExtResource("3_8soms")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
-size = Vector2(18, 12)
+size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bt2uc"]
 size = Vector2(16, 42)
@@ -46,11 +46,20 @@ texture = ExtResource("2_b2mth")
 hframes = 9
 vframes = 8
 
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1086390364]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_8soms")
+
 [node name="VampireSprite" type="Sprite2D" parent="." unique_id=2106957548]
 visible = false
 texture = ExtResource("2_b2mth")
 hframes = 9
 vframes = 8
+
+[node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_8soms")
 
 [node name="BatSprite" type="Sprite2D" parent="." unique_id=1159017955]
 visible = false
@@ -58,18 +67,9 @@ texture = SubResource("AtlasTexture_w4pk1")
 hframes = 2
 vframes = 2
 
-[node name="Collider" type="CollisionShape2D" parent="." unique_id=1086390364]
-position = Vector2(0.75, 2)
-shape = SubResource("RectangleShape2D_8soms")
-
-[node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
-visible = false
-position = Vector2(0.5, 2)
-shape = SubResource("RectangleShape2D_8soms")
-
 [node name="BatCollider" type="CollisionShape2D" parent="." unique_id=180677197]
 visible = false
-position = Vector2(0.5, -4)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_dnwxg")
 
 [node name="WallDetector" type="RayCast2D" parent="." unique_id=1753431483]

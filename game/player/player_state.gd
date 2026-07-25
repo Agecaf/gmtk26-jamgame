@@ -16,8 +16,8 @@ var landing_delay_remaining: float = 0
 
 
 func _on_player_ready() -> void:
-	# Put the wall detector raycast a full height above the character
-	player.wall_detector.position = player.collider.shape.get_rect().size.y * Vector2.UP
+	# Put the wall detector raycast half the character's height overhead
+	player.wall_detector.position = player.collider.shape.get_rect().size.y * 0.5 * Vector2.UP
 	# Then set it up to check a full width ahead of the character
 	player.wall_detector.target_position = player.collider.shape.get_rect().size.x * Vector2.RIGHT
 
