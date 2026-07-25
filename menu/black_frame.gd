@@ -16,8 +16,16 @@ func _ready() -> void:
 func _ready_deferred():
 	Game.menu.menu_changed.connect(check_menu)
 
+# Timer for delay
+var delay = 0.0
+
 # Check if we should be visible or not
 func check_menu() -> void:
+	# Check delay
+	if Game.menu.next_menu_name == &"PostLevelMenu": delay = 2.0
+	else: delay = 0.0
+	
+	# Check target position
 	if Game.menu.current_menu != null:
 		if Game.menu.current_menu.name in menus_with_black_frame:
 			target_alpha = 1.0
@@ -26,4 +34,6 @@ func check_menu() -> void:
 
 # Fade in and out
 func _process(delta: float) -> void:
-	modulate = lerp(Color(1.0, 1.0, 1.0, target_alpha), modulate, exp(-delta * fade_speed))
+	if delay > 0: delay -= delta
+	else:
+		modulate = lerp(Color(1.0, 1.0, 1.0, target_alpha), modulate, exp(-delta * fade_speed))

@@ -23,6 +23,11 @@ func _on_player_physics_process(_delta: float) -> void:
 	pass
 
 
+func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
+	if collision.get_collider() is Spikes:
+		player.hurt()
+
+
 func _on_player_reset() -> void:
 	pass
 

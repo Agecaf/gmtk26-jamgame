@@ -114,6 +114,10 @@ func _on_player_physics_process(delta: float) -> void:
 	cached_velocity = player.velocity
 
 
+func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
+	pass
+
+
 func _on_player_reset() -> void:
 	pass
 

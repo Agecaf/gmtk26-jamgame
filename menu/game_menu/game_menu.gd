@@ -14,7 +14,7 @@ func start() -> void:
 	if Game.menu.previous_menu_name in [&"PreLevelMenu", &"PostLevelMenu"]:
 		Game.container.load_level()
 		Game.audio.game_music.play()
-		Game.countdown.start(60)
+		Game.countdown.start(10)
 	
 	
 	# Unpause

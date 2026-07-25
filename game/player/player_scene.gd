@@ -19,6 +19,10 @@ func _on_player_physics_process(_delta: float) -> void:
 	pass
 
 
+func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
+	pass
+
+
 func _on_player_reset() -> void:
 	player.face(Enums.Direction.RIGHT)
 

@@ -48,7 +48,7 @@ text = "Hurry! The sun rises
 in {time} seconds!"
 
 [node name="ClockDoor" parent="." unique_id=97055137 instance=ExtResource("9_ekd6w")]
-position = Vector2(324, 382)
+position = Vector2(142, 191)
 long_or_short = true
 
 [node name="ClockDoor2" parent="." unique_id=1947932871 instance=ExtResource("9_ekd6w")]
@@ -64,4 +64,4 @@ collision_mask = 4294901761
 script = ExtResource("5_ekd6w")
 
 [node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("10_4735x")]
-position = Vector2(121, 193)
+position = Vector2(324, 384)
