@@ -27,4 +27,5 @@ playback_type = 1
 
 [node name="SFXASP" type="AudioStreamPlayer" parent="." unique_id=1555040587]
 unique_name_in_owner = true
+volume_db = -16.04
 bus = &"SFX"
