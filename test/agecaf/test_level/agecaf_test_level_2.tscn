@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://7wfmqoyayvkh" path="res://game/other_objects/coffin/coffin.tscn" id="10_4735x"]
 [ext_resource type="PackedScene" uid="uid://bm7ol0y3isnot" path="res://game/traps/sawblades/sawblade.tscn" id="12_mpdhi"]
 [ext_resource type="PackedScene" uid="uid://cinc4yh6d84oi" path="res://game/traps/crossbow/crossbow.tscn" id="13_jxehp"]
+[ext_resource type="PackedScene" uid="uid://b60gb8mlf5qpo" path="res://game/other_objects/fruit/fruit.tscn" id="14_0qvs5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wr6l"]
 shader = ExtResource("2_553nx")
@@ -86,3 +87,6 @@ is_moving = true
 
 [node name="Crossbow" parent="." unique_id=1899882889 instance=ExtResource("13_jxehp")]
 position = Vector2(322, 371)
+
+[node name="Fruit" parent="." unique_id=1022470231 instance=ExtResource("14_0qvs5")]
+position = Vector2(266, 433)
