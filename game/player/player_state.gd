@@ -16,10 +16,12 @@ var landing_delay_remaining: float = 0
 
 
 func _on_player_ready() -> void:
-	# Put the wall detector raycast half the character's height overhead
-	player.wall_detector.position = player.collider.shape.get_rect().size.y * 0.5 * Vector2.UP
+	# Put the wall detector raycast half the character's height above/below it
+	player.wall_detector_top.position = player.collider.shape.get_rect().size.y * 0.5 * Vector2.UP
+	player.wall_detector_bottom.position = player.collider.shape.get_rect().size.y * 0.5 * Vector2.DOWN
 	# Then set it up to check a full width ahead of the character
-	player.wall_detector.target_position = player.collider.shape.get_rect().size.x * Vector2.RIGHT
+	player.wall_detector_top.target_position = player.collider.shape.get_rect().size.x * Vector2.RIGHT
+	player.wall_detector_bottom.target_position = player.collider.shape.get_rect().size.x * Vector2.RIGHT
 
 	# Start in the falling state if the level spawns the character off the ground
 	if not player.is_on_floor():
@@ -47,14 +49,16 @@ func _on_player_physics_process(delta: float) -> void:
 	total_air_time = 0.0 if player.is_on_floor() else (total_air_time + delta)
 	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 
-	player.wall_detector.force_raycast_update()
+	player.wall_detector_top.force_raycast_update()
+	player.wall_detector_bottom.force_raycast_update()
 	
 	landing_delay_remaining = maxf(0, landing_delay_remaining - delta)
 
 	var wall_jump_conditions_met: bool = (
 		total_air_time >= player.wall_jump_min_buildup_time
 		and not wall_jump_cooldown_remaining
-		and player.wall_detector.is_colliding()
+		and player.wall_detector_top.is_colliding()
+		and player.wall_detector_bottom.is_colliding()
 	)
 	
 	match player.current_state:

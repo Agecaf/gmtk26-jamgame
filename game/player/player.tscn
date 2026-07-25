@@ -6,16 +6,16 @@
 [ext_resource type="AnimationLibrary" uid="uid://bm17k7oikismj" path="res://assets/art/player/vampire_anim.tres" id="4_a4w0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
-size = Vector2(17.5, 44)
+size = Vector2(17.5, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4w0n"]
-size = Vector2(15.5, 42)
+size = Vector2(15.5, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fytw"]
-size = Vector2(17.5, 44)
+size = Vector2(17.5, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ste8"]
-size = Vector2(15.5, 42)
+size = Vector2(15.5, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anr75"]
 size = Vector2(13, 13)
@@ -52,14 +52,14 @@ hframes = 9
 vframes = 8
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1086390364]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_8soms")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1745203602]
 collision_mask = 12
 
 [node name="Collider" type="CollisionShape2D" parent="Hurtbox" unique_id=1527496195]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_a4w0n")
 
 [node name="VampireSprite" type="Sprite2D" parent="." unique_id=2106957548]
@@ -70,7 +70,7 @@ vframes = 8
 
 [node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
 visible = false
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_5fytw")
 
 [node name="VampireHurtbox" type="Area2D" parent="." unique_id=373880162]
@@ -78,7 +78,7 @@ visible = false
 collision_mask = 12
 
 [node name="Collider" type="CollisionShape2D" parent="VampireHurtbox" unique_id=1197473387]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_4ste8")
 
 [node name="BatSprite" type="Sprite2D" parent="." unique_id=1159017955]
@@ -100,7 +100,10 @@ collision_mask = 12
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_dnwxg")
 
-[node name="WallDetector" type="RayCast2D" parent="." unique_id=1753431483]
+[node name="WallDetectorTop" type="RayCast2D" parent="." unique_id=1753431483]
+collision_mask = 4294901760
+
+[node name="WallDetectorBottom" type="RayCast2D" parent="." unique_id=1097689624]
 collision_mask = 4294901760
 
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=1439977376]

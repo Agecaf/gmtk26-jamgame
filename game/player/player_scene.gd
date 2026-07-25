@@ -29,12 +29,14 @@ func _on_player_face(direction: Enums.Direction) -> void:
 		Enums.Direction.RIGHT:
 			player.sprite.scale = Vector2.ONE
 			player.collider.scale = Vector2.ONE
-			player.wall_detector.scale = Vector2.ONE
+			player.wall_detector_top.scale = Vector2.ONE
+			player.wall_detector_bottom.scale = Vector2.ONE
 		
 		Enums.Direction.LEFT:
 			player.sprite.scale = Vector2(-1, 1)
 			player.collider.scale = Vector2(-1, 1)
-			player.wall_detector.scale = Vector2(-1, 1)
+			player.wall_detector_top.scale = Vector2(-1, 1)
+			player.wall_detector_bottom.scale = Vector2(-1, 1)
 
 
 func _on_player_change_state(state: Player.State) -> void:

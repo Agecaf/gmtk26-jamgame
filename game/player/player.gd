@@ -73,8 +73,10 @@ var collider: CollisionShape2D:
 	get: return $Collider
 var hurtbox: Area2D:
 	get: return $Hurtbox
-var wall_detector: RayCast2D:
-	get: return $WallDetector
+var wall_detector_top: RayCast2D:
+	get: return $WallDetectorTop
+var wall_detector_bottom: RayCast2D:
+	get: return $WallDetectorBottom
 
 var x_min: float:
 	get: return 0
