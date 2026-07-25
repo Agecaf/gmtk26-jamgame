@@ -37,6 +37,7 @@ enum Form {
 @export_range(0.01, 0.2, 0.01) var double_jump_keypress_interval_min: float = 0.15
 # @export_range(0.21, 0.4, 0.01) var double_jump_keypress_interval_max: float = 0.4
 
+@export_range(0.05, 0.5, 0.05) var falling_delay: float = 0.3
 @export_range(0.05, 0.5, 0.05) var landing_delay: float = 0.2
 @export_range(0.05, 0.5, 0.05) var bat_landing_delay: float = 0.2
 
@@ -213,3 +214,14 @@ func hurt() -> void:
 # For opening and closing the pocketwatch
 func pocketwatch_open() -> void: if Game.pocketwatch != null: Game.pocketwatch.open()
 func pocketwatch_close() -> void: if Game.pocketwatch != null: Game.pocketwatch.close()
+
+# For ending the level
+func enter_coffin() -> void:
+	# TODO: Set the player to an inactive state
+	# Possible todo: Play enter coffin animation (depending on how animation is to be implemented).
+	pass
+
+func turn_to_ashes() -> void:
+	# TODO: Set the player to an inactive state
+	# TODO: Play turn-to-ashes animation.
+	pass
