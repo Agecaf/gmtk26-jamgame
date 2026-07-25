@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dhtswkp275r17" path="res://test/parrot/parrot_test_level.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/zerok_test_level.tscn" id="5_kek77"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
-[ext_resource type="Texture2D" uid="uid://1vhum3km4sko" path="res://assets/art/background/transmission.png" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://clh0bivbljycd" path="res://game/pocketwatch/pocketwatch.tscn" id="7_dg77c"]
 [ext_resource type="Shader" uid="uid://bu0m4efae4kus" path="res://assets/other/shader/increasing_bloom.gdshader" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://chp2casxsiybt" path="res://scripts/screen_shader.gd" id="8_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://x8o2vsoc251b" path="res://assets/art/background/black_frame.png" id="10_ycdy4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
 shader = ExtResource("7_efxa6")
@@ -52,8 +52,8 @@ script = ExtResource("8_ycdy4")
 
 [node name="BlackFrame" type="Sprite2D" parent="FrontLayer" unique_id=728306067]
 process_mode = 3
-scale = Vector2(0.5010417, 0.5013889)
-texture = ExtResource("6_kek77")
+scale = Vector2(3, 3)
+texture = ExtResource("10_ycdy4")
 centered = false
 script = ExtResource("1_0xm2m")
 
