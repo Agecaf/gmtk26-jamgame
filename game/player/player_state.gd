@@ -45,7 +45,7 @@ func _on_player_physics_process(delta: float) -> void:
 	
 	var double_jump_keypress_timing: bool = (
 		jump_keypress_interval >= player.double_jump_keypress_interval_min
-		and jump_keypress_interval <= player.double_jump_keypress_interval_max
+		# and jump_keypress_interval <= player.double_jump_keypress_interval_max
 	)
 
 	total_air_time = 0.0 if player.is_on_floor() else (total_air_time + delta)
@@ -150,6 +150,9 @@ func _on_player_physics_process(delta: float) -> void:
 			
 			elif player.is_on_wall_only() and wall_jump_conditions_met:
 				player.change_state(Player.State.HANGING)
+			
+			elif Input.is_action_just_pressed(&'jump') and double_jump_keypress_timing:
+				player.change_state(Player.State.JUMPING_BAT)
 				
 			elif Input.is_action_just_released(&'jump'):
 				player.change_state(Player.State.FALLING)
@@ -164,6 +167,9 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.FALLING:
 			if player.is_on_floor():
 				player.change_state(Player.State.LANDING)
+			
+			elif Input.is_action_just_pressed(&'jump') and double_jump_keypress_timing:
+				player.change_state(Player.State.JUMPING_BAT)
 
 		Player.State.FALLING_BAT:
 			if player.is_on_floor():
