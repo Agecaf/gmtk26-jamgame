@@ -18,6 +18,9 @@ func start():
 		# Save score
 		Game.max_fruits[Game.level_index] = max(Game.fruits, Game.max_fruits[Game.level_index])
 		Game.max_level = max(Game.max_level, Game.level_index + 1)
+		
+		# Increase level index
+		Game.level_index += 1
 	
 	# Game defeat
 	else:
@@ -27,7 +30,6 @@ func continue_callback() -> void:
 	
 	# If On victory
 	if Game.victory:
-		Game.level_index += 1
 		if Game.level_index >= len(Game.container.levels):
 			Game.level_index = 0
 			Game.menu.go_to(&"MainMenu")

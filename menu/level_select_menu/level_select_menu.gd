@@ -13,7 +13,11 @@ func _ready_deferred() -> void:
 	# Add buttons
 	for idx in len(Game.container.levels):
 		var button: Button = Button.new()
-		button.text = "Level %d" % idx
+		button.text = "Level %d (%d/%d)" % [
+			(idx + 1),
+			Game.max_fruits[idx],
+			Game.container.number_of_fruit[idx]
+		]
 		button.custom_minimum_size = Vector2(400, 100)
 		level_buttons.add_child(button)
 		button.pressed.connect(choose_level.bind(idx))
@@ -23,6 +27,15 @@ func choose_level(level_index: int) -> void:
 	Game.menu.go_to(&"PreLevelMenu")
 	pass
 
+
+func start() -> void:
+	for idx in len(Game.container.levels):
+		var button: Button = level_buttons.get_child(idx)
+		button.text = "Level %d (fruit: %d/%d)" % [
+			(idx + 1),
+			Game.max_fruits[idx],
+			Game.container.number_of_fruit[idx]
+		]
 
 func end() -> void:
 	if Game.menu.next_menu_name == &"PreLevelMenu":
