@@ -21,7 +21,8 @@ var cached_velocity: Vector2
 
 var last_horizontal_direction: Enums.Direction = Enums.Direction.NONE
 var last_wall_direction: Enums.Direction = Enums.Direction.NONE
-var wall_jump_steering_cooldown: float = 0
+var wall_jump_cooldown_remaining: float = 0
+var bat_bounce_cooldown_remaining: float = 0
 
 
 func _on_player_ready() -> void:
@@ -33,7 +34,14 @@ func _on_player_process(_delta: float) -> void:
 
 
 func _on_player_physics_process(delta: float) -> void:
-	wall_jump_steering_cooldown = maxf(0, wall_jump_steering_cooldown - delta)
+	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
+	bat_bounce_cooldown_remaining = maxf(0, bat_bounce_cooldown_remaining - delta)
+
+	var can_bounce: bool = (
+		player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]
+		and absf(cached_velocity.x) > player.bat_bounce_min_speed_required
+		and not bat_bounce_cooldown_remaining
+	)
 	
 	# Don't allow horizontal movement if the player is crouching
 	if player.current_state in [Player.State.CROUCHING]:
@@ -45,12 +53,13 @@ func _on_player_physics_process(delta: float) -> void:
 		player.velocity.x = 0
 	
 	# Wall jump off direction is fixed (away from the wall) for a short time
-	elif wall_jump_steering_cooldown:
+	elif wall_jump_cooldown_remaining:
 		player.velocity.x = player.run_speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
 
 	# Bats invert horizontal direction on colliding with a wall, no steering on bounce frames
-	elif player.is_on_wall() and player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]:
-		player.velocity.x = - cached_velocity.x
+	elif player.is_on_wall() and can_bounce:
+		bat_bounce_cooldown_remaining = player.bat_bounce_cooldown
+		player.velocity.x = -cached_velocity.x
 
 	# Active horizontal steering by player input
 	else:
@@ -118,7 +127,7 @@ func _on_player_change_state(state: Player.State) -> void:
 			player.velocity.y = double_jump_initial_velocity
 	
 	if player.previous_state == Player.State.HANGING:
-		wall_jump_steering_cooldown = player.wall_jump_cooldown
+		wall_jump_cooldown_remaining = player.wall_jump_cooldown
 
 
 func _on_player_change_form(_form: Player.Form) -> void:
