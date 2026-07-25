@@ -9,7 +9,7 @@
 atlas = ExtResource("3_8soms")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8soms"]
-size = Vector2(18, 44)
+size = Vector2(17.5, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnwxg"]
 size = Vector2(18, 12)
@@ -59,7 +59,7 @@ hframes = 2
 vframes = 2
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1086390364]
-position = Vector2(0.5, 2)
+position = Vector2(0.75, 2)
 shape = SubResource("RectangleShape2D_8soms")
 
 [node name="VampireCollider" type="CollisionShape2D" parent="." unique_id=598347343]
