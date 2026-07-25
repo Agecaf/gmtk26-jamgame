@@ -102,10 +102,10 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.HANGING:
 			var back_action: StringName = &'left' if (player.get_wall_normal().angle() - PI / 2) > 0 else &'right'
 
-			if Input.is_action_just_pressed(&'jump'):
+			if Input.is_action_just_pressed(&'jump') or Input.is_action_just_pressed(back_action):
 				player.change_state(Player.State.JUMPING)
 
-			elif Input.is_action_just_pressed(&'crouch') or Input.is_action_just_pressed(back_action):
+			elif Input.is_action_just_pressed(&'crouch'):
 				player.change_state(Player.State.JUMPING_FALL)
 		
 		Player.State.JUMPING:
