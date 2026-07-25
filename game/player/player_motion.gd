@@ -17,6 +17,13 @@ var double_jump_initial_velocity: float:
 var double_jump_gravity: float:
 	get: return 2.0 * player.double_jump_height / pow(player.double_jump_time, 2)
 
+const IMMOBILE_STATES: Array[Player.State] = [
+	Player.State.CROUCHING,
+	Player.State.TURNING_TO_MIST,
+	Player.State.TURNING_TO_ASHES,
+	Player.State.ENTERING_COFFIN,
+]
+
 var cached_velocity: Vector2
 
 var last_horizontal_direction: Enums.Direction = Enums.Direction.NONE
@@ -43,8 +50,8 @@ func _on_player_physics_process(delta: float) -> void:
 		and not bat_bounce_cooldown_remaining
 	)
 	
-	# Don't allow horizontal movement if the player is crouching
-	if player.current_state in [Player.State.CROUCHING]:
+	# Don't allow horizontal movement if the player is in an inactive state
+	if player.current_state in IMMOBILE_STATES:
 		player.velocity.x = 0
 	
 	# Stop horizontal movement and prepare for a wall jump if hanging on a wall
@@ -147,4 +154,12 @@ func _on_player_save_spot() -> void:
 
 
 func _on_player_hurt() -> void:
+	pass
+
+
+func _on_player_enter_coffin() -> void:
+	pass
+
+
+func _on_player_turn_to_ashes() -> void:
 	pass

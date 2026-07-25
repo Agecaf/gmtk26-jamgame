@@ -188,6 +188,11 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.LANDING_BAT:
 			if not landing_delay_remaining:
 				player.change_state(Player.State.IDLE)
+		
+		Player.State.TURNING_TO_MIST,\
+		Player.State.TURNING_TO_ASHES,\
+		Player.State.ENTERING_COFFIN:
+			pass
 
 	if Input.is_action_just_pressed(&'jump'):
 		jump_keypress_interval = 0
@@ -214,7 +219,10 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.JUMPING,\
 		Player.State.JUMPING_FALL,\
 		Player.State.GLIDING,\
-		Player.State.FALLING:
+		Player.State.FALLING,\
+		Player.State.TURNING_TO_MIST,\
+		Player.State.TURNING_TO_ASHES,\
+		Player.State.ENTERING_COFFIN:
 			player.change_form(Player.Form.VAMPIRE)
 		
 		Player.State.HANGING:
@@ -245,3 +253,11 @@ func _on_player_save_spot() -> void:
 
 func _on_player_hurt() -> void:
 	pass
+
+
+func _on_player_enter_coffin() -> void:
+	player.change_state(Player.State.ENTERING_COFFIN)
+
+
+func _on_player_turn_to_ashes() -> void:
+	player.change_state(Player.State.TURNING_TO_ASHES)

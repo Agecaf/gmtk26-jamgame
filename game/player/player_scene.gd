@@ -1,4 +1,5 @@
 # This sub-script is for Player logic that involves:
+# • Top-level modifications on the player object
 # • Manipulating objects in the scene tree under the Player
 class_name PlayerScene extends Resource
 
@@ -6,8 +7,11 @@ class_name PlayerScene extends Resource
 # This accessor is set on Player._init(), treat as read-only
 var player: Player
 
+var last_marked_position: Vector2
+
 
 func _on_player_ready() -> void:
+	last_marked_position = player.position
 	setup_hurtbox()
 
 
@@ -19,8 +23,9 @@ func _on_player_physics_process(_delta: float) -> void:
 	pass
 
 
-func _on_player_slide_collision(_collision: KinematicCollision2D) -> void:
-	pass
+func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
+	if collision.get_collider() is Spikes:
+		player.hurt()
 
 
 func _on_player_reset() -> void:
@@ -93,10 +98,20 @@ func _on_player_change_form(form: Player.Form) -> void:
 
 
 func _on_player_save_spot() -> void:
-	pass
+	last_marked_position = player.position
+	MarkerBat.mark(player.position)
 
 
 func _on_player_hurt() -> void:
+	player.position = last_marked_position
+	Debug.warning('The player got hit!')
+
+
+func _on_player_enter_coffin() -> void:
+	pass
+
+
+func _on_player_turn_to_ashes() -> void:
 	pass
 
 

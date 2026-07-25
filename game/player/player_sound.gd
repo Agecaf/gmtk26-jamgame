@@ -73,3 +73,11 @@ func _on_player_save_spot() -> void:
 
 func _on_player_hurt() -> void:
 	SFX.play(SFX.HURT)
+
+
+func _on_player_enter_coffin() -> void:
+	pass
+
+
+func _on_player_turn_to_ashes() -> void:
+	pass

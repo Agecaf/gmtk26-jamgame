@@ -74,6 +74,18 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.LANDING:
 			animator.play(&'Vampire/Land')
+		
+		# TODO: Play turn-to-ashes animation
+		Player.State.TURNING_TO_MIST:
+			pass
+
+		# TODO: Play turn-to-ashes animation
+		Player.State.TURNING_TO_ASHES:
+			pass
+
+		# TODO: Will there be a coffin animation based on the player?
+		Player.State.ENTERING_COFFIN:
+			pass
 
 
 func _on_player_change_form(_form: Player.Form) -> void:
@@ -85,4 +97,12 @@ func _on_player_save_spot() -> void:
 
 
 func _on_player_hurt() -> void:
+	pass
+
+
+func _on_player_enter_coffin() -> void:
+	pass
+
+
+func _on_player_turn_to_ashes() -> void:
 	pass

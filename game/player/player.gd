@@ -17,6 +17,9 @@ enum State {
 	FALLING_BAT,
 	LANDING,
 	LANDING_BAT,
+	TURNING_TO_MIST,
+	TURNING_TO_ASHES,
+	ENTERING_COFFIN,
 }
 
 enum Form {
@@ -85,7 +88,6 @@ var y_max: float:
 var player_scene: PlayerScene
 var player_state: PlayerState
 var player_motion: PlayerMotion
-var player_triggers: PlayerTriggers
 var player_anim: PlayerAnim
 var player_sound: PlayerSound
 
@@ -102,7 +104,6 @@ func _init() -> void:
 	player_scene = PlayerScene.new()
 	player_state = PlayerState.new()
 	player_motion = PlayerMotion.new()
-	player_triggers = PlayerTriggers.new()
 	player_anim = PlayerAnim.new()
 	player_sound = PlayerSound.new()
 
@@ -110,7 +111,6 @@ func _init() -> void:
 		player_scene,
 		player_state,
 		player_motion,
-		player_triggers,
 		player_anim,
 		player_sound,
 	])
@@ -211,17 +211,17 @@ func hurt() -> void:
 	for script: Resource in script_order:
 		script._on_player_hurt()
 
+
+func enter_coffin() -> void:
+	for script: Resource in script_order:
+		script._on_player_enter_coffin()
+
+
+func turn_to_ashes() -> void:
+	for script: Resource in script_order:
+		script._on_player_turn_to_ashes()
+
+
 # For opening and closing the pocketwatch
 func pocketwatch_open() -> void: if Game.pocketwatch != null: Game.pocketwatch.open()
 func pocketwatch_close() -> void: if Game.pocketwatch != null: Game.pocketwatch.close()
-
-# For ending the level
-func enter_coffin() -> void:
-	# TODO: Set the player to an inactive state
-	# Possible todo: Play enter coffin animation (depending on how animation is to be implemented).
-	pass
-
-func turn_to_ashes() -> void:
-	# TODO: Set the player to an inactive state
-	# TODO: Play turn-to-ashes animation.
-	pass
