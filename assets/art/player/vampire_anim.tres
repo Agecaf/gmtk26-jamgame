@@ -217,22 +217,6 @@ tracks/0/keys = {
 "values": [28, 31]
 }
 
-[sub_resource type="Animation" id="Animation_ymfdk"]
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [60, 61, 0]
-}
-
 [sub_resource type="Animation" id="Animation_p7crj"]
 length = 0.6
 loop_mode = 1
@@ -267,7 +251,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_twyov"]
-length = 0.4
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -276,10 +260,80 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [56, 57, 58, 59]
+"values": [56, 57, 58, 59, 60, 61]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BatsAnchor/Bats:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BatsAnchor/Bats:radial_accel_min")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 2, 2),
+"points": PackedFloat32Array(-50, 0, 0, 0.033333335, 0, -50, -0.033333335, -2, 0.050000004, 3.0000002, 0, -0.050000004, -4.3750005, 0.083333336, 7.291667, 20, -0.11666667, -6.6666665, 0, 0, 0, -0.116666675, 14.000001, 0.049999993, -5.999999, -100, -0.049999993, 13.333334, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.1, 1.7, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BatsAnchor/Bats:radial_accel_max")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 2, 2),
+"points": PackedFloat32Array(-50, 0, 0, 0.033333335, 0, -50, -0.033333335, -2, 0.050000004, 3.0000002, 0, -0.050000004, -4.3750005, 0.083333336, 7.291667, 20, -0.11666667, -6.6666665, 0, 0, 0, -0.116666675, 14.000001, 0.049999993, -5.999999, -100, -0.049999993, 13.333334, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.1, 1.7, 2)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BatsAnchor/Bats:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BatsAnchor/Bats:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [resource]
@@ -295,7 +349,6 @@ _data = {
 &"Land": SubResource("Animation_ohoeo"),
 &"RESET": SubResource("Animation_4a2a0"),
 &"RapidJump": SubResource("Animation_yb5vs"),
-&"Reform": SubResource("Animation_ymfdk"),
 &"Run": SubResource("Animation_p7crj"),
 &"TurnToAshes": SubResource("Animation_f47ua"),
 &"TurnToMist": SubResource("Animation_twyov")

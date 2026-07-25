@@ -67,6 +67,8 @@ enum Form {
 
 @export_range(0, 0.95, 0.05) var short_jump_velocity_attenuation: float = 0.3
 
+@export var mist_travel_duration: float = 2.0
+
 var sprite: Sprite2D:
 	get: return $Sprite
 var collider: CollisionShape2D:
@@ -223,8 +225,8 @@ func enter_coffin() -> void:
 	change_state(State.ENTERING_COFFIN)
 
 
-func reform() -> void:
-	change_state(State.REFORMING)
+func complete_reform() -> void:
+	change_state(State.IDLE)
 
 
 # For opening and closing the pocketwatch

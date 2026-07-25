@@ -42,9 +42,9 @@ func _on_player_face(direction: Enums.Direction) -> void:
 func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.TURNING_TO_MIST:
-			# TODO: Particle effects, animate (not teleport) to the mark before reforming
-			player.position = last_marked_position
-			player.reform()
+			var tween: Tween = player.get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
+			tween.finished.connect(player.complete_reform)
+			tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
 			
 
 
