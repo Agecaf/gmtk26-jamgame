@@ -39,8 +39,8 @@ func _process(delta: float) -> void:
 
 # Grab the player, end the game
 func grab_player() -> void:
-	print("Grabbing player!")
 	player_grabbed = true
 	Game.countdown.stop()
 	if Game.menu != null:
 		Game.menu.go_to(&"PostLevelMenu")
+	SFX.play(SFX.ENTER_COFFIN)
