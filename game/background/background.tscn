@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://doms7a7pynxw2" path="res://assets/art/background/clouds_and_sun.png" id="2_uj5s0"]
 [ext_resource type="Texture2D" uid="uid://dke5xyutwcyo" path="res://assets/art/background/big_clouds.png" id="3_uj5s0"]
 [ext_resource type="Texture2D" uid="uid://bkmb4aod0sfy4" path="res://assets/art/background/horizon_placeholder.png" id="4_2qg8k"]
+[ext_resource type="Texture2D" uid="uid://c0fi06yynt0qd" path="res://assets/art/background/horizon.png" id="5_xlr7x"]
 
 [sub_resource type="Gradient" id="Gradient_2qg8k"]
 interpolation_mode = 1
@@ -144,6 +145,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vx01"]
+atlas = ExtResource("5_xlr7x")
+region = Rect2(0, 0, 800, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ducb6"]
+atlas = ExtResource("5_xlr7x")
+region = Rect2(800, 0, 800, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43xjb"]
+atlas = ExtResource("5_xlr7x")
+region = Rect2(1600, 0, 800, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlu1r"]
+atlas = ExtResource("5_xlr7x")
+region = Rect2(2400, 0, 800, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ghni"]
+atlas = ExtResource("5_xlr7x")
+region = Rect2(3200, 0, 800, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xov76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vx01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ducb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlu1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ghni")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Background" type="Node2D" unique_id=338442490]
 script = ExtResource("1_uc1g5")
 
@@ -186,7 +230,14 @@ unique_name_in_owner = true
 
 [node name="Horizon" type="Sprite2D" parent="." unique_id=158042087]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-235, -1)
 scale = Vector2(3, 3)
 texture = ExtResource("4_2qg8k")
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=779901690]
+position = Vector2(-235, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xov76")
 centered = false

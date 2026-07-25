@@ -11,9 +11,9 @@ var time: int = 0
 var bg_colors: Array[Color] = [
 	Color("#000000"),
 	Color("#000000"),
+	Color("#000000"),
 	Color("#452729"),
 	Color("#452729"),
-	Color("#702c1f"),
 ]
 
 func _ready() -> void:

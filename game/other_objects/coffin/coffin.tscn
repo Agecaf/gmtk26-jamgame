@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7wfmqoyayvkh"]
 
 [ext_resource type="Script" uid="uid://bos0do8h7syl3" path="res://game/other_objects/coffin/coffin.gd" id="1_p2ykh"]
-[ext_resource type="Texture2D" uid="uid://dguohm24rct" path="res://assets/art/objects/coffin_placeholder_2.png" id="1_uqowv"]
+[ext_resource type="Texture2D" uid="uid://cjldwuffp22qm" path="res://assets/art/objects/coffin.png" id="2_p2ykh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2nw5p"]
 
@@ -26,6 +26,6 @@ material = SubResource("CanvasItemMaterial_2nw5p")
 position = Vector2(0, -36)
 texture = SubResource("GradientTexture2D_kafe6")
 
-[node name="CoffinPlaceholder2" type="Sprite2D" parent="." unique_id=1628295279]
+[node name="Coffin" type="Sprite2D" parent="." unique_id=1628295279]
 position = Vector2(0, -16)
-texture = ExtResource("1_uqowv")
+texture = ExtResource("2_p2ykh")
