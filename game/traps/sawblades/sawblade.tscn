@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bm7ol0y3isnot"]
 
-[ext_resource type="Texture2D" uid="uid://ca8ds4jgy8rbe" path="res://assets/art/tilesets/sawblade_placeholder.png" id="1_4pybh"]
 [ext_resource type="Script" uid="uid://b5gciw4gf44ty" path="res://game/traps/sawblades/sawblade.gd" id="1_petb3"]
 [ext_resource type="PackedScene" uid="uid://kegvh1vibyqs" path="res://game/traps/hitbox_component.tscn" id="2_ll7y2"]
+[ext_resource type="Texture2D" uid="uid://cvfk1ijryuat2" path="res://assets/art/objects/sawblades.png" id="2_petb3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vivr"]
 radius = 15.0
@@ -14,8 +14,12 @@ script = ExtResource("1_petb3")
 rotation = 3.1415927
 loop = false
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1172980361]
-texture = ExtResource("1_4pybh")
+[node name="SawbladeSprite" type="Sprite2D" parent="PathFollow2D" unique_id=1172980361]
+unique_name_in_owner = true
+texture = ExtResource("2_petb3")
+hframes = 3
+vframes = 2
+frame = 3
 
 [node name="HitboxComponent" parent="PathFollow2D" unique_id=1847029517 instance=ExtResource("2_ll7y2")]
 collision_layer = 12

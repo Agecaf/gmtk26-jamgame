@@ -11,10 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://cpbw0ty622icd" path="res://game/game_text/game_text.tscn" id="8_6wr6l"]
 [ext_resource type="PackedScene" uid="uid://bpqt42431745s" path="res://game/other_objects/clock_door/clock_door.tscn" id="9_ekd6w"]
 [ext_resource type="PackedScene" uid="uid://7wfmqoyayvkh" path="res://game/other_objects/coffin/coffin.tscn" id="10_4735x"]
+[ext_resource type="PackedScene" uid="uid://bm7ol0y3isnot" path="res://game/traps/sawblades/sawblade.tscn" id="12_mpdhi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wr6l"]
 shader = ExtResource("2_553nx")
 shader_parameter/hue_shift = 0.2810000133475
+
+[sub_resource type="Curve2D" id="Curve2D_qj0nt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50)
+}
+point_count = 2
 
 [node name="TemplateLevel" type="Node2D" unique_id=610028100]
 texture_filter = 1
@@ -69,4 +76,9 @@ collision_mask = 4294901761
 script = ExtResource("5_ekd6w")
 
 [node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("10_4735x")]
-position = Vector2(324, 384)
+position = Vector2(109, 312)
+
+[node name="Sawblade" parent="." unique_id=71082083 instance=ExtResource("12_mpdhi")]
+position = Vector2(224, 332)
+curve = SubResource("Curve2D_qj0nt")
+is_moving = true

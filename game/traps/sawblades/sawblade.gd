@@ -8,6 +8,7 @@ class_name Sawblade extends Path2D
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var pause_timer: Timer = $PauseTimer
 
+@onready var sprite: Sprite2D = %SawbladeSprite
 
 var direction : int = 1
 var is_waiting : bool = false
@@ -48,3 +49,11 @@ func reset_sawblade():
 	pause_timer.timeout.emit()
 	
 	path_follow_2d.progress = 0
+
+var t = 0.2
+var T = 0.12
+func _process(delta: float) -> void:
+	t -= delta
+	if t < 0:
+		sprite.frame_coords.x = posmod(sprite.frame_coords.x+1, 3)
+		t = T
