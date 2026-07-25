@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b60gb8mlf5qpo"]
+
+[ext_resource type="Script" uid="uid://d2uli0hsyoeso" path="res://game/other_objects/fruit/fruit.gd" id="1_68viq"]
+[ext_resource type="Texture2D" uid="uid://c6g3dbly74lcn" path="res://assets/art/objects/fruits_outline.png" id="1_f3nop"]
+
+[sub_resource type="Gradient" id="Gradient_68viq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.34375, 0.57421875, 0.76953125)
+colors = PackedColorArray(1, 1, 1, 0.2509804, 1, 1, 1, 0.15686275, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kafe6"]
+gradient = SubResource("Gradient_68viq")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Fruit" type="Node2D" unique_id=1022470231]
+script = ExtResource("1_68viq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2052958544]
+texture = SubResource("GradientTexture2D_kafe6")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1896225700]
+unique_name_in_owner = true
+texture = ExtResource("1_f3nop")
+hframes = 6
