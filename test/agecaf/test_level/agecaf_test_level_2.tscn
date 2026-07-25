@@ -86,10 +86,14 @@ curve = SubResource("Curve2D_qj0nt")
 is_moving = true
 
 [node name="Crossbow" parent="." unique_id=1899882889 instance=ExtResource("13_jxehp")]
-position = Vector2(311, 234)
+position = Vector2(405, 334)
 
 [node name="Fruit" parent="." unique_id=1022470231 instance=ExtResource("14_0qvs5")]
 position = Vector2(300, 329)
 
 [node name="Fruit2" parent="." unique_id=52682004 instance=ExtResource("14_0qvs5")]
 position = Vector2(414, 310)
+
+[node name="Crossbow2" parent="." unique_id=1763296316 instance=ExtResource("13_jxehp")]
+position = Vector2(256, 283)
+left_or_right = true
