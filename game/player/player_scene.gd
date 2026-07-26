@@ -70,11 +70,20 @@ func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_MIST_BAT:
+			player.hurtbox_collider_vampire.set_deferred(&'disabled', true)
+			player.hurtbox_collider_bat.set_deferred(&'disabled', true)
+
 			player.tween = player.get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
 			player.tween.finished.connect(player.complete_reform)
 			player.tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
 
 			Game.camera.reset()
+		
+		Player.State.IDLE:
+			if player.current_form == Player.Form.VAMPIRE:
+				player.hurtbox_collider_vampire.set_deferred(&'disabled', false)
+			else:
+				player.hurtbox_collider_bat.set_deferred(&'disabled', false)
 
 
 func _on_player_change_form(form: Player.Form) -> void:
@@ -90,11 +99,11 @@ func _on_player_change_form(form: Player.Form) -> void:
 	match form:
 		Player.Form.VAMPIRE:
 			player.sprite_vampire.show()
-			player.hurtbox_collider_vampire.set_deferred(&'disabled', false)
+			player.hurtbox_collider_vampire.set_deferred(&'disabled', player.current_state == Player.State.TURNING_TO_MIST)
 		
 		Player.Form.BAT:
 			player.sprite_bat.show()
-			player.hurtbox_collider_bat.set_deferred(&'disabled', false)
+			player.hurtbox_collider_bat.set_deferred(&'disabled', player.current_state == Player.State.TURNING_TO_MIST_BAT)
 
 
 func _on_player_save_spot() -> void:
