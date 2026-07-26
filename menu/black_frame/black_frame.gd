@@ -34,7 +34,9 @@ var delay = 0.0
 func check_menu() -> void:
 	# Check delay
 	if Game.menu.current_menu != null:
-		if Game.menu.next_menu_name == &"PostLevelMenu": delay = 1.0
+		if Game.menu.next_menu_name == &"PostLevelMenu": 
+			if Game.victory: delay = 5.0
+			else: delay = 1.0
 		else: delay = 0.0
 	
 	# Check target position
