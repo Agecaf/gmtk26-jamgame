@@ -36,6 +36,7 @@ func start() -> void:
 			Game.max_fruits[idx],
 			Game.container.number_of_fruit[idx]
 		]
+		if idx > Game.max_level: button.disabled = true
 
 func end() -> void:
 	if Game.menu.next_menu_name == &"PreLevelMenu":

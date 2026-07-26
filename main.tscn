@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://3ajkihoy620e" path="res://game/background/background.tscn" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://gquvmbcjjkun" path="res://game/core/game_container.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cgqp5q7pdwn8e" path="res://menu/menu.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://nig00vxjj215" path="res://test/agecaf/test_level/agecaf_test_level_2.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://do5begp8o6580" path="res://test/agecaf/test_level/agecaf_level_crossbow.tscn" id="3_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dpswi3ihio6ui" path="res://test/zerok/tutorial_level.tscn" id="3_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bf27tr3o2wm8n" path="res://test/agecaf/test_level/agecaf_level_clock_doors.tscn" id="5_dg77c"]
 [ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b7wl0evy3y3ex" path="res://test/zerok/crossbow_and_spinblades.tscn" id="6_dg77c"]
 [ext_resource type="PackedScene" uid="uid://clh0bivbljycd" path="res://game/pocketwatch/pocketwatch.tscn" id="7_dg77c"]
 [ext_resource type="Shader" uid="uid://bu0m4efae4kus" path="res://assets/other/shader/increasing_bloom.gdshader" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://chp2casxsiybt" path="res://scripts/screen_shader.gd" id="8_ycdy4"]
@@ -35,7 +35,7 @@ follow_viewport_enabled = true
 
 [node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
 script = ExtResource("1_h2yge")
-levels = Array[PackedScene]([ExtResource("3_ycdy4"), ExtResource("3_dg77c"), ExtResource("5_dg77c"), ExtResource("3_7mycd")])
+levels = Array[PackedScene]([ExtResource("3_ycdy4"), ExtResource("3_dg77c"), ExtResource("5_dg77c"), ExtResource("6_dg77c")])
 start_text = Array[String](["A vampire's curse is an affair most dire
 Mere light of the morning will set him on fire
 To survive the day he must return to his keep
@@ -51,7 +51,7 @@ Troubled by what the third night had in store", "There it was. Final dawn of the
 Once again the Count held onto a baleful letter
 \"Count Downcula, you foul creature of the night, 
 You'll never reach your coffin before the daylight!\""])
-number_of_fruit = Array[int]([2, 0, 0, 0])
+number_of_fruit = Array[int]([1, 3, 3, 1])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
 

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://7wfmqoyayvkh" path="res://game/other_objects/coffin/coffin.tscn" id="10_g6d80"]
 [ext_resource type="PackedScene" uid="uid://dda7rcoeqg4s2" path="res://game/camera/camera_border.tscn" id="13_douvt"]
 [ext_resource type="PackedScene" uid="uid://dxw0mddala6s3" path="res://game/camera/smooth_camera_offset.tscn" id="14_dtiux"]
+[ext_resource type="PackedScene" uid="uid://b60gb8mlf5qpo" path="res://game/other_objects/fruit/fruit.tscn" id="16_c4t8b"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_kw0n7"]
 tile_data = PackedInt32Array(0, 131073, 0, 65536, 131073, 1, 131072, 131073, 2)
@@ -621,3 +622,6 @@ x_only = true
 position = Vector2(36, 80)
 shape = SubResource("RectangleShape2D_c4t8b")
 debug_color = Color(0.804157, 0.41774997, 5.7756904e-07, 0.41960785)
+
+[node name="Fruit" parent="." unique_id=1022470231 instance=ExtResource("16_c4t8b")]
+position = Vector2(411, 256)
