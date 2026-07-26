@@ -169,6 +169,7 @@ offsets = PackedFloat32Array(0, 0.03812825, 0.12998267, 0.5233969, 0.90121317, 1
 colors = PackedColorArray(0.3764706, 0.5019608, 0.5019608, 0, 0.3764706, 0.5019608, 0.5019608, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5019608, 0, 0, 1, 0.5019608, 0.5019608, 0.5019608, 0)
 
 [node name="Player" type="CharacterBody2D" unique_id=716552642]
+z_index = 10
 script = ExtResource("1_b2mth")
 
 [node name="VampireSprite" type="Sprite2D" parent="." unique_id=1378746549]
