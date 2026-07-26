@@ -111,6 +111,9 @@ func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 		if not hitbox_parent:
 			return
 		
+		if hitbox_parent is CrossbowBolt:
+			hitbox_parent.queue_free()
+		
 		var hitbox_grandparent: Node = hitbox_parent.get_parent()
 		if not hitbox_grandparent:
 			return

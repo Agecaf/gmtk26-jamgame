@@ -2,6 +2,7 @@ class_name CrossbowBolt extends Node2D
 
 
 var velocity: Vector2 = Vector2.ZERO
+var final_velocity: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -10,6 +11,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
+	velocity = lerp(velocity, final_velocity, exp(-delta * 50))
 
 
 func face(direction: Enums.Direction) -> void:
@@ -20,7 +22,7 @@ func face(direction: Enums.Direction) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player and Game.player.current_state == Player.State.CROUCHING:
-		return
-	
-	queue_free()
+	if body is not Player:
+		velocity = Vector2.ZERO
+		final_velocity = Vector2.ZERO
+		$Animator.play(&'CrossbowBolt/Vanish')

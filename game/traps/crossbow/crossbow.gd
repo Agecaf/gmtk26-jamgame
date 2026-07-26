@@ -3,7 +3,8 @@ class_name Crossbow extends StaticBody2D
 
 @export var left_or_right: bool = false
 @export_range(24, 1920, 24) var detection_range: float = 96
-@export_range(25, 500, 25) var bolt_speed: float = 150
+@export_range(25, 500, 25) var bolt_speed_initial: float = 600
+@export_range(25, 500, 25) var bolt_speed_final: float = 200
 @export_range(0.5, 10, 0.5) var bolt_cooldown: float = 2.5
 
 @onready var raycast: RayCast2D = $Raycast
@@ -78,9 +79,11 @@ func fire(direction: Enums.Direction) -> void:
 	bolt.face(direction)
 	
 	if direction == Enums.Direction.LEFT:
-		bolt.velocity = bolt_speed * Vector2.LEFT
+		bolt.final_velocity = bolt_speed_final * Vector2.LEFT
+		bolt.velocity = bolt_speed_initial * Vector2.LEFT
 	elif direction == Enums.Direction.RIGHT:
-		bolt.velocity = bolt_speed * Vector2.RIGHT
+		bolt.final_velocity = bolt_speed_final * Vector2.RIGHT
+		bolt.velocity = bolt_speed_initial * Vector2.RIGHT
 	
 	# Play animation and SFX
 	animation.play(&"fire")

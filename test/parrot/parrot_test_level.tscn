@@ -39,6 +39,7 @@ script = ExtResource("5_lbcyw")
 
 [node name="Crossbow" parent="." unique_id=1899882889 instance=ExtResource("6_ipcvj")]
 position = Vector2(852, 304)
+scale = Vector2(-1, 1)
 
 [node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("9_lbcyw")]
 z_index = -3
