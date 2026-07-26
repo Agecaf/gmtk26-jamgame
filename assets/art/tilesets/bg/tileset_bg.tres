@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://dk2dwantkfeo7"]
 
 [ext_resource type="Texture2D" uid="uid://dyfxknhvbde3r" path="res://assets/art/tilesets/bg/tileset_bg_final.png" id="1_x6i0b"]
+[ext_resource type="Texture2D" uid="uid://cnxm4065crg2q" path="res://assets/art/tilesets/tileset_final.png" id="2_y7j7f"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_y7j7f"]
 tile_data = PackedInt32Array(0, 131072, 0, 65536, 131072, 2)
@@ -49,9 +50,21 @@ texture_region_size = Vector2i(24, 24)
 5:1/0 = 0
 5:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4scmn"]
+texture = ExtResource("2_y7j7f")
+texture_region_size = Vector2i(24, 24)
+11:0/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+12:0/0 = 0
+12:2/0 = 0
+13:1/0 = 0
+13:0/0 = 0
+
 [resource]
 tile_size = Vector2i(24, 24)
 sources/0 = SubResource("TileSetAtlasSource_k115a")
+sources/1 = SubResource("TileSetAtlasSource_4scmn")
 pattern_0 = SubResource("TileMapPattern_y7j7f")
 pattern_1 = SubResource("TileMapPattern_4scmn")
 pattern_2 = SubResource("TileMapPattern_gwpyu")
