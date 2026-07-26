@@ -16,6 +16,8 @@ var fade_speed: float = 10.0
 
 # Begin
 func _ready() -> void:
+	# Register
+	Game.black_frame = self
 	_ready_deferred.call_deferred()
 	
 func _ready_deferred():

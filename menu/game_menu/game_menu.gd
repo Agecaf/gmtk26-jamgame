@@ -29,3 +29,18 @@ func end() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"pause"):
 		Game.menu.go_to(&"PauseMenu")
+	
+	if Input.is_action_just_pressed(&"retry"):
+		retry.call_deferred()
+		
+
+func retry() -> void:
+	Game.pocketwatch.close()
+	Game.black_frame.target_alpha = 1.0
+	await get_tree().create_timer(0.3).timeout
+	Game.container.load_level()
+	Game.audio.game_music.play()
+	Game.countdown.start(60)
+	await get_tree().create_timer(0.1).timeout
+	Game.black_frame.target_alpha = 0.0
+	

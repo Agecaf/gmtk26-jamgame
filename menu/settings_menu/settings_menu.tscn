@@ -120,6 +120,15 @@ layout_mode = 2
 script = ExtResource("3_8jy52")
 control_name = &"mute"
 
+[node name="Label7" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2" unique_id=717344893]
+layout_mode = 2
+text = "Retry"
+
+[node name="Button7" type="Button" parent="CenterContainer/VBoxContainer/GridContainer2" unique_id=1812611084]
+layout_mode = 2
+script = ExtResource("3_8jy52")
+control_name = &"retry"
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1814196251]
 layout_mode = 0
 offset_right = 177.0

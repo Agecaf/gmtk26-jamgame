@@ -14,6 +14,7 @@ var countdown: Countdown
 var menu: Menu
 var container: GameContainer
 var pocketwatch: PocketWatch
+var black_frame: BlackFrame
 
 # Used to choose the level
 var level_index: int = 0
