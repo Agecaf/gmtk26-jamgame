@@ -18,12 +18,35 @@ func _ready() -> void:
 	
 	# Make sure the player is ready before setting them as starting position.
 	_ready_deferred.call_deferred()
+	
 func _ready_deferred():
 	position = Game.player.position
 
 
 # Process
 func _process(delta: float) -> void:
-	# Get closer to player
-	position.x = lerp(Game.player.position.x, position.x, exp(- delta * CAMERA_SPEED_X))
-	position.y = lerp(Game.player.position.y, position.y, exp(- delta * CAMERA_SPEED_Y))
+	var player_position := Game.player.position
+	var target_position := player_position
+
+	# Apply Camera borders
+	target_position = apply_camera_borders(
+		target_position,
+		player_position
+	)
+
+	position.x = lerp(target_position.x, position.x, exp(-delta * CAMERA_SPEED_X))
+	position.y = lerp(target_position.y, position.y, exp(-delta * CAMERA_SPEED_Y))
+
+
+func apply_camera_borders(target_position: Vector2, player_position: Vector2) -> Vector2:
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var half_camera_size: Vector2 = viewport_size / (2.0 * zoom)
+
+	for border in get_tree().get_nodes_in_group("camera_borders"):
+		target_position = border.clamp_camera(
+			target_position,
+			player_position,
+			half_camera_size
+		)
+
+	return target_position
