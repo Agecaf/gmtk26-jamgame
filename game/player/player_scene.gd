@@ -93,3 +93,14 @@ func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 	
 	if player.current_state not in [Player.State.CROUCHING, Player.State.CROUCHING_RUN]:
 		player.hurt()
+
+		var hitbox_parent: Node = area.get_parent()
+		if not hitbox_parent:
+			return
+		
+		var hitbox_grandparent: Node = hitbox_parent.get_parent()
+		if not hitbox_grandparent:
+			return
+		
+		if hitbox_grandparent is Sawblade:
+			SFX.play(SFX.SAWBLADE)
