@@ -23,6 +23,7 @@ static var volume_dict: Dictionary = {
 	LAND_BAT: -6.0,
 	# LAND_VAMPIRE: -6.0,
 	DOUBLE_JUMP: -3.0,
+	CROSSBOW_SHOT: 3.0,
 }
 
 # Play an sfx
