@@ -55,7 +55,7 @@ enum Form {
 @export_range(0.05, 0.5, 0.05) var falling_delay: float = 0.3
 @export_range(0.05, 0.5, 0.05) var landing_delay: float = 0.2
 @export_range(0.05, 0.5, 0.05) var bat_landing_delay: float = 0.2
-@export_range(0.05, 0.5, 0.05) var bat_bounce_delay: float = 0.2
+@export_range(0.05, 0.5, 0.05) var bat_bounce_delay: float = 0.1
 
 @export_range(0.05, 0.5, 0.05) var glide_start_delay: float = 0.4
 @export_range(0.05, 0.5, 0.05) var bat_glide_start_delay: float = 0.4
@@ -146,6 +146,7 @@ var current_state: State
 var current_form: Form
 var current_facing: Enums.Direction
 
+var last_wall_normal: Vector2
 
 # For callbacks, auxiliary scripts are executed in the order defined here
 func _init() -> void:

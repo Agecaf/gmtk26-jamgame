@@ -52,7 +52,7 @@ func _on_player_physics_process(delta: float) -> void:
 
 	# Invert horizontal direction on completing a wall bounce, no steering on bounce frames
 	elif player.current_state in [Player.State.BOUNCE_END]:
-		player.velocity.x = -bounce_velocity.x
+		player.velocity.x = player.last_wall_normal.x * 500.0
 
 	# Active horizontal steering by player input
 	else:

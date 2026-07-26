@@ -36,13 +36,15 @@ func _on_player_change_state(state: Player.State) -> void:
 			run_timer = 0.1
 		
 		Player.State.JUMPING_BAT:
-			SFX.play(SFX.DOUBLE_JUMP)
+			if player.previous_state != Player.State.BOUNCE_END:
+				SFX.play(SFX.DOUBLE_JUMP)
 		
 		Player.State.GLIDING:
 			SFX.play(SFX.GLIDE_VAMPIRE)
 		
 		Player.State.GLIDING_BAT:
-			SFX.play(SFX.GLIDE_BAT)
+			if player.previous_state != Player.State.BOUNCE_END:
+				SFX.play(SFX.GLIDE_BAT)
 		
 		Player.State.TURNING_TO_MIST:
 			SFX.play(SFX.HURT)
