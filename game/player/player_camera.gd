@@ -49,4 +49,6 @@ func apply_camera_borders(target_position: Vector2, player_position: Vector2, ha
 	return target_position
 
 func reset():
-	offset = Vector2.ZERO
+	var tween = create_tween()
+	
+	tween.tween_property(self, "offset", Vector2.ZERO, 2)
