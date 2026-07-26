@@ -33,6 +33,9 @@ enum Form {
 	BAT,
 }
 
+signal coffin_sequence_start()
+signal coffin_sequence_complete()
+
 @export_range(25, 500, 25) var run_speed: float = 250
 @export_range(25, 500, 25) var crouch_run_speed: float = 75
 @export_range(25, 500, 25) var air_speed: float = 300
@@ -98,6 +101,11 @@ var hurtbox_collider_bat: CollisionShape2D:
 	get: return $BatHurtbox/Collider
 var animator_bat: AnimationPlayer:
 	get: return $BatAnimator
+
+var sprite_coffin: Sprite2D:
+	get: return $CoffinSprite
+var animator_coffin: AnimationPlayer:
+	get: return $CoffinAnimator
 
 var sprite: Sprite2D:
 	get: return sprite_vampire if current_form == Form.VAMPIRE else sprite_bat

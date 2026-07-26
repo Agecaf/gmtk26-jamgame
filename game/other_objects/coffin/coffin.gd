@@ -7,7 +7,13 @@ var t = 0.0
 var player_grabbed: bool = false
 var grab_width: float = 40
 var grab_height: float = 40
-var position_offset: Vector2 = Vector2(0.0, -24)
+var position_offset: Vector2 = Vector2(50, -24)
+
+
+func _ready() -> void:
+	Game.player.coffin_sequence_start.connect(func():
+		get_tree().create_tween().tween_property($Coffin, ^'self_modulate', Color('#ffffff00'), 1.0)
+	)
 
 
 func _process(delta: float) -> void:
@@ -18,13 +24,15 @@ func _process(delta: float) -> void:
 	var gradient: Gradient = (back_effect.texture as GradientTexture2D).gradient
 	gradient.set_offset(1, lerpf(0.3, 0.35, lambda))
 	gradient.set_offset(2, lerpf(0.4, 0.5, lambda))
+
+	var target_position: Vector2 = position + position_offset
 	
 	# Check for player grab
 	if not player_grabbed:
 		if (
-			abs(Game.player.position.x - position.x) < grab_width and
-			position.y - Game.player.position.y < grab_height and 
-			Game.player.position.y < position.y
+			abs(Game.player.position.x - target_position.x) < grab_width and
+			target_position.y - Game.player.position.y < grab_height and 
+			Game.player.position.y < target_position.y
 			
 		):
 			grab_player()
@@ -32,9 +40,9 @@ func _process(delta: float) -> void:
 	# Move player towards coffin
 	if player_grabbed:
 		Game.player.position = lerp(
-			position + position_offset, 
+			target_position, 
 			Game.player.position, 
-			exp(- delta * 4.0))
+			exp(- delta * 8.0))
 
 
 # Grab the player, end the game

@@ -10,6 +10,7 @@ var player: Player
 func _on_player_ready() -> void:
 	player.animator_vampire.animation_finished.connect(_on_vampire_animation_finished)
 	player.animator_bat.animation_finished.connect(_on_bat_animation_finished)
+	player.animator_coffin.animation_finished.connect(_on_coffin_animation_finished)
 
 
 func _on_player_change_state(state: Player.State) -> void:
@@ -74,16 +75,23 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.TURNING_TO_ASHES_BAT:
 			player.animator_bat.play(&'BatForm/TurnToAshes')
 
-		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:
-			pass
+			player.animator_vampire.play(&'Vampire/Coffin')
 
 
-func _on_vampire_animation_finished(_anim_name: StringName):
-	pass
+func _on_vampire_animation_finished(anim_name: StringName):
+	if anim_name == &'Vampire/Coffin':
+		player.change_form(Player.Form.VAMPIRE)
+		player.animator_coffin.play(&'Coffin/Enter', 0.19)
+		player.coffin_sequence_start.emit()
 
 
 func _on_bat_animation_finished(anim_name: StringName):
 	if anim_name == &'BatForm/TurnToMist':
 		player.change_form(Player.Form.VAMPIRE)
 		player.animator_vampire.play_section(&'Vampire/TurnToMist', 0.19)
+
+
+func _on_coffin_animation_finished(anim_name: StringName):
+	if anim_name == &'Coffin/Enter':
+		player.coffin_sequence_complete.emit()

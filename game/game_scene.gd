@@ -21,3 +21,8 @@ func _ready() -> void:
 			func(sec_left):
 				Debug.info('Tick. (%ds left)' % [sec_left])
 		)
+
+		Game.player.coffin_sequence_complete.connect(
+			func():
+				Debug.info('Congratulations, you made it!')
+		)
