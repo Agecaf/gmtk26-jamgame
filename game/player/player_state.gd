@@ -90,13 +90,13 @@ func _on_player_physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
 			
-			## Crouch running is disabled
-			# if Input.is_action_just_pressed(&'crouch'):
-			# 	player.change_state(Player.State.CROUCHING_RUN)
-			
-			# Transition to crouching instead
+			# Crouch running was previously disabled
 			elif Input.is_action_just_pressed(&'crouch'):
-				player.change_state(Player.State.CROUCHING)
+				player.change_state(Player.State.CROUCHING_RUN)
+			
+			# # Used to transition to crouching instead
+			# elif Input.is_action_just_pressed(&'crouch'):
+			# 	player.change_state(Player.State.CROUCHING)
 			
 			elif total_air_time >= player.falling_delay:
 				player.change_state(Player.State.FALLING)
@@ -105,18 +105,18 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.IDLE)
 		
 		Player.State.CROUCHING:
-			if Input.is_action_just_released(&'crouch'):
+			if not Input.is_action_pressed(&'crouch'):
 				player.change_state(Player.State.IDLE)
 			
-			## Crouch running is disabled
-			# if player.velocity.x:
-			# 	player.change_state(Player.State.CROUCHING_RUN)
+			# Crouch running was previously disabled
+			elif player.velocity.x:
+				player.change_state(Player.State.CROUCHING_RUN)
 		
 		Player.State.CROUCHING_RUN:
-			if Input.is_action_just_released(&'crouch'):
+			if not Input.is_action_pressed(&'crouch'):
 				player.change_state(Player.State.RUNNING)
 			
-			if not player.velocity.x:
+			elif not player.velocity.x:
 				player.change_state(Player.State.CROUCHING)
 		
 		Player.State.HANGING:

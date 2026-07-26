@@ -34,6 +34,8 @@ enum Form {
 }
 
 @export_range(25, 500, 25) var run_speed: float = 250
+@export_range(25, 500, 25) var crouch_run_speed: float = 75
+
 @export_range(0.05, 0.5, 0.05) var coyote_time: float = 0.1
 @export_range(288, 576, 24) var max_fall_speed: float = 384
 
@@ -62,6 +64,7 @@ enum Form {
 @export_range(0.005, 0.01, 0.001) var bat_glide_fall_speed_decay_rate: float = 0.008
 
 @export_range(0.005, 0.05, 0.005) var run_speed_change_rate: float = 0.02
+@export_range(0.005, 0.05, 0.005) var crouch_run_speed_change_rate: float = 0.04
 @export_range(0.002, 0.02, 0.002) var air_speed_change_rate: float = 0.012
 @export_range(0.002, 0.02, 0.002) var bat_air_speed_change_rate: float = 0.008
 @export_range(0.001, 0.01, 0.001) var glide_air_speed_change_rate: float = 0.004
