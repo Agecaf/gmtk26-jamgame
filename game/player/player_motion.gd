@@ -58,7 +58,7 @@ func _on_player_physics_process(delta: float) -> void:
 		var move_left: int = 1 if Input.is_action_pressed(&'left') else 0
 		var move_right: int = 1 if Input.is_action_pressed(&'right') else 0
 		
-		var h_speed: float = player.run_speed
+		var h_speed: float = player.run_speed if player.is_on_floor() else player.air_speed
 		var h_speed_change_rate: float = player.run_speed_change_rate if player.is_on_floor() else player.air_speed_change_rate
 
 		match player.current_state:
@@ -67,9 +67,11 @@ func _on_player_physics_process(delta: float) -> void:
 				h_speed_change_rate = player.crouch_run_speed_change_rate
 
 			Player.State.GLIDING_BAT:
+				h_speed = player.bat_glide_speed
 				h_speed_change_rate = player.bat_glide_air_speed_change_rate
 
 			Player.State.GLIDING:
+				h_speed = player.glide_speed
 				h_speed_change_rate = player.glide_air_speed_change_rate
 
 			Player.State.JUMPING_BAT,\

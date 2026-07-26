@@ -35,6 +35,9 @@ enum Form {
 
 @export_range(25, 500, 25) var run_speed: float = 250
 @export_range(25, 500, 25) var crouch_run_speed: float = 75
+@export_range(25, 500, 25) var air_speed: float = 300
+@export_range(25, 500, 25) var glide_speed: float = 350
+@export_range(25, 500, 25) var bat_glide_speed: float = 400
 
 @export_range(0.05, 0.5, 0.05) var coyote_time: float = 0.1
 @export_range(288, 576, 24) var max_fall_speed: float = 384
@@ -60,7 +63,7 @@ enum Form {
 @export_range(12, 96, 12) var bat_glide_max_fall_speed: float = 12
 # @export_range(0, 24, 2) var bat_bounce_min_speed_required: float = 2
 
-@export_range(0.005, 0.01, 0.001) var glide_fall_speed_decay_rate: float = 0.008
+@export_range(0.005, 0.01, 0.001) var glide_fall_speed_decay_rate: float = 0.007
 @export_range(0.005, 0.01, 0.001) var bat_glide_fall_speed_decay_rate: float = 0.008
 
 @export_range(0.005, 0.05, 0.005) var run_speed_change_rate: float = 0.02
@@ -68,7 +71,7 @@ enum Form {
 @export_range(0.002, 0.02, 0.002) var air_speed_change_rate: float = 0.012
 @export_range(0.002, 0.02, 0.002) var bat_air_speed_change_rate: float = 0.008
 @export_range(0.001, 0.01, 0.001) var glide_air_speed_change_rate: float = 0.004
-@export_range(0.001, 0.01, 0.001) var bat_glide_air_speed_change_rate: float = 0.004
+@export_range(0.001, 0.01, 0.001) var bat_glide_air_speed_change_rate: float = 0.006
 
 @export_range(0.05, 0.5, 0.05) var wall_jump_min_buildup_time: float = 0.05
 @export_range(0.05, 0.5, 0.05) var wall_jump_cooldown: float = 0.1
