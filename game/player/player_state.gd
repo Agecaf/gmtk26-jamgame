@@ -237,7 +237,8 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_ASHES,\
 		Player.State.TURNING_TO_ASHES_BAT,\
-		Player.State.ENTERING_COFFIN:
+		Player.State.ENTERING_COFFIN_FROM_LEFT,\
+		Player.State.ENTERING_COFFIN_FROM_RIGHT:
 			pass
 
 	if Input.is_action_just_pressed(&'jump'):
@@ -257,7 +258,8 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.TURNING_TO_MIST,\
 		Player.State.REFORMING,\
 		Player.State.TURNING_TO_ASHES,\
-		Player.State.ENTERING_COFFIN:
+		Player.State.ENTERING_COFFIN_FROM_LEFT,\
+		Player.State.ENTERING_COFFIN_FROM_RIGHT:
 			player.change_form(Player.Form.VAMPIRE)
 		
 		Player.State.HANGING:

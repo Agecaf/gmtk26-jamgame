@@ -23,7 +23,8 @@ const IMMOBILE_STATES: Array[Player.State] = [
 	Player.State.TURNING_TO_MIST_BAT,
 	Player.State.TURNING_TO_ASHES,
 	Player.State.TURNING_TO_ASHES_BAT,
-	Player.State.ENTERING_COFFIN,
+	Player.State.ENTERING_COFFIN_FROM_LEFT,
+	Player.State.ENTERING_COFFIN_FROM_RIGHT,
 ]
 
 var bounce_velocity: Vector2

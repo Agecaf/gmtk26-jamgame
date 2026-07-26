@@ -75,14 +75,22 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.TURNING_TO_ASHES_BAT:
 			player.animator_bat.play(&'BatForm/TurnToAshes')
 
-		Player.State.ENTERING_COFFIN:
-			player.animator_vampire.play(&'Vampire/Coffin')
+		Player.State.ENTERING_COFFIN_FROM_LEFT:
+			player.animator_vampire.play(&'Vampire/EnterCoffinFromLeft')
+
+		Player.State.ENTERING_COFFIN_FROM_RIGHT:
+			player.animator_vampire.play(&'Vampire/EnterCoffinFromRight')
 
 
 func _on_vampire_animation_finished(anim_name: StringName):
-	if anim_name == &'Vampire/Coffin':
+	if anim_name == &'Vampire/EnterCoffinFromLeft':
 		player.change_form(Player.Form.VAMPIRE)
-		player.animator_coffin.play(&'Coffin/Enter', 0.19)
+		player.animator_coffin.play(&'Coffin/EnterFromLeft')
+		Game.coffin_sequence_start.emit()
+	
+	elif anim_name == &'Vampire/EnterCoffinFromRight':
+		player.change_form(Player.Form.VAMPIRE)
+		player.animator_coffin.play(&'Coffin/EnterFromRight')
 		Game.coffin_sequence_start.emit()
 
 
@@ -93,5 +101,5 @@ func _on_bat_animation_finished(anim_name: StringName):
 
 
 func _on_coffin_animation_finished(anim_name: StringName):
-	if anim_name == &'Coffin/Enter':
+	if anim_name in [&'Coffin/EnterFromLeft', &'Coffin/EnterFromRight']:
 		Game.coffin_sequence_complete.emit()

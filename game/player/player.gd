@@ -25,7 +25,8 @@ enum State {
 	REFORMING,
 	TURNING_TO_ASHES,
 	TURNING_TO_ASHES_BAT,
-	ENTERING_COFFIN,
+	ENTERING_COFFIN_FROM_LEFT,
+	ENTERING_COFFIN_FROM_RIGHT,
 }
 
 enum Form {
@@ -276,8 +277,11 @@ func turn_to_ashes() -> void:
 		change_state(State.TURNING_TO_ASHES_BAT)
 
 
-func enter_coffin() -> void:
-	change_state(State.ENTERING_COFFIN)
+func enter_coffin(from_direction: Enums.Direction) -> void:
+	if from_direction == Enums.Direction.LEFT:
+		change_state(State.ENTERING_COFFIN_FROM_LEFT)
+	else:
+		change_state(State.ENTERING_COFFIN_FROM_RIGHT)
 
 
 func complete_reform() -> void:
