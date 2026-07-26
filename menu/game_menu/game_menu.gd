@@ -20,6 +20,9 @@ func start() -> void:
 	# Unpause
 	if Game.menu.previous_menu_name == &"PauseMenu":
 		pass
+	
+	# Pause button
+	pause_button.text = "Pause [%s]" % KeyUtils.keycode_to_char(InputMap.action_get_events(&"pause")[0].physical_keycode).to_lower()
 
 func end() -> void:
 	# Stop the countdown if moving to post level menu.
@@ -27,8 +30,7 @@ func end() -> void:
 		Game.countdown.stop()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(&"pause"):
-		Game.menu.go_to(&"PauseMenu")
+	if Game.menu.current_menu != self: return
 	
 	if Input.is_action_just_pressed(&"retry"):
 		retry.call_deferred()

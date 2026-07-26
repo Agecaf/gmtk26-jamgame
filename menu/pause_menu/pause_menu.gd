@@ -33,3 +33,11 @@ func end() -> void:
 	if Game.menu.next_menu_name == &"GameMenu":
 		get_tree().paused = false
 		Game.audio.game_music.stream_paused = false
+
+func _process(_delta: float) -> void:
+	if Game.menu.current_menu.name == &"GameMenu":
+		if Input.is_action_just_pressed(&"pause"):
+			Game.menu.go_to(&"PauseMenu")
+	elif Game.menu.current_menu == self:
+		if Input.is_action_just_pressed(&"pause"):
+			Game.menu.go_to(&"GameMenu")

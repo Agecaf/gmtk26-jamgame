@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c6fi6sgqqrmcv" path="res://assets/art/background/victory_z.png" id="5_p3wmc"]
 
 [node name="BlackFrame" type="Node2D" unique_id=455397411]
+process_mode = 3
 script = ExtResource("1_a8j8v")
 
 [node name="BlackFrame" type="Sprite2D" parent="." unique_id=2123263840]
