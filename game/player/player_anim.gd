@@ -51,6 +51,9 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.LANDING:
 			player.animator_vampire.play(&'Vampire/Land')
 		
+		Player.State.LANDING_BAT:
+			player.animator_bat.play(&'BatForm/Land')
+		
 		Player.State.TURNING_TO_MIST:
 			player.animator_vampire.play(&'Vampire/TurnToMist')
 		
