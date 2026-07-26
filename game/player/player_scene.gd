@@ -15,6 +15,19 @@ func _on_player_ready() -> void:
 	
 	player.hurtbox_vampire.area_entered.connect(_on_player_hurtbox_area_entered)
 	player.hurtbox_bat.area_entered.connect(_on_player_hurtbox_area_entered)
+	
+	# Place wall detector raycasts at the top and bottom edges of the terrain collider
+	player.wall_detector_top.position = (
+		player.terrain_collider.shape.get_rect().size.y * 0.5 * Vector2.UP
+		+ player.terrain_collider.position.y * Vector2.DOWN
+	)
+	player.wall_detector_bottom.position = (
+		player.terrain_collider.shape.get_rect().size.y * 0.5 * Vector2.DOWN
+		+ player.terrain_collider.position.y * Vector2.DOWN
+	)
+	# Then set them up to check a full terrain collider width ahead of the character
+	player.wall_detector_top.target_position = player.terrain_collider.shape.get_rect().size.x * Vector2.RIGHT
+	player.wall_detector_bottom.target_position = player.terrain_collider.shape.get_rect().size.x * Vector2.RIGHT
 
 
 func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
