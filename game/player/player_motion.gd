@@ -21,6 +21,7 @@ const IMMOBILE_STATES: Array[Player.State] = [
 	Player.State.CROUCHING,
 	Player.State.TURNING_TO_MIST,
 	Player.State.TURNING_TO_ASHES,
+	Player.State.TURNING_TO_ASHES_BAT,
 	Player.State.ENTERING_COFFIN,
 ]
 

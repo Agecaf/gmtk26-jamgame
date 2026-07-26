@@ -63,6 +63,9 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.TURNING_TO_ASHES:
 			player.animator_vampire.play(&'Vampire/TurnToAshes')
 
+		Player.State.TURNING_TO_ASHES_BAT:
+			player.animator_bat.play(&'BatForm/TurnToAshes')
+
 		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:
 			pass

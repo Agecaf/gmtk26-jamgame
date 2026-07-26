@@ -22,6 +22,7 @@ enum State {
 	TURNING_TO_MIST,
 	REFORMING,
 	TURNING_TO_ASHES,
+	TURNING_TO_ASHES_BAT,
 	ENTERING_COFFIN,
 }
 
@@ -252,7 +253,10 @@ func hurt() -> void:
 
 
 func turn_to_ashes() -> void:
-	change_state(State.TURNING_TO_ASHES)
+	if current_form == Form.VAMPIRE:
+		change_state(State.TURNING_TO_ASHES)
+	else:
+		change_state(State.TURNING_TO_ASHES_BAT)
 
 
 func enter_coffin() -> void:

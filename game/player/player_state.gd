@@ -235,6 +235,7 @@ func _on_player_physics_process(delta: float) -> void:
 		
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_ASHES,\
+		Player.State.TURNING_TO_ASHES_BAT,\
 		Player.State.ENTERING_COFFIN:
 			pass
 
@@ -269,7 +270,8 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.JUMPING_BAT,\
 		Player.State.GLIDING_BAT,\
 		Player.State.BOUNCE_END,\
-		Player.State.FALLING_BAT:
+		Player.State.FALLING_BAT,\
+		Player.State.TURNING_TO_ASHES_BAT:
 			player.change_form(Player.Form.BAT)
 		
 		Player.State.BOUNCE_START:
