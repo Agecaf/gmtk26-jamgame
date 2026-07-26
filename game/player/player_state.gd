@@ -78,6 +78,10 @@ func _on_player_physics_process(delta: float) -> void:
 			elif player.velocity.x:
 				player.change_state(Player.State.RUNNING)
 				player.pocketwatch_close()
+			
+			elif total_air_time >= player.falling_delay:
+				player.change_state(Player.State.FALLING)
+				player.pocketwatch_close()
 		
 		Player.State.RUNNING:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
@@ -212,6 +216,9 @@ func _on_player_physics_process(delta: float) -> void:
 		Player.State.FALLING:
 			if player.is_on_floor():
 				player.change_state(Player.State.LANDING)
+			
+			elif player.is_on_wall_only() and wall_jump_conditions_met:
+				player.change_state(Player.State.HANGING)
 			
 			elif Input.is_action_just_pressed(&'jump') and double_jump_keypress_timing:
 				player.change_state(Player.State.JUMPING_BAT)
