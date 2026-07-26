@@ -42,6 +42,7 @@ playback_type = 1
 
 [node name="PrelevelMusic" type="AudioStreamPlayer" parent="." unique_id=1205898688]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("6_ef2x8")
 volume_db = -3.0
 bus = &"Music"
