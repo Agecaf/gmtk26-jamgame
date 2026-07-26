@@ -64,3 +64,7 @@ func _on_player_process(delta: float):
 # Save spot
 func _on_player_save_spot() -> void:
 	SFX.play(SFX.DOUBLE_JUMP)
+
+
+func _on_player_turn_to_bats() -> void:
+	SFX.play(SFX.LITTLE_BATS)

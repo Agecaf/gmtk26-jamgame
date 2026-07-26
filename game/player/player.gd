@@ -270,6 +270,12 @@ func hurt() -> void:
 		change_state(State.TURNING_TO_MIST_BAT)
 
 
+func turn_to_bats() -> void:
+	for script: Resource in script_order:
+		if '_on_player_turn_to_bats' in script:
+			script._on_player_turn_to_bats()
+
+
 func turn_to_ashes() -> void:
 	if current_form == Form.VAMPIRE:
 		change_state(State.TURNING_TO_ASHES)

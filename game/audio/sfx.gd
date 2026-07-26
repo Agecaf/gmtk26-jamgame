@@ -26,6 +26,10 @@ static var volume_dict: Dictionary = {
 	CROSSBOW_SHOT: 3.0,
 }
 
+static var start_position_dict: Dictionary = {
+	LITTLE_BATS: 3.0,
+}
+
 # Play an sfx
 static func play(which_sfx) -> void:
 	if which_sfx == null: return
@@ -33,4 +37,4 @@ static func play(which_sfx) -> void:
 	var asp: AudioStreamPlayer = Game.audio.get_sfx_asp()
 	asp.volume_db = volume_dict.get(which_sfx, 0.0)
 	asp.stream = which_sfx
-	asp.play()
+	asp.play(start_position_dict.get(which_sfx, 0.0))
