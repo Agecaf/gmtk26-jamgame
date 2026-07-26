@@ -7,6 +7,11 @@ class_name PlayerAnim extends Resource
 var player: Player
 
 
+func _on_player_ready() -> void:
+	player.animator_vampire.animation_finished.connect(_on_vampire_animation_finished)
+	player.animator_bat.animation_finished.connect(_on_bat_animation_finished)
+
+
 func _on_player_change_state(state: Player.State) -> void:
 	player.animator.stop()
 	
@@ -56,6 +61,9 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.TURNING_TO_MIST:
 			player.animator_vampire.play(&'Vampire/TurnToMist')
+
+		Player.State.TURNING_TO_MIST_BAT:
+				player.animator_bat.play(&'BatForm/TurnToMist')
 		
 		Player.State.REFORMING:
 			player.animator_vampire.play(&'Vampire/Reform')
@@ -69,3 +77,13 @@ func _on_player_change_state(state: Player.State) -> void:
 		# TODO: Will there be a coffin animation based on the player?
 		Player.State.ENTERING_COFFIN:
 			pass
+
+
+func _on_vampire_animation_finished(_anim_name: StringName):
+	pass
+
+
+func _on_bat_animation_finished(anim_name: StringName):
+	if anim_name == &'BatForm/TurnToMist':
+		player.change_form(Player.Form.VAMPIRE)
+		player.animator_vampire.play_section(&'Vampire/TurnToMist', 0.19)

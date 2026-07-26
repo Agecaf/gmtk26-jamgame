@@ -20,6 +20,8 @@ enum State {
 	LANDING,
 	LANDING_BAT,
 	TURNING_TO_MIST,
+	TURNING_TO_MIST_BAT,
+	TURNING_TO_MIST_POST_BAT,
 	REFORMING,
 	TURNING_TO_ASHES,
 	TURNING_TO_ASHES_BAT,
@@ -249,7 +251,10 @@ func save_spot() -> void:
 
 
 func hurt() -> void:
-	change_state(State.TURNING_TO_MIST)
+	if current_form == Form.VAMPIRE:
+		change_state(State.TURNING_TO_MIST)
+	else:
+		change_state(State.TURNING_TO_MIST_BAT)
 
 
 func turn_to_ashes() -> void:
