@@ -10,9 +10,12 @@ func _ready_deferred() -> void:
 	continue_button.pressed.connect(continue_callback)
 	return_to_main_button.pressed.connect(Game.menu.go_to.bind(&"MainMenu"))
 
+var t = 0.0
+
 func start():
 	# On Victory
 	if Game.victory:
+		%StoryText.visible = false
 		continue_button.text = "Continue"
 		
 		# Save score
@@ -24,7 +27,13 @@ func start():
 	
 	# Game defeat
 	else:
+		%StoryText.visible = true
+		t = 0.0
 		continue_button.text = "Retry"
+
+func _process(delta: float) -> void:
+	t += delta
+	%StoryText.modulate = Color(1.0, 1.0, 1.0, clampf(t - 2.0, 0.0, 1.0))
 
 func continue_callback() -> void:
 	

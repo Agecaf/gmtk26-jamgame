@@ -36,8 +36,21 @@ follow_viewport_enabled = true
 [node name="GameContainer" type="Node2D" parent="GameLayer" unique_id=1757171418]
 script = ExtResource("1_h2yge")
 levels = Array[PackedScene]([ExtResource("3_ycdy4"), ExtResource("3_dg77c"), ExtResource("5_dg77c"), ExtResource("3_7mycd")])
-start_text = Array[String](["As Count Downcula returned near dawn to his mansion, he found a threatening note;
-\"Count Downcula, you foul creature of the night, we will ensure your demise!\"", "Count Downcula went looking for the troublemakers who had filled his abode with silvered traps, alas, they had covered their tracks well enough.", "The story continues....", "And once again continues...."])
+start_text = Array[String](["A vampire's curse is an affair most dire
+Mere light of the morning will set him on fire
+To survive the day he must return to his keep
+Find his coffin and then go to sleep
+", "Count Downcula returned near dawn to his abode
+And was shook when he found a most threatening note:
+\"We placed contraptions and traps in your evil home,
+But if you survive the 4th night, we will leave you alone\"
+", "He has looked for the rascals high and low,
+Yet, alas, they have covered their tracks enough.
+Clueless and lost, his mood was going sore,
+Troubled by what the third night had in store", "There it was. Final dawn of the anonymous terror
+Once again the Count held onto a baleful letter
+\"Count Downcula, you foul creature of the night, 
+You'll never reach your coffin before the daylight!\""])
 number_of_fruit = Array[int]([2, 0, 0, 0])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]

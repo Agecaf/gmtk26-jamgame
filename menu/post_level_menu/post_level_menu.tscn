@@ -11,6 +11,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r4vb3")
 
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=1147386224]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="StoryText" type="RichTextLabel" parent="CenterContainer2" unique_id=1796019010]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(50, 0)
+theme_override_constants/line_separation = 24
+text = "Distraught with the news, his peasants lament,
+For their Count has met a most grizzly end."
+fit_content = true
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=596327757]
 custom_minimum_size = Vector2(0, 600)
 layout_mode = 1
