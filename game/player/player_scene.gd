@@ -65,20 +65,20 @@ func _on_player_change_form(form: Player.Form) -> void:
 	match player.previous_form:
 		Player.Form.VAMPIRE:
 			player.sprite_vampire.hide()
-			player.hurtbox_collider_vampire.disabled = true
+			player.hurtbox_collider_vampire.set_deferred(&'disabled', true)
 		
 		Player.Form.BAT:
 			player.sprite_bat.hide()
-			player.hurtbox_collider_bat.disabled = true
+			player.hurtbox_collider_bat.set_deferred(&'disabled', true)
 	
 	match form:
 		Player.Form.VAMPIRE:
 			player.sprite_vampire.show()
-			player.hurtbox_collider_vampire.disabled = false
+			player.hurtbox_collider_vampire.set_deferred(&'disabled', false)
 		
 		Player.Form.BAT:
 			player.sprite_bat.show()
-			player.hurtbox_collider_bat.disabled = false
+			player.hurtbox_collider_bat.set_deferred(&'disabled', false)
 
 
 func _on_player_save_spot() -> void:

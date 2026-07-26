@@ -42,6 +42,9 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING_BAT:
 			player.animator_bat.play(&'BatForm/Flap')
 		
+		Player.State.BOUNCE_START:
+			player.animator_bat.play(&'BatForm/Bounce')
+		
 		Player.State.FALLING,\
 		Player.State.JUMPING_FALL:
 			player.animator_vampire.play(&'Vampire/Fall')

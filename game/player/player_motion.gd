@@ -24,23 +24,15 @@ const IMMOBILE_STATES: Array[Player.State] = [
 	Player.State.ENTERING_COFFIN,
 ]
 
-var cached_velocity: Vector2
+var bounce_velocity: Vector2
 
 var last_horizontal_direction: Enums.Direction = Enums.Direction.NONE
 var last_wall_direction: Enums.Direction = Enums.Direction.NONE
 var wall_jump_cooldown_remaining: float = 0
-var bat_bounce_cooldown_remaining: float = 0
 
 
 func _on_player_physics_process(delta: float) -> void:
 	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
-	bat_bounce_cooldown_remaining = maxf(0, bat_bounce_cooldown_remaining - delta)
-
-	var can_bounce: bool = (
-		player.current_state in [Player.State.JUMPING_BAT, Player.State.GLIDING_BAT, Player.State.FALLING_BAT]
-		and absf(cached_velocity.x) > player.bat_bounce_min_speed_required
-		and not bat_bounce_cooldown_remaining
-	)
 	
 	# Don't allow horizontal movement if the player is in an inactive state
 	if player.current_state in IMMOBILE_STATES:
@@ -55,10 +47,9 @@ func _on_player_physics_process(delta: float) -> void:
 	elif wall_jump_cooldown_remaining:
 		player.velocity.x = player.run_speed * (1 if last_wall_direction == Enums.Direction.LEFT else -1)
 
-	# Bats invert horizontal direction on colliding with a wall, no steering on bounce frames
-	elif player.is_on_wall() and can_bounce:
-		bat_bounce_cooldown_remaining = player.bat_bounce_cooldown
-		player.velocity.x = -cached_velocity.x
+	# Invert horizontal direction on completing a wall bounce, no steering on bounce frames
+	elif player.current_state in [Player.State.BOUNCE_END]:
+		player.velocity.x = -bounce_velocity.x
 
 	# Active horizontal steering by player input
 	else:
@@ -77,6 +68,16 @@ func _on_player_physics_process(delta: float) -> void:
 			)
 			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / air_speed_change_rate))
 	
+	# Cache player velocity on starting a bounce
+	if player.current_state == Player.State.BOUNCE_START:
+		if not bounce_velocity:
+			bounce_velocity = player.velocity
+		
+		player.velocity.x = 0
+	
+	else:
+		bounce_velocity = Vector2.ZERO
+	
 	last_horizontal_direction = (
 		Enums.Direction.LEFT if player.velocity.x < 0 else
 		Enums.Direction.RIGHT if player.velocity.x > 0 else
@@ -87,7 +88,8 @@ func _on_player_physics_process(delta: float) -> void:
 		player.velocity.y *= player.short_jump_velocity_attenuation
 	
 	match player.current_state:
-		Player.State.HANGING:
+		Player.State.HANGING,\
+		Player.State.BOUNCE_START:
 			player.velocity.y = 0
 		
 		Player.State.GLIDING:
@@ -109,8 +111,6 @@ func _on_player_physics_process(delta: float) -> void:
 	
 	elif player.velocity.x < -10:
 		player.face(Enums.Direction.LEFT)
-	
-	cached_velocity = player.velocity
 
 
 func _on_player_change_state(state: Player.State) -> void:
@@ -119,7 +119,8 @@ func _on_player_change_state(state: Player.State) -> void:
 			player.velocity.y = jump_initial_velocity
 		
 		Player.State.JUMPING_BAT:
-			player.velocity.y = double_jump_initial_velocity
+			if player.previous_state != Player.State.BOUNCE_END:
+				player.velocity.y = double_jump_initial_velocity
 	
 	if player.previous_state == Player.State.HANGING:
 		wall_jump_cooldown_remaining = player.wall_jump_cooldown

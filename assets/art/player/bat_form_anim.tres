@@ -1,5 +1,33 @@
 [gd_resource type="AnimationLibrary" format=3 uid="uid://cjgnvhq5vojda"]
 
+[sub_resource type="Animation" id="Animation_7s68r"]
+length = 0.19999999999999998
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BatSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [22, 23]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BatSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_kfqd8"]
 length = 0.6
 loop_mode = 1
@@ -16,8 +44,39 @@ tracks/0/keys = {
 "update": 1,
 "values": [4, 5, 6, 7, 6, 5]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BatSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r21s1"]
+length = 1.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BatSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.5, 0.6, 0.9, 1, 1.3, 1.4, 1.4999999, 1.5999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 6, 5, 6, 5, 6, 5, 6, 7, 6, 5]
+}
 
 [resource]
 _data = {
-&"Flap": SubResource("Animation_kfqd8")
+&"Bounce": SubResource("Animation_7s68r"),
+&"Flap": SubResource("Animation_kfqd8"),
+&"Glide": SubResource("Animation_r21s1")
 }

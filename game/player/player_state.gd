@@ -12,7 +12,9 @@ var jump_keypress_interval: float = 0
 var jump_hold_time: float = 0
 var total_air_time: float = 0
 var wall_jump_cooldown_remaining: float = 0
+var bounce_cooldown_remaining: float = 0
 var landing_delay_remaining: float = 0
+var bounce_delay_remaining: float = 0
 
 
 func _on_player_ready() -> void:
@@ -47,12 +49,10 @@ func _on_player_physics_process(delta: float) -> void:
 	)
 
 	total_air_time = 0.0 if player.is_on_floor() else (total_air_time + delta)
-	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 
+	wall_jump_cooldown_remaining = maxf(0, wall_jump_cooldown_remaining - delta)
 	player.wall_detector_top.force_raycast_update()
 	player.wall_detector_bottom.force_raycast_update()
-	
-	landing_delay_remaining = maxf(0, landing_delay_remaining - delta)
 
 	var wall_jump_conditions_met: bool = (
 		total_air_time >= player.wall_jump_min_buildup_time
@@ -61,17 +61,28 @@ func _on_player_physics_process(delta: float) -> void:
 		and player.wall_detector_bottom.is_colliding()
 	)
 	
+	bounce_cooldown_remaining = maxf(0, bounce_cooldown_remaining - delta)
+	
+	var can_bounce: bool = (
+		# absf(player.velocity.x) > player.bat_bounce_min_speed_required
+		# and not bounce_cooldown_remaining
+		not bounce_cooldown_remaining
+	)
+
+	landing_delay_remaining = maxf(0, landing_delay_remaining - delta)
+	bounce_delay_remaining = maxf(0, bounce_delay_remaining - delta)
+	
 	match player.current_state:
 		Player.State.IDLE:
 			if Input.is_action_just_pressed(&'jump') and total_air_time <= player.coyote_time:
 				player.change_state(Player.State.JUMPING)
 				player.pocketwatch_close()
 			
-			if Input.is_action_pressed(&'crouch'):
+			elif Input.is_action_pressed(&'crouch'):
 				player.change_state(Player.State.CROUCHING)
 				player.pocketwatch_close()
 			
-			if player.velocity.x:
+			elif player.velocity.x:
 				player.change_state(Player.State.RUNNING)
 				player.pocketwatch_close()
 		
@@ -84,13 +95,13 @@ func _on_player_physics_process(delta: float) -> void:
 			# 	player.change_state(Player.State.CROUCHING_RUN)
 			
 			# Transition to crouching instead
-			if Input.is_action_just_pressed(&'crouch'):
+			elif Input.is_action_just_pressed(&'crouch'):
 				player.change_state(Player.State.CROUCHING)
 			
-			if total_air_time >= player.falling_delay:
+			elif total_air_time >= player.falling_delay:
 				player.change_state(Player.State.FALLING)
 			
-			if not player.velocity.x:
+			elif not player.velocity.x:
 				player.change_state(Player.State.IDLE)
 		
 		Player.State.CROUCHING:
@@ -152,6 +163,9 @@ func _on_player_physics_process(delta: float) -> void:
 			
 			elif jump_hold_time >= player.bat_glide_start_delay:
 				player.change_state(Player.State.GLIDING_BAT)
+			
+			elif player.is_on_wall() and can_bounce:
+				player.change_state(Player.State.BOUNCE_START)
 
 		Player.State.GLIDING:
 			if player.is_on_floor():
@@ -172,6 +186,32 @@ func _on_player_physics_process(delta: float) -> void:
 				
 			elif Input.is_action_just_released(&'jump'):
 				player.change_state(Player.State.FALLING_BAT)
+			
+			elif player.is_on_wall() and can_bounce:
+				player.change_state(Player.State.BOUNCE_START)
+
+		Player.State.BOUNCE_START:
+			if player.is_on_floor():
+				player.change_state(Player.State.IDLE)
+				
+			elif Input.is_action_just_released(&'jump'):
+				player.change_state(Player.State.FALLING_BAT)
+			
+			elif not bounce_delay_remaining:
+				player.change_state(Player.State.BOUNCE_END)
+
+		Player.State.BOUNCE_END:
+			if player.is_on_floor():
+				player.change_state(Player.State.IDLE)
+				
+			elif Input.is_action_just_released(&'jump'):
+				player.change_state(Player.State.FALLING_BAT)
+			
+			elif jump_hold_time >= player.bat_glide_start_delay:
+				player.change_state(Player.State.GLIDING_BAT)
+
+			else:
+				player.change_state(Player.State.JUMPING_BAT)
 
 		Player.State.FALLING:
 			if player.is_on_floor():
@@ -228,8 +268,13 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.JUMPING_BAT,\
 		Player.State.GLIDING_BAT,\
+		Player.State.BOUNCE_END,\
 		Player.State.FALLING_BAT:
 			player.change_form(Player.Form.BAT)
+		
+		Player.State.BOUNCE_START:
+			player.change_form(Player.Form.BAT)
+			bounce_delay_remaining = player.bat_bounce_delay
 
 		Player.State.LANDING_BAT:
 			player.change_form(Player.Form.BAT)
