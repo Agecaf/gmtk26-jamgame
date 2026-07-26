@@ -22,9 +22,8 @@ func start() -> void:
 		pass
 
 func end() -> void:
-	# Stop the music unless we're just pausing the game.
+	# Stop the countdown if moving to post level menu.
 	if Game.menu.next_menu_name != &"PauseMenu":
-		Game.audio.game_music.stop()
 		Game.countdown.stop()
 
 func _process(_delta: float) -> void:

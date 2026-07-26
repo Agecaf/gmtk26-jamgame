@@ -1,6 +1,7 @@
 class_name Crossbow extends StaticBody2D
 
 
+@export var left_or_right: bool = false
 @export_range(24, 1920, 24) var detection_range: float = 96
 @export_range(25, 500, 25) var bolt_speed: float = 150
 @export_range(0.5, 10, 0.5) var bolt_cooldown: float = 2.5
@@ -25,23 +26,25 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	# Face in player direction
-	if Game.player.position.x < position.x:
+	if left_or_right:
 		face(Enums.Direction.LEFT)
 	else:
 		face(Enums.Direction.RIGHT)
 	
 	# Raycast
-	raycast.target_position = detection_range * Vector2.LEFT
-	raycast.force_raycast_update()
+	if left_or_right:
+		raycast.target_position = detection_range * Vector2.LEFT
+		raycast.force_raycast_update()
+		
+		if raycast.is_colliding():
+			fire(Enums.Direction.LEFT)
 	
-	if raycast.is_colliding():
-		fire(Enums.Direction.LEFT)
-	
-	raycast.target_position = detection_range * Vector2.RIGHT
-	raycast.force_raycast_update()
+	else:
+		raycast.target_position = detection_range * Vector2.RIGHT
+		raycast.force_raycast_update()
 
-	if raycast.is_colliding():
-		fire(Enums.Direction.RIGHT)
+		if raycast.is_colliding():
+			fire(Enums.Direction.RIGHT)
 
 
 func face(direction: Enums.Direction) -> void:

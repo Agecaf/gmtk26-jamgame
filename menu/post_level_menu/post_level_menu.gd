@@ -39,5 +39,8 @@ func continue_callback() -> void:
 	else:
 		Game.menu.go_to(&"GameMenu")
 
+# Stop the game music.
+func end() -> void:
+	Game.audio.game_music.stop()
 
 #

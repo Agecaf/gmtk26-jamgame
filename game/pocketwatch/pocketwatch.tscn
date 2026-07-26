@@ -3,11 +3,17 @@
 [ext_resource type="Script" uid="uid://dhjtgnj4ujx2u" path="res://game/pocketwatch/pocketwatch.gd" id="1_1rbkx"]
 [ext_resource type="Texture2D" uid="uid://demrh624qf80g" path="res://assets/art/ui/pocketwatch_small.png" id="1_bwf8q"]
 [ext_resource type="FontFile" uid="uid://cilohm76mhdjg" path="res://assets/other/font/Jacquard24-Regular.ttf" id="2_1rbkx"]
+[ext_resource type="Theme" uid="uid://cyj05vdf0ga8u" path="res://assets/other/theme/game_theme.tres" id="4_70nu4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kafe6"]
 font = ExtResource("2_1rbkx")
 font_size = 43
 font_color = Color(0.48837668, 0.09068359, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2nw5p"]
+font_size = 43
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Pocketwatch" type="Node2D" unique_id=1002285961]
 script = ExtResource("1_1rbkx")
@@ -29,3 +35,13 @@ text = "60"
 label_settings = SubResource("LabelSettings_kafe6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CheckpointLabel" type="Label" parent="PocketwatchSmall" unique_id=983749152]
+unique_name_in_owner = true
+offset_left = 243.00002
+offset_top = 37.666668
+offset_right = 489.0
+offset_bottom = 80.66667
+theme = ExtResource("4_70nu4")
+text = "Checkpoint in 3..."
+label_settings = SubResource("LabelSettings_2nw5p")
