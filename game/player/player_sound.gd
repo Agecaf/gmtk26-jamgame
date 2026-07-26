@@ -24,10 +24,16 @@ func _on_player_change_state(state: Player.State) -> void:
 
 	match state:
 		Player.State.IDLE:
-			SFX.play(SFX.LAND_BAT if previously_bat else SFX.LAND_VAMPIRE)
+			if previously_bat:
+				SFX.play(SFX.LAND_BAT)
+			elif player.previous_state != Player.State.RUNNING:
+				SFX.play(SFX.LAND_VAMPIRE)
 		
 		Player.State.JUMPING:
 			SFX.play(SFX.JUMP)
+		
+		Player.State.RUNNING:
+			run_timer = 0.1
 		
 		Player.State.JUMPING_BAT:
 			SFX.play(SFX.DOUBLE_JUMP)
@@ -40,3 +46,21 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.TURNING_TO_MIST:
 			SFX.play(SFX.HURT)
+		
+		Player.State.TURNING_TO_ASHES:
+			SFX.play(SFX.DEATH_INTO_ASH)
+
+
+# Running
+var run_timer: float = 0.0
+var run_timer_max: float = 0.3 
+func _on_player_process(delta: float):
+	if player.current_state == Player.State.RUNNING:
+		run_timer -= delta
+		if run_timer < 0:
+			run_timer = run_timer_max
+			SFX.play(SFX.RUN)
+
+# Save spot
+func _on_player_save_spot() -> void:
+	SFX.play(SFX.DOUBLE_JUMP)

@@ -21,7 +21,7 @@ shader_parameter/hue_shift = 0.2810000133475
 
 [sub_resource type="Curve2D" id="Curve2D_qj0nt"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50)
+"points": PackedVector2Array(0, 0, 0, 0, 426, -17, 0, 0, 0, 0, 423, 86)
 }
 point_count = 2
 
@@ -78,7 +78,7 @@ collision_mask = 4294901761
 script = ExtResource("5_ekd6w")
 
 [node name="Coffin" parent="." unique_id=773797175 instance=ExtResource("10_4735x")]
-position = Vector2(744, 312)
+position = Vector2(780, 311)
 
 [node name="Sawblade" parent="." unique_id=71082083 instance=ExtResource("12_mpdhi")]
 position = Vector2(342, 115)

@@ -82,5 +82,7 @@ func fire(direction: Enums.Direction) -> void:
 	elif direction == Enums.Direction.RIGHT:
 		bolt.velocity = bolt_speed * Vector2.RIGHT
 	
-	# Play animation
+	# Play animation and SFX
 	animation.play(&"fire")
+	SFX.play(SFX.CROSSBOW_SHOT)
+	

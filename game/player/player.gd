@@ -241,7 +241,7 @@ func change_form(form: Form) -> void:
 
 	for script: Resource in script_order:
 		if '_on_player_change_form' in script:
-			script._on_player_change_form(form)
+			script._on_player_change_form.call_deferred(form)
 
 
 func save_spot() -> void:

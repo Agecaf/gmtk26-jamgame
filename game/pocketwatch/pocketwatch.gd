@@ -6,6 +6,7 @@ func _ready() -> void:
 	_ready_deferred.call_deferred()
 func _ready_deferred() -> void:
 	Game.countdown.tick.connect(update_watch)
+	Game.countdown.timeout.connect(update_watch.bind(0))
 
 var target_position: Vector2 = Vector2(300, 1500)
 var target_open: Vector2 = Vector2(300, 800)
@@ -15,6 +16,7 @@ func update_watch(seconds_left: int) -> void:
 	%TimeLabel.text = str(seconds_left)
 
 # Open and close pocketwatch
+var countdown_started: bool = false
 func _process(delta: float) -> void:
 	
 	# Position pocketwatch
@@ -31,6 +33,18 @@ func _process(delta: float) -> void:
 				%CheckpointLabel.text = "Checkpoint in %d..." % ceili(4.0 - t)
 			else:
 				%CheckpointLabel.text = "Checkpoint ready!"
+			
+			# Countdown
+			if t > 0.6 and not countdown_started:
+				Game.audio.count_sfx.stop()
+				Game.audio.count_sfx.play()
+				countdown_started = true
+		else:
+			countdown_started = false
 
-func open() -> void: target_position = target_open
-func close() -> void: target_position = target_closed
+func open() -> void: 
+	target_position = target_open
+func close() -> void: 
+	target_position = target_closed
+	if countdown_started:
+		Game.audio.count_sfx.stop()

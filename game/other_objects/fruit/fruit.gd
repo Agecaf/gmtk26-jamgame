@@ -20,4 +20,4 @@ func pick() -> void:
 	hide()
 	picked = true
 	Game.fruits += 1
-	SFX.play(SFX.LITTLE_BATS)
+	SFX.play(SFX.EAT_FRUIT)
