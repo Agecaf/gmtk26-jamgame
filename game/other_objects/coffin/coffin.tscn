@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bos0do8h7syl3" path="res://game/other_objects/coffin/coffin.gd" id="1_p2ykh"]
 [ext_resource type="Texture2D" uid="uid://cjldwuffp22qm" path="res://assets/art/objects/coffin.png" id="2_p2ykh"]
+[ext_resource type="Texture2D" uid="uid://cmji5vm2413my" path="res://assets/art/objects/coffin_flat.png" id="3_dlyqv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2nw5p"]
 
@@ -26,6 +27,13 @@ material = SubResource("CanvasItemMaterial_2nw5p")
 position = Vector2(0, -36)
 texture = SubResource("GradientTexture2D_kafe6")
 
-[node name="Coffin" type="Sprite2D" parent="." unique_id=1628295279]
+[node name="CoffinOld" type="Sprite2D" parent="." unique_id=1628295279]
+visible = false
 position = Vector2(0, -16)
 texture = ExtResource("2_p2ykh")
+
+[node name="Coffin" type="Sprite2D" parent="." unique_id=1981401026]
+position = Vector2(0, -16)
+texture = ExtResource("3_dlyqv")
+region_enabled = true
+region_rect = Rect2(24, 53, 64, 32)
