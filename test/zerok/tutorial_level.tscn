@@ -81,7 +81,7 @@ tile_data = PackedInt32Array(0, 262144, 0, 65536, 393216, 0, 1, 65536, 0, 65537,
 [sub_resource type="TileMapPattern" id="TileMapPattern_kynqu"]
 tile_data = PackedInt32Array(0, 262144, 1, 65536, 0, 1, 1, 393216, 0, 65537, 327680, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ltfy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtiux"]
 texture = ExtResource("2_1jabx")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
@@ -89,7 +89,7 @@ texture_region_size = Vector2i(24, 24)
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xag0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kw0n7"]
 resource_name = "CastleBG"
 texture = ExtResource("3_0byum")
 texture_region_size = Vector2i(24, 24)
@@ -113,7 +113,7 @@ texture_region_size = Vector2i(24, 24)
 1:1/0 = 0
 2:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xolx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4t8b"]
 resource_name = "CastleFG"
 texture = ExtResource("3_0byum")
 texture_region_size = Vector2i(24, 24)
@@ -471,9 +471,9 @@ terrain_set_1/terrain_0/name = "CastleFG1"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_1/terrain_1/name = "CastleFG2"
 terrain_set_1/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/2 = SubResource("TileSetAtlasSource_3xolx")
-sources/1 = SubResource("TileSetAtlasSource_3xag0")
-sources/0 = SubResource("TileSetAtlasSource_4ltfy")
+sources/2 = SubResource("TileSetAtlasSource_c4t8b")
+sources/1 = SubResource("TileSetAtlasSource_kw0n7")
+sources/0 = SubResource("TileSetAtlasSource_dtiux")
 pattern_0 = SubResource("TileMapPattern_ey834")
 pattern_1 = SubResource("TileMapPattern_cqhnd")
 pattern_2 = SubResource("TileMapPattern_5otng")
@@ -605,7 +605,7 @@ to create a checkpoint!"
 horizontal_alignment = 1
 
 [node name="Player" parent="." unique_id=716552642 instance=ExtResource("1_f30h5")]
-position = Vector2(272, 888)
+position = Vector2(272, 889)
 collision_mask = 65548
 
 [node name="CameraBorder" parent="." unique_id=780212062 instance=ExtResource("13_douvt")]
