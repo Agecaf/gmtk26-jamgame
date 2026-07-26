@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3uo17dxslqic" path="res://assets/art/objects/door_dial.png" id="2_yy3q1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kafe6"]
-size = Vector2(40, 64)
+size = Vector2(40, 72)
 
 [node name="ClockDoor" type="Node2D" unique_id=97055137]
 script = ExtResource("1_yy3q1")
@@ -18,7 +18,7 @@ hframes = 4
 
 [node name="DoorDial" type="Sprite2D" parent="." unique_id=1431727122]
 unique_name_in_owner = true
-position = Vector2(0, -29)
+position = Vector2(0, -33)
 texture = ExtResource("2_yy3q1")
 offset = Vector2(0, -9)
 
