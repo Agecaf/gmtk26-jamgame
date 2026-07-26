@@ -7,6 +7,7 @@ const GLIDE_BAT = preload("res://assets/audio/sfx/cape_glide_short.wav")
 const DOOR_OPEN = preload("res://assets/audio/sfx/clock_door_opens.wav")
 const ENTER_COFFIN = preload("res://assets/audio/sfx/coffin.wav")
 const DEATH_INTO_ASH = preload("res://assets/audio/sfx/nooo.wav")
+const SAWBLADE = preload("res://assets/audio/sfx/sawblade.wav")
 const HURT = preload("res://assets/audio/sfx/hurt_and_bats.wav")
 const LITTLE_BATS = preload("res://assets/audio/sfx/bat_wings_flap.wav")
 const CROSSBOW_SHOT = preload("res://assets/audio/sfx/crossbow.wav")
@@ -24,6 +25,7 @@ static var volume_dict: Dictionary = {
 	# LAND_VAMPIRE: -6.0,
 	DOUBLE_JUMP: -3.0,
 	CROSSBOW_SHOT: 3.0,
+	SAWBLADE: -12.0,
 }
 
 static var start_position_dict: Dictionary = {

@@ -36,6 +36,7 @@ bus = &"SFX"
 [node name="CountDown" type="AudioStreamPlayer" parent="." unique_id=2124458019]
 unique_name_in_owner = true
 stream = ExtResource("5_2sf7d")
+volume_db = 3.0
 bus = &"SFX"
 playback_type = 1
 

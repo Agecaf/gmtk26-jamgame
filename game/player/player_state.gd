@@ -166,6 +166,7 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.GLIDING_BAT)
 			
 			elif player.is_on_wall() and can_bounce:
+				player.last_wall_normal = player.get_wall_normal()
 				player.change_state(Player.State.BOUNCE_START)
 
 		Player.State.GLIDING:
@@ -189,6 +190,7 @@ func _on_player_physics_process(delta: float) -> void:
 				player.change_state(Player.State.FALLING_BAT)
 			
 			elif player.is_on_wall() and can_bounce:
+				player.last_wall_normal = player.get_wall_normal()
 				player.change_state(Player.State.BOUNCE_START)
 
 		Player.State.BOUNCE_START:

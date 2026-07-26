@@ -7,14 +7,6 @@ class_name PlayerSound extends Resource
 var player: Player
 
 
-## As yet unused clips from SFX:
-# const DOOR_OPEN = preload("res://assets/audio/sfx/clock_door_opens.wav")
-# const ENTER_COFFIN = preload("res://assets/audio/sfx/vampire_enters_coffin.wav")
-# const DEATH_INTO_ASH = preload("res://assets/audio/sfx/ash_sizzle.wav")
-# const LITTLE_BATS = preload("res://assets/audio/sfx/bat_transformation.wav")
-# const CROSSBOW_SHOT = preload("res://assets/audio/sfx/beep_placeholder.wav")
-# const RUN = null
-
 func _on_player_change_state(state: Player.State) -> void:
 	var previously_bat: bool = player.previous_state in [
 		Player.State.JUMPING_BAT,
@@ -36,7 +28,10 @@ func _on_player_change_state(state: Player.State) -> void:
 			run_timer = 0.1
 		
 		Player.State.JUMPING_BAT:
-			SFX.play(SFX.DOUBLE_JUMP)
+			if player.previous_state != Player.State.BOUNCE_END:
+				SFX.play(SFX.DOUBLE_JUMP)
+			else:
+				SFX.play(SFX.GLIDE_BAT)
 		
 		Player.State.GLIDING:
 			SFX.play(SFX.GLIDE_VAMPIRE)
@@ -49,6 +44,10 @@ func _on_player_change_state(state: Player.State) -> void:
 		
 		Player.State.TURNING_TO_ASHES:
 			SFX.play(SFX.DEATH_INTO_ASH)
+		
+		Player.State.ENTERING_COFFIN_FROM_LEFT,\
+		Player.State.ENTERING_COFFIN_FROM_RIGHT:
+			SFX.play(SFX.ENTER_COFFIN)
 
 
 # Running
@@ -61,7 +60,7 @@ func _on_player_process(delta: float):
 			run_timer = run_timer_max
 			SFX.play(SFX.RUN)
 
-# Save spot
+
 func _on_player_save_spot() -> void:
 	SFX.play(SFX.DOUBLE_JUMP)
 
