@@ -98,7 +98,8 @@ func _on_player_physics_process(delta: float) -> void:
 			elif total_air_time >= player.falling_delay:
 				player.change_state(Player.State.FALLING)
 			
-			elif not player.velocity.x:
+			elif absf(player.velocity.x) < player.min_run_speed:
+				player.velocity.x = 0
 				player.change_state(Player.State.IDLE)
 		
 		Player.State.CROUCHING:
