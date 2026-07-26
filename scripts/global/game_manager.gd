@@ -5,6 +5,9 @@ extends Node
 @warning_ignore("unused_signal") signal game_start()
 @warning_ignore("unused_signal") signal game_end()
 
+@warning_ignore("unused_signal") signal coffin_sequence_start()
+@warning_ignore("unused_signal") signal coffin_sequence_complete()
+
 # Links to core elements of the game
 var audio: AudioClass
 var scene: GameScene

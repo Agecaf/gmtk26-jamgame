@@ -11,7 +11,7 @@ var position_offset: Vector2 = Vector2(50, -24)
 
 
 func _ready() -> void:
-	Game.player.coffin_sequence_start.connect(func():
+	Game.coffin_sequence_start.connect(func():
 		get_tree().create_tween().tween_property($Coffin, ^'self_modulate', Color('#ffffff00'), 1.0)
 	)
 

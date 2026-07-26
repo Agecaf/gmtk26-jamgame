@@ -83,7 +83,7 @@ func _on_vampire_animation_finished(anim_name: StringName):
 	if anim_name == &'Vampire/Coffin':
 		player.change_form(Player.Form.VAMPIRE)
 		player.animator_coffin.play(&'Coffin/Enter', 0.19)
-		player.coffin_sequence_start.emit()
+		Game.coffin_sequence_start.emit()
 
 
 func _on_bat_animation_finished(anim_name: StringName):
@@ -94,4 +94,4 @@ func _on_bat_animation_finished(anim_name: StringName):
 
 func _on_coffin_animation_finished(anim_name: StringName):
 	if anim_name == &'Coffin/Enter':
-		player.coffin_sequence_complete.emit()
+		Game.coffin_sequence_complete.emit()
