@@ -51,7 +51,7 @@ Troubled by what the third night had in store", "There it was. Final dawn of the
 Once again the Count held onto a baleful letter
 \"Count Downcula, you foul creature of the night, 
 You'll never reach your coffin before the daylight!\""])
-number_of_fruit = Array[int]([2, 0, 0, 0])
+number_of_fruit = Array[int]([0, 3, 3, 1])
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2097345781]
 
