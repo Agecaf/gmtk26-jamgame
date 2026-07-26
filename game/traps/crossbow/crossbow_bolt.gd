@@ -25,4 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is not Player:
 		velocity = Vector2.ZERO
 		final_velocity = Vector2.ZERO
+		$HitboxComponent/Collider.set_deferred('disabled', true)
 		$Animator.play(&'CrossbowBolt/Vanish')
+
