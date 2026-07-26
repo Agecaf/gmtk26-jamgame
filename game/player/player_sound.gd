@@ -39,10 +39,12 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING_BAT:
 			SFX.play(SFX.GLIDE_BAT)
 		
-		Player.State.TURNING_TO_MIST:
+		Player.State.TURNING_TO_MIST,\
+		Player.State.TURNING_TO_MIST_BAT:
 			SFX.play(SFX.HURT)
 		
-		Player.State.TURNING_TO_ASHES:
+		Player.State.TURNING_TO_ASHES,\
+		Player.State.TURNING_TO_ASHES_BAT:
 			SFX.play(SFX.DEATH_INTO_ASH)
 		
 		Player.State.ENTERING_COFFIN_FROM_LEFT,\
