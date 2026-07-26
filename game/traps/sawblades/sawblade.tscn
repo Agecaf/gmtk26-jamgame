@@ -7,6 +7,62 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vivr"]
 radius = 15.0
 
+[sub_resource type="Animation" id="Animation_petb3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SawbladeSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_5fb2t"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SawbladeSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_mr8ix"]
+resource_name = "spin_move"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SawbladeSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u675j"]
+_data = {
+&"RESET": SubResource("Animation_petb3"),
+&"idle": SubResource("Animation_5fb2t"),
+&"spin_move": SubResource("Animation_mr8ix")
+}
+
 [node name="Sawblade" type="Path2D" unique_id=71082083 groups=["sawblade"]]
 script = ExtResource("1_petb3")
 
@@ -27,6 +83,9 @@ collision_layer = 12
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/HitboxComponent" unique_id=1885515658]
 shape = SubResource("CircleShape2D_1vivr")
 debug_color = Color(1, 0, 0.10583592, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D" unique_id=1054520888]
+libraries/ = SubResource("AnimationLibrary_u675j")
 
 [node name="PauseTimer" type="Timer" parent="." unique_id=1778743885]
 one_shot = true

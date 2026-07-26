@@ -6,14 +6,14 @@ class_name Sawblade extends Path2D
 @export var is_moving : bool = false
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@onready var animation_player: AnimationPlayer = $PathFollow2D/AnimationPlayer
 @onready var pause_timer: Timer = $PauseTimer
-
-@onready var sprite: Sprite2D = %SawbladeSprite
 
 var direction : int = 1
 var is_waiting : bool = false
 
 func _ready() -> void:
+	animation_player.play("idle")
 	pause_timer.wait_time = wait_time
 	
 	move_loop()
@@ -36,24 +36,29 @@ func move_loop():
 		if not is_moving: break
 
 func move_to(target: float):
+	
 	var tween = create_tween()
 	tween.tween_property(path_follow_2d, "progress", target, move_duration)\
 		 .set_trans(transition_type)\
 		 .set_ease(Tween.EASE_IN_OUT)
+	
+	await get_tree().create_timer(0.3).timeout
+	
+	animation_player.play("spin_move")
+	
+	await get_tree().create_timer(0.4).timeout
+	
+	animation_player.play("idle")
+	
 	await tween.finished
-		
+	
+
 func reset_sawblade():
+	animation_player.play("idle")
+	
 	is_moving = false  
 	
 	pause_timer.stop()
 	pause_timer.timeout.emit()
 	
 	path_follow_2d.progress = 0
-
-var t = 0.2
-var T = 0.12
-func _process(delta: float) -> void:
-	t -= delta
-	if t < 0:
-		sprite.frame_coords.x = posmod(sprite.frame_coords.x+1, 3)
-		t = T
