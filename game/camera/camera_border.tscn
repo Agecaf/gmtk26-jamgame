@@ -3,5 +3,5 @@
 [ext_resource type="Script" uid="uid://bjjichskkr3jv" path="res://game/camera/camera_border.gd" id="1_q511f"]
 
 [node name="CameraBorder" type="Area2D" unique_id=780212062]
-z_index = 10
+z_index = 15
 script = ExtResource("1_q511f")
