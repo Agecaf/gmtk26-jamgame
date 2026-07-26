@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dxw0mddala6s3"]
+
+[ext_resource type="Script" uid="uid://yl8lofxhlp1m" path="res://game/camera/smooth_camera_offset.gd" id="1_ijksj"]
+
+[node name="SmoothCameraOffset" type="Area2D" unique_id=354640260]
+script = ExtResource("1_ijksj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

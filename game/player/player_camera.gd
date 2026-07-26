@@ -4,10 +4,6 @@ class_name PlayerCamera extends Camera2D
 var CAMERA_SPEED_X = 8.0
 var CAMERA_SPEED_Y = 4.0
 
-
-# This camera follows the player.
-
-
 # Initialization
 func _ready() -> void:
 	# Register
@@ -24,8 +20,8 @@ func _ready_deferred():
 	var viewport_size := get_viewport_rect().size
 	var half_camera_size := viewport_size / (2.0 * zoom)
 	
+	
 	position = apply_camera_borders(player_position, player_position, half_camera_size)
-
 
 # Process
 func _process(delta: float) -> void:
@@ -43,8 +39,6 @@ func _process(delta: float) -> void:
 
 
 func apply_camera_borders(target_position: Vector2, player_position: Vector2, half_camera_size: Vector2) -> Vector2:
-
-
 	for border in get_tree().get_nodes_in_group("camera_borders"):
 		target_position = border.clamp_camera(
 			target_position,
@@ -53,3 +47,6 @@ func apply_camera_borders(target_position: Vector2, player_position: Vector2, ha
 		)
 
 	return target_position
+
+func reset():
+	offset = Vector2.ZERO

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bpqt42431745s" path="res://game/other_objects/clock_door/clock_door.tscn" id="8_sn0tx"]
 [ext_resource type="PackedScene" uid="uid://7wfmqoyayvkh" path="res://game/other_objects/coffin/coffin.tscn" id="10_g6d80"]
 [ext_resource type="PackedScene" uid="uid://dda7rcoeqg4s2" path="res://game/camera/camera_border.tscn" id="13_douvt"]
+[ext_resource type="PackedScene" uid="uid://dxw0mddala6s3" path="res://game/camera/smooth_camera_offset.tscn" id="14_dtiux"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ey834"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 1, 65536, 0, 65537, 65536, 1)
@@ -505,6 +506,12 @@ size = Vector2(816, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtiux"]
 size = Vector2(32, 652)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vivr"]
+size = Vector2(58, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw0n7"]
+size = Vector2(120, 120)
+
 [node name="TutorialLevel2" type="Node2D" unique_id=1764938027]
 script = ExtResource("1_3xag0")
 
@@ -544,6 +551,7 @@ tile_set = ExtResource("5_vcmvh")
 [node name="Camera" type="Camera2D" parent="." unique_id=520769862]
 position = Vector2(288, 896)
 process_callback = 0
+limit_enabled = false
 script = ExtResource("1_qsvfy")
 
 [node name="ClockDoor" parent="." unique_id=97055137 instance=ExtResource("8_sn0tx")]
@@ -620,3 +628,22 @@ block_left = true
 position = Vector2(0, -34)
 shape = SubResource("RectangleShape2D_dtiux")
 debug_color = Color(0.79311967, 0.42711398, 3.85046e-07, 0.41960785)
+
+[node name="SmoothCameraOffset" parent="." unique_id=354640260 instance=ExtResource("14_dtiux")]
+position = Vector2(496, 832)
+offset_y = -15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothCameraOffset" unique_id=243549626]
+position = Vector2(19, 23)
+shape = SubResource("RectangleShape2D_1vivr")
+debug_color = Color(0.804157, 0.41774997, 5.7756904e-07, 0.41960785)
+
+[node name="SmoothCameraOffset2" parent="." unique_id=1370619267 instance=ExtResource("14_dtiux")]
+position = Vector2(856, 520)
+offset_x = -15.0
+x_only = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothCameraOffset2" unique_id=1791043035]
+position = Vector2(-12, -4)
+shape = SubResource("RectangleShape2D_kw0n7")
+debug_color = Color(0.804157, 0.41774997, 5.7756904e-07, 0.41960785)
