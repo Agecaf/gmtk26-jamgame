@@ -8,7 +8,7 @@ class_name ClockDoor extends Node2D
 @export var long_or_short: bool = false
 
 var open_sfx = preload("res://assets/audio/sfx/clock_door_opens.wav")
-var tick_sfx = preload("res://assets/audio/sfx/clock_tick_60bpm.wav")
+var tick_sfx = preload("res://assets/audio/sfx/clock_tick.wav")
 
 var max_time: float = 0.0
 var t: float = 8.0

@@ -7,6 +7,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_kafe6"]
 font = ExtResource("3_qs6vt")
 font_size = 129
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(6, 6)
 
 [node name="MainMenu" type="Control" unique_id=109957370]
 layout_mode = 3
@@ -19,7 +22,7 @@ theme = ExtResource("1_e5xhn")
 script = ExtResource("1_q6idt")
 
 [node name="CenterContainer2" type="CenterContainer" parent="." unique_id=106823067]
-custom_minimum_size = Vector2(0, 1080)
+custom_minimum_size = Vector2(0, 1040)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0

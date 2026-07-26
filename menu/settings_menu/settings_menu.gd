@@ -31,6 +31,7 @@ func start() -> void:
 
 func music_changed(value: float) -> void:
 	AudioServer.set_bus_mute(1, value <= 2.0)
+	# AudioServer.set_bus_mute(1, true)
 	AudioServer.set_bus_volume_linear(1, value / 100.0)
 
 func sfx_changed(value: float) -> void:

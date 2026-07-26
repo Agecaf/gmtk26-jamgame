@@ -124,6 +124,7 @@ func _on_player_physics_process(delta: float) -> void:
 
 			if Input.is_action_just_pressed(&'jump') or Input.is_action_just_pressed(back_action):
 				player.change_state(Player.State.JUMPING)
+				jump_keypress_interval = 0
 
 			elif Input.is_action_just_pressed(&'crouch'):
 				player.change_state(Player.State.JUMPING_FALL)
@@ -271,6 +272,7 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING_BAT,\
 		Player.State.BOUNCE_END,\
 		Player.State.FALLING_BAT,\
+		Player.State.TURNING_TO_MIST_BAT,\
 		Player.State.TURNING_TO_ASHES_BAT:
 			player.change_form(Player.Form.BAT)
 		

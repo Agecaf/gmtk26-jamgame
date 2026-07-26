@@ -20,6 +20,8 @@ enum State {
 	LANDING,
 	LANDING_BAT,
 	TURNING_TO_MIST,
+	TURNING_TO_MIST_BAT,
+	TURNING_TO_MIST_POST_BAT,
 	REFORMING,
 	TURNING_TO_ASHES,
 	TURNING_TO_ASHES_BAT,
@@ -191,8 +193,9 @@ func _physics_process(delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		_slide_collision(get_slide_collision(i))
 	
-	position.x = clamp(position.x, x_min, x_max)
-	position.y = clamp(position.y, y_min, y_max)
+	# No need to clamp position
+	# position.x = clamp(position.x, x_min, x_max)
+	# position.y = clamp(position.y, y_min, y_max)
 
 
 func _slide_collision(collision: KinematicCollision2D) -> void:
@@ -239,7 +242,7 @@ func change_form(form: Form) -> void:
 
 	for script: Resource in script_order:
 		if '_on_player_change_form' in script:
-			script._on_player_change_form(form)
+			script._on_player_change_form.call_deferred(form)
 
 
 func save_spot() -> void:
@@ -249,7 +252,10 @@ func save_spot() -> void:
 
 
 func hurt() -> void:
-	change_state(State.TURNING_TO_MIST)
+	if current_form == Form.VAMPIRE:
+		change_state(State.TURNING_TO_MIST)
+	else:
+		change_state(State.TURNING_TO_MIST_BAT)
 
 
 func turn_to_ashes() -> void:

@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://c8r16qe2oekkl" path="res://game/audio/audio.gd" id="1_4cwo7"]
 [ext_resource type="AudioStream" uid="uid://8o8dkl5mtsyk" path="res://assets/audio/music/count_downcula_menu_theme.ogg" id="2_4xfpn"]
 [ext_resource type="AudioStream" uid="uid://b5buq1nbyrap6" path="res://assets/audio/music/the_final_countdown.ogg" id="3_2sf7d"]
-[ext_resource type="AudioStream" uid="uid://fdg1khr0vsph" path="res://assets/audio/sfx/clock_tick_60bpm.wav" id="3_ues5r"]
+[ext_resource type="AudioStream" uid="uid://bwaqssi8wf5a3" path="res://assets/audio/sfx/clock_tick.wav" id="4_ues5r"]
+[ext_resource type="AudioStream" uid="uid://djan0g2snluvv" path="res://assets/audio/sfx/count_321.wav" id="5_2sf7d"]
 
 [node name="Audio" type="Node2D" unique_id=1812445335]
 script = ExtResource("1_4cwo7")
@@ -22,7 +23,7 @@ playback_type = 1
 
 [node name="ClockTicks" type="AudioStreamPlayer" parent="." unique_id=1347494488]
 unique_name_in_owner = true
-stream = ExtResource("3_ues5r")
+stream = ExtResource("4_ues5r")
 bus = &"Music"
 playback_type = 1
 
@@ -30,3 +31,9 @@ playback_type = 1
 unique_name_in_owner = true
 volume_db = -16.04
 bus = &"SFX"
+
+[node name="CountDown" type="AudioStreamPlayer" parent="." unique_id=2124458019]
+unique_name_in_owner = true
+stream = ExtResource("5_2sf7d")
+bus = &"SFX"
+playback_type = 1
