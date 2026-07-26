@@ -43,12 +43,19 @@ func _process(delta: float) -> void:
 
 	# Check for player grab
 	if not player_grabbed:
-		if in_snap_range and Game.player.position.y < position.y:
+		if (in_snap_range and Game.player.position.y < position.y 
+		and Game.player.current_state not in [
+	Player.State.TURNING_TO_MIST,
+	Player.State.TURNING_TO_MIST_BAT,
+	Player.State.TURNING_TO_MIST_POST_BAT,
+	Player.State.REFORMING,
+	Player.State.TURNING_TO_ASHES,
+	Player.State.TURNING_TO_ASHES_BAT,]
+	):
 			if in_left_snap_range:
 				grab_direction = Enums.Direction.LEFT
 			else:
 				grab_direction = Enums.Direction.RIGHT
-
 			grab_player(grab_direction)
 	
 	# Move player towards coffin
