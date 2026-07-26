@@ -497,7 +497,13 @@ pattern_20 = SubResource("TileMapPattern_5xpaf")
 pattern_21 = SubResource("TileMapPattern_myfy5")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vrlf"]
-size = Vector2(32, 1080.5)
+size = Vector2(32, 1076.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_douvt"]
+size = Vector2(816, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtiux"]
+size = Vector2(32, 652)
 
 [node name="TutorialLevel2" type="Node2D" unique_id=1764938027]
 script = ExtResource("1_3xag0")
@@ -589,10 +595,28 @@ position = Vector2(272, 888)
 collision_mask = 65548
 
 [node name="CameraBorder" parent="." unique_id=780212062 instance=ExtResource("13_douvt")]
-position = Vector2(184, 24)
+position = Vector2(160, 544)
 block_right = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder" unique_id=1042019925]
-position = Vector2(-24, 523.75)
+position = Vector2(0, -2.125)
 shape = SubResource("RectangleShape2D_8vrlf")
+debug_color = Color(0.79311967, 0.42711398, 3.85046e-07, 0.41960785)
+
+[node name="CameraBorder2" parent="." unique_id=945373772 instance=ExtResource("13_douvt")]
+position = Vector2(576, 1064)
+block_up = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder2" unique_id=809541826]
+position = Vector2(-24, 0)
+shape = SubResource("RectangleShape2D_douvt")
+debug_color = Color(0.79311967, 0.42711398, 3.85046e-07, 0.41960785)
+
+[node name="CameraBorder3" parent="." unique_id=1847694040 instance=ExtResource("13_douvt")]
+position = Vector2(1104, 792)
+block_left = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder3" unique_id=195866094]
+position = Vector2(0, -34)
+shape = SubResource("RectangleShape2D_dtiux")
 debug_color = Color(0.79311967, 0.42711398, 3.85046e-07, 0.41960785)
