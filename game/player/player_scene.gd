@@ -74,6 +74,8 @@ func _on_player_change_state(state: Player.State) -> void:
 			player.tween.finished.connect(player.complete_reform)
 			player.tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
 
+			Game.camera.reset()
+
 
 func _on_player_change_form(form: Player.Form) -> void:
 	match player.previous_form:
