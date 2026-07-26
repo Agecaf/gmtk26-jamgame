@@ -225,10 +225,6 @@ func _on_player_physics_process(delta: float) -> void:
 			if not landing_delay_remaining:
 				player.change_state(Player.State.IDLE)
 		
-		Player.State.REFORMING:
-			# TODO: Animation delay?
-			player.change_state(Player.State.IDLE)
-		
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_ASHES,\
 		Player.State.TURNING_TO_ASHES_BAT,\
@@ -251,7 +247,6 @@ func _on_player_change_state(state: Player.State) -> void:
 		Player.State.GLIDING,\
 		Player.State.FALLING,\
 		Player.State.TURNING_TO_MIST,\
-		Player.State.REFORMING,\
 		Player.State.TURNING_TO_ASHES,\
 		Player.State.ENTERING_COFFIN_FROM_LEFT,\
 		Player.State.ENTERING_COFFIN_FROM_RIGHT:

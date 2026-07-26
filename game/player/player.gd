@@ -22,7 +22,6 @@ enum State {
 	TURNING_TO_MIST,
 	TURNING_TO_MIST_BAT,
 	TURNING_TO_MIST_POST_BAT,
-	REFORMING,
 	TURNING_TO_ASHES,
 	TURNING_TO_ASHES_BAT,
 	ENTERING_COFFIN_FROM_LEFT,
@@ -147,6 +146,7 @@ var current_form: Form
 var current_facing: Enums.Direction
 
 var last_wall_normal: Vector2
+var tween: Tween
 
 # For callbacks, auxiliary scripts are executed in the order defined here
 func _init() -> void:
@@ -264,20 +264,32 @@ func save_spot() -> void:
 			script._on_player_save_spot()
 
 
-func hurt() -> void:
-	if current_form == Form.VAMPIRE:
-		change_state(State.TURNING_TO_MIST)
-	else:
-		change_state(State.TURNING_TO_MIST_BAT)
-
-
 func turn_to_bats() -> void:
 	for script: Resource in script_order:
 		if '_on_player_turn_to_bats' in script:
 			script._on_player_turn_to_bats()
 
 
+func turn_to_mist() -> void:
+	if current_state in [
+		State.TURNING_TO_ASHES,
+		State.TURNING_TO_ASHES_BAT,
+		State.ENTERING_COFFIN_FROM_LEFT,
+		State.ENTERING_COFFIN_FROM_RIGHT
+	]:
+		return
+	
+	if current_form == Form.VAMPIRE:
+		change_state(State.TURNING_TO_MIST)
+	else:
+		change_state(State.TURNING_TO_MIST_BAT)
+
+
 func turn_to_ashes() -> void:
+	animator.stop()
+	if tween:
+		tween.kill()
+	
 	if current_form == Form.VAMPIRE:
 		change_state(State.TURNING_TO_ASHES)
 	else:

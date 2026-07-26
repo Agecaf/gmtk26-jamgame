@@ -32,7 +32,7 @@ func _on_player_ready() -> void:
 
 func _on_player_slide_collision(collision: KinematicCollision2D) -> void:
 	if collision.get_collider() is Spikes:
-		player.hurt()
+		player.turn_to_mist()
 
 
 func _on_player_reset() -> void:
@@ -70,9 +70,9 @@ func _on_player_change_state(state: Player.State) -> void:
 	match state:
 		Player.State.TURNING_TO_MIST,\
 		Player.State.TURNING_TO_MIST_BAT:
-			var tween: Tween = player.get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
-			tween.finished.connect(player.complete_reform)
-			tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
+			player.tween = player.get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
+			player.tween.finished.connect(player.complete_reform)
+			player.tween.tween_property(player, ^'position', last_marked_position, player.mist_travel_duration)
 
 
 func _on_player_change_form(form: Player.Form) -> void:
@@ -105,7 +105,7 @@ func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 		return
 	
 	if player.current_state not in [Player.State.CROUCHING, Player.State.CROUCHING_RUN]:
-		player.hurt()
+		player.turn_to_mist()
 
 		var hitbox_parent: Node = area.get_parent()
 		if not hitbox_parent:

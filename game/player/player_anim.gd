@@ -65,9 +65,6 @@ func _on_player_change_state(state: Player.State) -> void:
 
 		Player.State.TURNING_TO_MIST_BAT:
 				player.animator_bat.play(&'BatForm/TurnToMist')
-		
-		Player.State.REFORMING:
-			player.animator_vampire.play(&'Vampire/Reform')
 
 		Player.State.TURNING_TO_ASHES:
 			player.animator_vampire.play(&'Vampire/TurnToAshes')
