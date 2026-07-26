@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 	Player.State.TURNING_TO_MIST,
 	Player.State.TURNING_TO_MIST_BAT,
 	Player.State.TURNING_TO_MIST_POST_BAT,
-	Player.State.REFORMING,
 	Player.State.TURNING_TO_ASHES,
 	Player.State.TURNING_TO_ASHES_BAT,]
 	):
