@@ -193,8 +193,9 @@ func _physics_process(delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		_slide_collision(get_slide_collision(i))
 	
-	position.x = clamp(position.x, x_min, x_max)
-	position.y = clamp(position.y, y_min, y_max)
+	# No need to clamp position
+	# position.x = clamp(position.x, x_min, x_max)
+	# position.y = clamp(position.y, y_min, y_max)
 
 
 func _slide_collision(collision: KinematicCollision2D) -> void:
