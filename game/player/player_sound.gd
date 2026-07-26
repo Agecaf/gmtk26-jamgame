@@ -62,7 +62,7 @@ func _on_player_process(delta: float):
 
 
 func _on_player_save_spot() -> void:
-	SFX.play(SFX.DOUBLE_JUMP)
+	SFX.play(SFX.RECALL_BAT)
 
 
 ## Turns out this was hardcoded into the hurt clip?

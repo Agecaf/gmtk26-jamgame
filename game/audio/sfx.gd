@@ -1,6 +1,7 @@
 class_name SFX extends Object
 
 const DOUBLE_JUMP = preload("res://assets/audio/sfx/bat_jump.wav")
+const RECALL_BAT = preload("res://assets/audio/sfx/bat_recall_placeholder.wav")
 const JUMP = preload("res://assets/audio/sfx/hop.wav")
 const GLIDE_VAMPIRE = preload("res://assets/audio/sfx/cape_glide_short.wav")
 const GLIDE_BAT = preload("res://assets/audio/sfx/cape_glide_short.wav")
@@ -24,6 +25,11 @@ static var volume_dict: Dictionary = {
 	DOUBLE_JUMP: -3.0,
 	CROSSBOW_SHOT: 3.0,
 	SAWBLADE: -12.0,
+	RECALL_BAT: -3.0,
+}
+
+static var pitch_scale_dict: Dictionary = {
+	RECALL_BAT: 0.8,
 }
 
 # Play an sfx
@@ -32,5 +38,6 @@ static func play(which_sfx) -> void:
 	
 	var asp: AudioStreamPlayer = Game.audio.get_sfx_asp()
 	asp.volume_db = volume_dict.get(which_sfx, 0.0)
+	asp.pitch_scale = pitch_scale_dict.get(which_sfx, 1.0)
 	asp.stream = which_sfx
 	asp.play()
