@@ -90,6 +90,6 @@ func _on_player_save_spot() -> void:
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 	if area is not HitboxComponent:
 		return
-			
-	if player.current_state != Player.State.CROUCHING:
+	
+	if player.current_state not in [Player.State.CROUCHING, Player.State.CROUCHING_RUN]:
 		player.hurt()

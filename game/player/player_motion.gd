@@ -18,7 +18,7 @@ var double_jump_gravity: float:
 	get: return 2.0 * player.double_jump_height / pow(player.double_jump_time, 2)
 
 const IMMOBILE_STATES: Array[Player.State] = [
-	Player.State.CROUCHING,
+	# Player.State.CROUCHING,
 	Player.State.TURNING_TO_MIST,
 	Player.State.TURNING_TO_MIST_BAT,
 	Player.State.TURNING_TO_ASHES,
@@ -57,18 +57,26 @@ func _on_player_physics_process(delta: float) -> void:
 	else:
 		var move_left: int = 1 if Input.is_action_pressed(&'left') else 0
 		var move_right: int = 1 if Input.is_action_pressed(&'right') else 0
-
-		if player.is_on_floor():
-			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / player.run_speed_change_rate))
 		
-		else:
-			var air_speed_change_rate: float = (
-				player.bat_glide_air_speed_change_rate if player.current_state == Player.State.GLIDING_BAT else
-				player.glide_air_speed_change_rate if player.current_state == Player.State.GLIDING else
-				player.bat_air_speed_change_rate if player.current_state in [Player.State.JUMPING_BAT, Player.State.FALLING_BAT] else
-				player.air_speed_change_rate
-			)
-			player.velocity.x = lerp(player.velocity.x, player.run_speed * (move_right - move_left), exp(-delta / air_speed_change_rate))
+		var h_speed: float = player.run_speed
+		var h_speed_change_rate: float = player.run_speed_change_rate if player.is_on_floor() else player.air_speed_change_rate
+
+		match player.current_state:
+			Player.State.CROUCHING_RUN:
+				h_speed = player.crouch_run_speed
+				h_speed_change_rate = player.crouch_run_speed_change_rate
+
+			Player.State.GLIDING_BAT:
+				h_speed_change_rate = player.bat_glide_air_speed_change_rate
+
+			Player.State.GLIDING:
+				h_speed_change_rate = player.glide_air_speed_change_rate
+
+			Player.State.JUMPING_BAT,\
+			Player.State.FALLING_BAT:
+				h_speed_change_rate = player.bat_air_speed_change_rate
+		
+		player.velocity.x = lerp(player.velocity.x, h_speed * (move_right - move_left), exp(-delta / h_speed_change_rate))
 	
 	# Cache player velocity on starting a bounce
 	if player.current_state == Player.State.BOUNCE_START:
