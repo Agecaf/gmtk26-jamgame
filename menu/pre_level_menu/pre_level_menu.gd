@@ -13,4 +13,8 @@ func _ready_deferred():
 func start() -> void:
 	if Game.level_index >= 0 and Game.level_index < len(Game.container.start_text):
 		story_text.text = Game.container.start_text[Game.level_index]
-	pass
+	
+	Game.audio.prelevel_music.play()
+
+func end() -> void:
+	Game.audio.prelevel_music.stop()
