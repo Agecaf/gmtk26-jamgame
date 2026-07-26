@@ -29,6 +29,15 @@ func _process(delta: float) -> void:
 	if Game.player != null and is_instance_valid(Game.player):
 		if Game.player.animator_vampire.current_animation.ends_with("Idle_2"):
 			var t: float = Game.player.animator_vampire.current_animation_position
+			
+			# Font size
+			if Game.menu != null:
+				if Game.menu.theme.default_font_size == 43:
+					%CheckpointLabel.label_settings.font_size = 43
+				else:
+					%CheckpointLabel.label_settings.font_size = 32
+			
+			# Text
 			if t < 4.0:
 				%CheckpointLabel.text = "Checkpoint in %d..." % ceili(4.0 - t)
 			else:
